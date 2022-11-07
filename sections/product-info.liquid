@@ -1,6 +1,5 @@
 {% if section.settings.show_section %}
-<link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css" type="text/css">
+<link rel="stylesheet" data-href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css">
 
 <div class="product-info product-info--{{ section.id }}{% if section.settings.page == "healthy-hormones-ebook" %}
   product-info__healthy{% endif %}" data-section-id="{{ section.id }}"
@@ -77,10 +76,9 @@
   }
 </style>
 
-<script type="text/javascript"
-  src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
+<script type="lazyload2" data-src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
 
-<script type="text/javascript">
+<script type="lazyload2">
   [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function (el) {
     el.lightbox = new IframeLightbox(el, {
     });

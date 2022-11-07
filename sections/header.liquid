@@ -423,7 +423,7 @@
 
 {%- render 'cart-notification', color_scheme: section.settings.color_scheme -%}
 
-{% javascript %}
+<script>
 class StickyHeader extends HTMLElement {
 constructor() {
 super();
@@ -495,7 +495,7 @@ requestAnimationFrame(this.hide.bind(this));
     }
 
     customElements.define('sticky-header', StickyHeader);
-    {% endjavascript %}
+</script>
 
     <script type="application/ld+json">
   {

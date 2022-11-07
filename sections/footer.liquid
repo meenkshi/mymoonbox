@@ -329,7 +329,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
   </div>
 </footer> -->
 
-{% javascript %}
+<script>
 class LocalizationForm extends HTMLElement {
 constructor() {
 super();
@@ -380,7 +380,7 @@ this.hidePanel();
 }
 
 customElements.define('localization-form', LocalizationForm);
-{% endjavascript %}
+</script>
 
 {% schema %}
 {

@@ -1,0 +1,45 @@
+<div id="shopify-block-10830403595879607806" class="shopify-block shopify-app-block">
+<script type="lazyload2">
+  var reviewsIoStore = 'my-moonbox';
+  
+      var reviewsIoLang = 'en';
+    
+</script>
+
+</div>
+<div id="shopify-block-15316669992541710076" class="shopify-block shopify-app-block">
+<script type="lazyload2" data-src="https://widget.reviews.io/rating-snippet/dist.js"></script>
+<link rel="stylesheet" data-href="https://widget.reviews.io/rating-snippet/dist.css" />
+<script type="lazyload2">
+    window.addEventListener('DOMContentLoaded', (event) => {
+      loadReviewsIoRatingSnippets();
+    });
+
+    var loadReviewsIoRatingSnippets = function () {
+      if(typeof reviewsIoStore !== 'undefined') {
+        ratingSnippet("ruk_rating_snippet",{
+            store: reviewsIoStore,
+            color: '#000000',
+            
+              textClr: '#333333',
+            
+            linebreak: false,
+            
+            
+            
+            
+            
+              text: 'Reviews',
+            
+            lang: reviewsIoLang,
+            mode: 'default',
+            showEmptyStars: false
+
+        });
+      }
+    }
+
+    
+</script>
+
+</div>

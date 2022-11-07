@@ -1,5 +1,4 @@
-<link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css" type="text/css">
+<link rel="stylesheet" data-href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css">
 
 <div class="stories{% if section.settings.show_decor %} line-decor__one{% endif %}">
     <div class="stories__wrapper{% if section.settings.show_bord %} mobile-bord{% endif %}{% if section.settings.type == 'quiz-result' %} stories__wrapper_quiz{% endif %}" 
@@ -79,10 +78,9 @@
 </style>
 
 <script src="{{ 'stories.js' | asset_url }}" defer="defer"></script>
-<script type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
+<script type="lazyload2" data-src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
 
-<script type="text/javascript">
+<script type="lazyload2">
     [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function (el) {
         el.lightbox = new IframeLightbox(el, {
         });
