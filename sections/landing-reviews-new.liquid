@@ -1,0 +1,122 @@
+<div class="landing-reviews landing-reviews-new overflow-hidden">
+  <div class="container container--landing">
+    {% if section.settings.title != blank %}
+      <h2 class="h2">{{ section.settings.title }} </h2>
+    {% endif %}
+    <ul class="list-unstyled">      
+      {%- for block in section.blocks -%}
+        <li class="flex-row{% if block.settings.image-right %} landing-reviews__reverse flex-row-reverse{% endif %}" style="background-color: {{ block.settings.overlay }} ;">
+          <div class="landing-reviews__img"
+          style="border-color: {{ block.settings.color-border }} ">
+            <img
+              srcset="{%- if block.settings.image.width >= 375 -%}{{ block.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+                {%- if block.settings.image.width >= 550 -%}{{ block.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+                {%- if block.settings.image.width >= 750 -%}{{ block.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if block.settings.image.width >= 1100 -%}{{ block.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                {%- if block.settings.image.width >= 1780 -%}{{ block.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+                {%- if block.settings.image.width >= 2000 -%}{{ block.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                {%- if block.settings.image.width >= 3000 -%}{{ block.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                {%- if block.settings.image.width >= 3840 -%}{{ block.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
+                {{ block.settings.image | image_url }} {{ block.settings.image.width }}w"
+              sizes=" (min-width: 750px) 50vw, 100vw"
+              src="{{ block.settings.image | image_url: width: 1500 }}"
+              loading="lazy"
+              alt="{{ block.settings.image.alt | escape }}"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.width | divided_by: block.settings.image.aspect_ratio }}"
+            >
+          </div>  
+          <div class="landing-reviews__content">
+            <h3 class="{% if block.settings.title-svg != blank %} landing-reviews__title_decor{% endif %}" style="color: {{ block.settings.color-title }}">{{ block.settings.title }} {{ block.settings.title-svg }} </h3>
+            <div class="landing-reviews__content_comment" style="color: {{ block.settings.color-text }}"> {{ block.settings.text }}</div>
+            <span style="color: {{ block.settings.color-text }}">{{ block.settings.author }}</span>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+
+{% schema %}
+{
+    "name": "Landing Reviews 2",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+      "name": "Item",
+      "type": "text",
+      "settings": [
+        {
+          "type": "color",
+          "id": "overlay",
+          "label": "overlay",
+          "default": "#707e74"
+        },
+        {
+          "type": "color",
+          "id": "color-title",
+          "label": "Color title",
+          "default": "#F3F2EC"
+        },
+        {
+          "type": "color",
+          "id": "color-text",
+          "label": "Color text",
+          "default": "#F3F2EC"
+        },
+        {
+          "type": "color",
+          "id": "color-border",
+          "label": "Color border",
+          "default": "#F3F2EC"
+        },
+        {
+          "type": "checkbox",
+          "id": "image-right",
+          "label": "Image must be on the right?",
+          "default": false
+        },
+        {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Item Title"
+          },
+          {
+          "type": "html",
+          "id": "title-svg",
+          "label": "SVG decor"
+          },
+          {
+          "type": "richtext",
+          "id": "text",
+          "label": "Item Text"
+          },
+          {
+          "type": "text",
+          "id": "author",
+          "label": "Item Author"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Reviews 2"
+      }
+    ]
+}
+{% endschema %}

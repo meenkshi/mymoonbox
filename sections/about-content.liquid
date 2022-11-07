@@ -1,0 +1,120 @@
+<div class="about-content">
+    <div class="line-decor__one about-content__wrapper{% if section.settings.type == "type-two" %} about-content__wrapper_two{% endif %}{% if section.settings.type == "type-three" %} about-content__wrapper_three{% endif %}{% if
+        section.settings.type == "type-four" %} about-content__wrapper_four{% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="about-content__items">
+                <div class="about-content__item">
+                    {% if section.settings.title != blank %}
+                    <h2 class="about-content__title" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title }} </h2>
+                    {% endif %}
+
+                    <div class="about-content__box">
+                        <!-- image tablet -->
+                        {% if section.settings.image-mobile != blank %}
+                        <div class="about-content__image about-content__image_under">
+                            <img src=" {{ section.settings.image-mobile | img_url: 'master' }} " alt="">
+                        </div>
+                        {% else %}
+                        <div class="about-content__image about-content__image_under">
+                            <img src=" {{ section.settings.image | img_url: 'master' }} " alt="">
+                        </div>
+                        {% endif %}
+                    
+                        <!-- if mobile image == desktop -->
+                        {% if section.settings.image != blank %}
+                        <div class="about-content__image_mobile">
+                            <img src=" {{ section.settings.image | img_url: 'master' }} " alt="">
+                        </div>
+                        {% endif %}
+                    
+                        {% if section.settings.desc != blank %}
+                        <div class="about-content__text" style="color:{{ section.settings.clr_text }}"> {{
+                            section.settings.desc }} </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- image desktop -->
+                {% if section.settings.image != blank %}
+                <div class="about-content__image">
+                    <img src=" {{ section.settings.image | img_url: 'master' }} " alt="">
+                </div>
+                {% endif %}
+                {% if section.settings.image-mobile != blank %}
+                <div class="about-content__image_tablet">
+                    <img src=" {{ section.settings.image-mobile | img_url: 'master' }} " alt="">
+                </div>
+                {% else %}
+                <div class="about-content__image_tablet">
+                    <img src=" {{ section.settings.image | img_url: 'master' }} " alt="">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "About content",
+    "settings": [
+    {
+    "type": "select",
+    "id": "type",
+    "label": "What type do you want to use?",
+    "options": [
+    {
+    "value": "type-one",
+    "label": "Type one"
+    },
+    {
+    "value": "type-two",
+    "label": "Type two"
+    },
+    {
+    "value": "type-three",
+    "label": "Type three"
+    },
+    {
+    "value": "type-four",
+    "label": "Type four"
+    }
+    ]
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2e9e0"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text",
+    "default": "#333"
+    },
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image on descktop & mobile"
+    },
+    {
+    "type": "image_picker",
+    "id": "image-mobile",
+    "label": "Image on tablet"
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "desc",
+    "label": "Text"
+    }
+    ]
+}
+{% endschema %}

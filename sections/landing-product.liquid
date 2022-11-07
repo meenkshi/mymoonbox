@@ -1,0 +1,170 @@
+<div class="landing-banner">
+  <div class="landing-banner__bg">
+    <svg preserveAspectRatio="none" width="1440" height="277" viewBox="0 0 1440 277" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M924.642 0C1145.41 0 1321.14 39.2215 1441 90.829L1441 277L0 277V65.645C428.297 110.651 648.675 0 924.642 0Z" fill="#F2E9E0"/>
+      </svg>     
+  </div>
+  <div class="landing-banner__content">
+    <div class="container">    
+      <h2 class="h2"><span class="url-name"></span>{{ section.settings.text_banner }}</h2>
+    </div>
+  </div>
+</div>
+
+<div class="text-and-image {% if section.settings.green_bg_1 %} text-and-image--green-bg {% endif %} {% if section.settings.red_bg_1 %} text-and-image--red-bg {% endif %}" >
+  <div class="container container--landing">
+    <div class="text-and-image__wrapper position-relative">
+      <div class="text-and-image__content position-relative">
+        {% if section.settings.text_1 %}
+          <p class="text-and-image__text">{{ section.settings.text_1 }}</p>
+        {% endif %}
+        <p class="text-and-image__subtitle">{{ section.settings.subtitle_1 }}</p>
+        {% if section.settings.title_1 %}
+          <div class="h2 h2--white">{{ section.settings.title_1 }}</div>
+        {% endif %}
+        {% if section.settings.svg_1 %}
+          {{ section.settings.svg_1 }}
+        {% endif %}
+      </div> 
+      <div class="text-and-image__img position-relative">
+        <img
+          srcset="{%- if section.settings.image_1.width >= 375 -%}{{ section.settings.image_1 | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if section.settings.image_1.width >= 550 -%}{{ section.settings.image_1 | image_url: width: 550 }} 550w,{%- endif -%}
+            {%- if section.settings.image_1.width >= 750 -%}{{ section.settings.image_1 | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if section.settings.image_1.width >= 1100 -%}{{ section.settings.image_1 | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if section.settings.image_1.width >= 1500 -%}{{ section.settings.image_1 | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if section.settings.image_1.width >= 1780 -%}{{ section.settings.image_1 | image_url: width: 1780 }} 1780w,{%- endif -%}
+            {%- if section.settings.image_1.width >= 2000 -%}{{ section.settings.image_1 | image_url: width: 2000 }} 2000w,{%- endif -%}
+            {%- if section.settings.image_1.width >= 3000 -%}{{ section.settings.image_1 | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {%- if section.settings.image_1.width >= 3840 -%}{{ section.settings.image_1 | image_url: width: 3840 }} 3840w,{%- endif -%}
+            {{ section.settings.image_1 | image_url }} {{ section.settings.image_1.width }}w"
+          sizes=" (min-width: 750px) 50vw, 100vw"
+          src="{{ section.settings.image_1 | image_url: width: 1500 }}"
+          loading="lazy"
+          alt="{{ section.settings.image_1.alt | escape }}"
+          width="{{ section.settings.image_1.width }}"
+          height="{{ section.settings.image_1.width | divided_by: section.settings.image_1.aspect_ratio }}"
+        >
+      </div>     
+    </div>
+  </div>
+</div>
+
+<div class="landing-product position-relative">
+  <div class="landing-product__bg position-absolute" ></div>
+  <div class="container container--landing position-relative">
+    <p class="subtitle">{{ section.settings.subtitle }}</p>
+    <h2 class="h2">{{ section.settings.title }}</h2>
+    <div class="landing-product__btn position-relative">
+      {{ section.settings.svg }}
+      <a class="btn btn--red" href="#">{{ section.settings.link_text }}</a>
+    </div>
+
+    <div class="landing-product__img">
+      <img
+        srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+          {%- if section.settings.image.width >= 550 -%}{{ section.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+          {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+          {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+          {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+          {%- if section.settings.image.width >= 3840 -%}{{ section.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
+          {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
+        sizes=" (min-width: 750px) 50vw, 100vw"
+        src="{{ section.settings.image | image_url: width: 1500 }}"
+        loading="lazy"
+        alt="{{ section.settings.image.alt | escape }}"
+        width="{{ section.settings.image.width }}"
+        height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+      >
+    </div>     
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Landing Product",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "richtext",
+      "id": "text_banner",
+      "label": "Bunner Text"
+      },
+      {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text 1"
+      },
+      {
+      "type": "text",
+      "id": "subtitle_1",
+      "label": "Subtitle 1"
+      },
+      {
+      "type": "richtext",
+      "id": "title_1",
+      "label": "Title 1"
+      },
+      {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+      },
+      {
+      "type": "checkbox",
+      "id": "green_bg_1",
+      "default": false,
+      "label": "Bacground Green"
+      },
+      {
+      "type": "checkbox",
+      "id": "red_bg_1",
+      "default": false,
+      "label": "Background Red"
+      },
+      {
+      "type": "text",
+      "id": "svg_1",
+      "label": "SVG"
+      },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      },
+      {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+      },
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+      },
+      {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+      },
+      {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+      },
+      {
+      "type": "text",
+      "id": "svg",
+      "label": "SVG"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Product"
+      }
+    ]
+}
+{% endschema %}

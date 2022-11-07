@@ -1,0 +1,112 @@
+<div class="science-design">
+    <div class="science-design__wrapper {% if section.settings.product__page == true %} science-design__wrapper_product {% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="science-design__content">
+                {% if section.settings.science-design__title != blank %}
+                <h2 class="science-design__title" style="color:{{ section.settings.clr_title }}"> {{
+                    section.settings.science-design__title }} </h2>
+                {% endif %}
+                {% if section.settings.science-design__text != blank %}
+                <div class="science-design__text" style="color:{{ section.settings.clr_text }}"> {{
+                    section.settings.science-design__text }} </div>
+                {% endif %}
+            </div>
+            {% if section.blocks != blank %}
+            <ul class="video-info__items science-design__items">
+                {% for block in section.blocks %}
+                <li class="video-info__item science-design__item">
+                    <div class="video-info__unit science-design__unit position-relative">
+                        <div class="video-info__plug science-design__plug position-absolute"
+                            style="background-image: url('{{ block.settings.plug | img_url: '330x' }}');">
+                            {% if block.settings.science-design__image != blank %}
+                            <img src=" {{  block.settings.science-design__image | img_url: '330x' }} " alt=""
+                                class="video-info__image science-design__image">
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if block.settings.science-design__item_text != blank %}
+                    <div class="video-info__item_text science-design__item_text"
+                        style="color:{{ section.settings.clr_text }}">
+                        {{ block.settings.science-design__item_text}}
+                    </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Science design",
+    "settings": [
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2e9e0"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "science-design__title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "science-design__text",
+    "label": "Text"
+    },
+    {
+    "type": "checkbox",
+    "id": "product__page",
+    "label": "Section in product page",
+    "default": false
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Design item",
+    "type": "image_picker",
+    "limit": 5,
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "plug",
+    "label": "First image for element before hover(plug)"
+    },
+    {
+    "type": "image_picker",
+    "id": "science-design__image",
+    "label": "Image for element on hover"
+    },
+    {
+    "type": "text",
+    "id": "science-design__item_text",
+    "label": "Element text"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Science design"
+    }
+    ]
+}
+{% endschema %}

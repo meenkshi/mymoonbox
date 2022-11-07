@@ -1,0 +1,101 @@
+<div class="landing-accordion">
+  <div class="container container--landing">
+    <div class="landing-accordion__wrap">
+      <p class="subtitle">{{ section.settings.subtitle }}</p>
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      <ol class="list-unstyled accordion">
+        {%- for block in section.blocks -%}
+          <li class="accordion__item">
+            {% if block.settings.svg != blank %} 
+              {{ block.settings.svg }}
+            {% endif %}
+            <p class="accordion__btn">
+              <span>{{ block.settings.text }}</span>      
+            </p>
+            <div class="text accordion__content">{{ block.settings.content }}</div>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+      <div class="landing-accordion__color-block">
+        <h2 class="h2"><span>{{ section.settings.title_2_bold }}</span>{% if page.template_suffix != "result-quiz-result" and  page.template_suffix != "daily-cycle-care" %}<span class="url-name name-after">?..</span>{%- endif -%}{{ section.settings.title_2 }}</h2>
+        {% assign product = section.settings.product %}
+        <form class="product-form w-100 d-flex justify-content-center" action="/cart/add" data-productid="{{product.id}}" method="POST">
+          {%- liquid
+            assign current_variant = product.selected_or_first_available_variant | default: product.variants.first
+          -%}
+          <input type="hidden" name="id" data-productid="{{product.id}}" class="product-select"
+            value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />  
+          
+          <input type="hidden" name="properties[_quiz_kit_id]" value="5824" /> 
+          <input type="hidden" name="product-price" value="{{ product.selected_or_first_available_variant.price }}" />    
+          <input type="hidden" name="product-variant-id" value="{{ product.selected_or_first_available_variant.id }}" />       
+          <label class="btn btn--black button__primary">
+            <input type="submit" value="{{section.settings.btn_text }}" name="add" class=" product-form__submit" />
+          </label>
+        </form>
+      </div>    
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Landing Accordion",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+        },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      }, 
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+      },   
+      {
+      "type": "richtext",
+      "id": "title_2",
+      "label": "Title for Color Block"
+      }, 
+      {
+      "type": "richtext",
+      "id": "title_2_bold",
+      "label": "Bold Title for Color Block"
+      },
+      {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+      }      
+    ],
+    "blocks": [
+      {
+      "name": "Item",
+      "type": "text",
+      "settings": [
+          {
+          "type": "text",
+          "id": "text",
+          "label": "Item"
+          },
+          {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Accordion"
+      }
+    ]
+}
+{% endschema %}

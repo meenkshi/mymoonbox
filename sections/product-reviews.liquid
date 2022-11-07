@@ -1,0 +1,233 @@
+<div
+    class="product-reviews{% if section.settings.show_section %} line-decor__two product-reviews__decor{% endif %}{% if section.settings.decor_up %} product-reviews__decor_up{% endif %}">
+    <div class="product-reviews__box" {% if section.settings.show_section %}style="overflow: hidden;" {% endif %}>
+        <!-- carousel -->
+        {% if section.settings.show_section %}
+        {%- capture carousel_collection -%}
+        {%- endcapture -%}
+        <div class="carousel-collection{% if section.settings.show_section %} carousel-collection__product{% endif %}"
+            data-section-id="{{ section.id }}" style="background-color:{{ section.settings.carousel_bg_clr }};">
+            <div class="container">
+                <div class="carousel-collection__wrap">
+                    <div class="carousel-collection__head">
+                        {% if section.settings.title != blank %}
+                        <h2 class="carousel-collection__title" style="color:{{ section.settings.clr_text }}">{{
+                            section.settings.title }}</h2>
+                        {% endif %}
+
+                        <div class="carousel-collection__nav">
+                            {% if section.settings.button_label != blank %}
+                            <a href="{{ section.settings.button_url }}"
+                                class="carousel-collection__link carousel-collection__link--desktop">{{
+                                section.settings.button_label }}</a>
+                            {% endif %}
+
+                            <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev carousel-collection__button-prev">
+                                <svg width="45" height="27" viewBox="0 0 45 27" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.0659 0.999992C18.0659 0.999992 20.7318 11.6 1 13.5" stroke="#333333"
+                                        stroke-miterlimit="10" />
+                                    <path d="M18.0659 26C18.0659 26 20.7318 15.4 1 13.5L44.1271 13.5" stroke="#333333"
+                                        stroke-miterlimit="10" />
+                                </svg>
+                            </div>
+                            <div class="swiper-button-next carousel-collection__button-next">
+                                <svg width="44" height="27" viewBox="0 0 44 27" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M26.312 26C26.312 26 23.6461 15.4 43.3779 13.5" stroke="#333333"
+                                        stroke-miterlimit="10" />
+                                    <path d="M26.312 1C26.312 1 23.6461 11.6 43.3779 13.5L0.250865 13.5"
+                                        stroke="#333333" stroke-miterlimit="10" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-collection__body">
+                        <div class="carousel-collection__slider swiper"
+                            data-swiper-count-slide="{{ section.settings.limit }}">
+                            <div class="swiper-wrapper">
+                                {% for block in section.blocks limit: section.settings.limit %}
+                                {%- assign collection = collections[block.settings.collection] -%}
+                                {% for product in collection.products %}
+                                <div class="swiper-slide">
+                                    {% render 'carousel-product-card', with card_product: product %}
+                                </div>
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% if section.settings.button_label != blank %}
+                        <a href="{{ section.settings.button_url }}"
+                            class="carousel-collection__link carousel-collection__link--mobile">{{
+                            section.settings.button_label }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ carousel_collection | strip_newlines | remove: " " | remove: " " }}
+        <script src="{{- 'carousel-collection.min.js' | asset_url -}}" defer="defer"></script>
+        {% endif %}
+
+        <!-- reviews -->
+        <div class="line-decor__one product-reviews__wrapper{% if section.settings.show_section == false %} line-decor__two product-reviews__wrapper_decor{% endif %}"
+            style="background-color:{{ section.settings.sec_bg_clr }};">
+            <div class="container">
+                <div class="product-reviews__inner">
+                    {% if section.settings.product-reviews__title != blank %}
+                    <h2 class="product-reviews__title"> {{ section.settings.product-reviews__title }} </h2>
+                    {% endif %}
+                    {% if section.settings.line == true %}
+                    <div class="product-reviews__line" style="background-color:{{ section.settings.line_bg_clr }}">0
+                    </div>
+                    {% endif %}
+                    {% if section.settings.image != blank %}
+                    <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                {{ image | img_url: 'master' }} {{ image.width }}w"
+                        src="{{ section.settings.image | img_url: '330x' }}" sizes="(max-width: 990px)"
+                        alt="{{ image.alt | escape }}" height="{{ image.height }}" width="{{ image.width }}"
+                        loading="lazy" class="product-reviews__image{% if section.settings.position == "second" %} product-reviews__image_second{% endif %}">
+                    {% endif %}
+                </div>
+                <div id="ReviewsWidget"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+{
+"name": "Product reviews",
+"settings": [
+{
+"type": "checkbox",
+"id": "show_section",
+"label": "Show carousel collection?",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "decor_up",
+"label": "If the carousel is on, do you need to lift the decor on top?",
+"default": false
+},
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#f3f2ec"
+},
+{
+"type": "color",
+"id": "carousel_bg_clr",
+"label": "Background carousel",
+"default": "#F3F2EC"
+},
+{
+"type": "color",
+"id": "clr_title",
+"label": "Title color",
+"default": "#333"
+},
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text",
+"default": "#333"
+},
+{
+"type": "color",
+"id": "line_bg_clr",
+"label": "Line color next to title",
+"default": "#333"
+},
+{
+"type": "range",
+"id": "limit",
+"label": "Carousel limit product",
+"unit": "itm",
+"min": 6,
+"max": 12,
+"step": 1,
+"default": 6
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title",
+"default": "Browse Best Sellers"
+},
+{
+"type": "text",
+"id": "button_label",
+"label": "Button label",
+"default": "View all Products"
+},
+{
+"type": "url",
+"id": "button_url",
+"label": "Button url"
+},
+{
+"type": "text",
+"id": "product-reviews__title",
+"label": "Title"
+},
+{
+"type": "checkbox",
+"id": "line",
+"label": "Line next to title",
+"default": true
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "select",
+"id": "position",
+"label": "Image position",
+"options": [
+{
+"value": "first",
+"label": "first"
+},
+{
+"value": "second",
+"label": "second"
+}
+]
+}
+],
+"blocks": [
+{
+"type": "collection",
+"limit": 1,
+"name": "Collection products",
+"settings": [
+{
+"type": "collection",
+"id": "collection",
+"label": "Carousel collection"
+}
+]
+}
+],
+"presets": [
+{
+"category": "New",
+"name":"Product rewiews"
+}
+]
+}
+{% endschema %}

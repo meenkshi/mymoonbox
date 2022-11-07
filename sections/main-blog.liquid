@@ -1,0 +1,162 @@
+<div class="main-blog">
+  <div class="main-blog__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+    {% if section.settings.show_filter and blog.all_tags.size > 0 %}
+    <div class="main-blog__filter">
+      <div class="container">
+        <ul class="main-blog__filter_list d-none d-md-flex justify-content-lg-center">
+          <li class="main-blog__filter_item{% if current_tags == nil %} active{% endif %}">
+            <a href="{{ blog.url }}">{{ "blogs.article.filter-first" | t }}</a>
+          </li>
+          {% for tag in blog.all_tags %}
+          {% if current_tags contains tag %}
+          <li class="main-blog__filter_item active">{{ tag | link_to_tag: tag }}</li>
+          {% else %}
+          <li class="main-blog__filter_item">{{ tag | link_to_tag: tag }}</li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+        <ul class="main-blog__filter_list d-md-none mobile swiper">
+          <div class="swiper-wrapper">
+            <li class="main-blog__filter_item{% if current_tags == nil %} active{% endif %}">
+              <a href="{{ blog.url }}">{{ "blogs.article.filter-first" | t }}</a>
+            </li>
+            {% for tag in blog.all_tags %}
+            {% if current_tags contains tag %}
+            <li class="main-blog__filter_item active swiper-slide">{{ tag | link_to_tag: tag }}</li>
+            {% else %}
+            <li class="main-blog__filter_item swiper-slide">{{ tag | link_to_tag: tag }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+    <div class="main-blog__content">
+      <div class="container">
+        {%- paginate blog.articles by section.settings.quantity -%}
+        <div class="main-blog__inner">
+          <ul class="main-blog__items d-flex flex-wrap">
+            {%- for article in blog.articles -%}
+            <li class="main-blog__item">
+              {%- render 'article-card',
+              article: article,
+              show_date: section.settings.show_date,
+              show_excerpt: true
+              -%}
+            </li>
+            {%- endfor -%}
+          </ul>
+          <div class="main-blog__pagination">
+            {% if paginate.next %}
+            <a href="{{ paginate.next.url }}" class="button__outline">{{ "blogs.article.paginate" | t }}</a>
+            {% endif %}
+          </div>
+        </div>
+        {%- endpaginate -%}
+      </div>
+    </div>
+    <div class="main-blog__content_mobile">
+      <div class="container">
+        {%- paginate blog.articles by section.settings.quantity-mobile -%}
+        <div class="main-blog__inner">
+          <ul class="main-blog__items mobile d-flex flex-wrap">
+            {%- for article in blog.articles -%}
+            <li class="main-blog__item">
+              {%- render 'article-card',
+              article: article,
+              show_date: section.settings.show_date,
+              show_excerpt: true
+              -%}
+            </li>
+            {%- endfor -%}
+          </ul>
+          <div class="main-blog__pagination mobile">
+            {% if paginate.next %}
+            <a href="{{ paginate.next.url }}" class="button__outline">{{ "blogs.article.paginate" | t }}</a>
+            {% endif %}
+          </div>
+        </div>
+        {%- endpaginate -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'main-blog.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'ajaxinate.min.js' | asset_url }}" defer="defer"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var blogScroll = new Ajaxinate({
+      method: 'click',
+      container: '.main-blog__items',
+      pagination: '.main-blog__pagination'
+    });
+    var blogScrollMobile = new Ajaxinate({
+      method: 'click',
+      container: '.main-blog__items.mobile',
+      pagination: '.main-blog__pagination.mobile'
+    });
+  });
+</script>
+
+{% schema %}
+{
+"name": "t:sections.main-blog.name",
+"tag": "section",
+"class": "section",
+"settings": [
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#f3f2ec"
+},
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text color",
+"default": "#333"
+},
+{
+"type": "checkbox",
+"id": "show_filter",
+"label": "Show filter",
+"default": true
+},
+{
+"type": "range",
+"id": "quantity",
+"label": "Quantity blogs on desktop & tablet",
+"min": 9,
+"max": 21,
+"step": 3,
+"default": 12
+},
+{
+"type": "range",
+"id": "quantity-mobile",
+"label": "Quantity blogs on mobile",
+"min": 8,
+"max": 20,
+"step": 2,
+"default": 10
+},
+{
+"type": "checkbox",
+"id": "show_date",
+"default": true,
+"label": "t:sections.main-blog.settings.show_date.label"
+},
+{
+"type": "checkbox",
+"id": "show_tag",
+"label": "Show tag",
+"default": false
+},
+{
+"type": "paragraph",
+"content": "t:sections.main-blog.settings.paragraph.content"
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,154 @@
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css" type="text/css">
+
+<div class="video-info">
+    <div class="line-decor__one video-info__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="video-info__inner">
+            <div class="container">
+                <div class="video-info__box">
+                    <div class="row justify-content-between">
+                        <h2 class="video-info__title col-lg-8" style="color:{{ section.settings.clr_title }}"> {{
+                            section.settings.video-info__title }} </h2>
+                        <div class="video-info__content">
+                            <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                href="{{ section.settings.video_link }}" aria-hidden="true" rel="lightbox">
+                                <div class="button__play_wrapper">
+                                    <div class="button__play">play</div>
+                                </div>
+                                <img src=" {{ section.settings.video-info__content_image | img_url: 'master' }} "
+                                    class="video-info__content_image" alt="">
+                            </a>
+                        </div>
+                        <div class="video-info__text col-md-11 col-lg-4" style="color:{{ section.settings.clr_text }}"> {{ section.settings.video-info__text }} </div>
+                    </div>
+                </div>
+                <ul class="video-info__items">
+                    {% for block in section.blocks %}
+                    <li class="video-info__item">
+                        <div class="video-info__unit">
+                            <div class="video-info__plug position-absolute" 
+                            style="background-image: url('{{ block.settings.video-info__plug | img_url: '330x' }}');">
+                                <img src=" {{ block.settings.video-info__images | img_url: '330x' }} " alt=""
+                                    class="video-info__image">
+                            </div>
+                        </div>
+                        <div class="video-info__item_text" style="color:{{ section.settings.clr_text }}">
+                            {{ block.settings.video-info__item_text }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .iframe-lightbox-link {
+        width: 100%;
+    }
+
+    .iframe-lightbox.is-showing.is-opened {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .iframe-lightbox iframe {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 989px) {
+        .iframe-lightbox iframe {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+    }
+</style>
+
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
+
+<script type="text/javascript">
+    [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function (el) {
+        el.lightbox = new IframeLightbox(el, {
+        });
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Video info",
+    "settings": [
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2e9e0"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "video-info__title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "video-info__text",
+    "label": "Text on top"
+    },
+    {
+    "type": "image_picker",
+    "id": "video-info__content_image",
+    "label": "Image stub on video section"
+    },
+    {
+    "type": "url",
+    "id": "video_link",
+    "label": "Video link"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Video-info item",
+    "type": "video-info__item",
+    "limit": 4,
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "video-info__plug",
+    "label": "First image for element before hover(plug)"
+    },
+    {
+    "type": "image_picker",
+    "id": "video-info__images",
+    "label": "Image for element on hover"
+    },
+    {
+    "type": "text",
+    "id": "video-info__item_text",
+    "label": "Text for element"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Video-info"
+    }
+    ]
+}
+{% endschema %}

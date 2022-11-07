@@ -1,0 +1,161 @@
+{%- assign i = section.settings -%}
+
+<div class="landing-price landing-price-new position-relative">
+  <div class="container container--landing position-relative">
+    {% if section.settings.top_title != blank %}
+      <div class="landing-price__color-block">
+        <p>{{ section.settings.top_title }}</p>
+      </div>
+    {% endif %} 
+    <div class="landing-price__wrapper position-relative z1">
+      <p class="landing-price__subtitle">{{ section.settings.subtitle }}</p>
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      <div class="text">{{ section.settings.text }}</div>
+      <svg class="position-absolute z1 d-none d-lg-block" width="151" height="148" viewBox="0 0 151 148" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_4_693)"><path d="M81.7194 20.1676C72.2556 18.248 62.199 19.0856 53.0925 22.6408C48.5363 24.4159 43.3231 26.8232 40.7577 31.2484C38.4168 35.2918 39.5672 39.83 41.8513 43.4931C44.5637 47.843 48.732 51.2392 52.7779 54.2796C57.5207 57.8396 62.6075 60.9162 67.5126 64.257C69.8607 65.8562 72.2534 67.4739 74.3622 69.3799C76.0646 70.9078 77.4942 72.8267 77.3033 75.265C76.9673 79.6752 72.0549 82.4194 68.3762 83.7146C63.1921 85.5477 57.6878 86.1685 52.259 86.3695C46.8302 86.5706 41.5384 86.282 36.2577 85.4861C26.1464 83.9692 14.175 80.8273 8.58095 71.5028C7.41085 69.5536 6.56832 67.1166 7.2943 64.8179C8.02028 62.5191 9.84368 61.1128 11.9202 60.2704C16.6 58.3662 21.9799 59.1874 26.6706 60.3437C31.8468 61.6269 36.7533 63.7692 41.4632 66.2041C46.1731 68.639 50.6483 71.3639 54.9594 74.379C72.4134 86.5922 86.4792 103.407 95.6238 122.7C96.764 125.109 97.8301 127.556 98.8324 130.03C99.1015 130.691 99.9682 131.132 100.637 131.234C101.131 131.306 101.897 131.183 101.637 130.5C97.6813 120.176 92.197 110.462 85.6178 101.636C79.0386 92.8106 71.1806 84.6912 62.4699 77.8181C53.7591 70.9449 44.1902 65.0132 33.8766 60.9296C28.7256 58.8928 23.2972 57.4706 17.722 57.1707C13.3469 56.933 7.40991 57.9077 4.98756 62.1587C2.32599 66.82 5.97558 72.1181 9.0436 75.3845C12.9124 79.4896 18.0464 82.2249 23.3148 84.1167C33.7689 87.8792 45.4912 89.0026 56.6166 88.2154C62.003 87.8323 67.5745 87.0431 72.5792 84.804C76.2771 83.1534 80.5434 79.8204 80.2326 75.3172C80.0532 72.7705 78.4131 70.6768 76.6278 69.0244C74.5053 67.065 72.0772 65.3955 69.7051 63.7544C64.6733 60.2815 59.4033 57.137 54.4929 53.4916C50.4093 50.4594 46.0059 46.9393 43.6481 42.3013C42.6759 40.3916 42.0737 38.2798 42.2945 36.0952C42.5605 33.4334 44.146 31.1354 46.1482 29.4106C50.1008 26.0087 55.4233 24.018 60.3625 22.6935C65.3017 21.369 70.2563 20.8441 75.2559 21.062C77.693 21.1675 80.1092 21.4925 82.4901 21.9726C82.9904 22.0712 83.6119 21.8937 83.4323 21.2808C83.2528 20.6679 82.3069 20.2705 81.7347 20.1501L81.7194 20.1676Z" fill="#333333"/><path d="M85.5944 117.315C90.4292 122.703 95.2697 128.097 100.498 133.119C100.928 133.527 103.496 134.555 103.053 133.079C101.881 129.153 100.89 125.169 100.104 121.137C99.318 117.106 98.9271 113.039 98.2544 108.993C98.1014 108.062 95.3309 106.805 95.3593 108.05C95.4668 112.209 96.2788 116.419 97.0826 120.476C97.8865 124.534 98.9031 128.603 100.095 132.588L102.649 132.548C97.5872 127.694 92.882 122.492 88.1979 117.277C87.6893 116.716 86.9172 116.213 86.1148 116.262C85.5075 116.297 85.1035 116.78 85.5835 117.315L85.5944 117.315Z" fill="#333333"/></g><defs><clipPath id="clip0_4_693"><rect width="121" height="90" fill="white" transform="translate(59.4297) rotate(41.3244)"/></clipPath></defs></svg>     
+      <svg class="position-absolute z1 d-lg-none" width="112" height="110" viewBox="0 0 112 110" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_4_1348)"><path d="M60.944 14.9424C53.9322 13.5201 46.4812 14.1407 39.7341 16.7748C36.3585 18.0899 32.4959 19.8735 30.5953 23.1522C28.8608 26.148 29.7132 29.5103 31.4055 32.2243C33.4151 35.4472 36.5034 37.9635 39.5011 40.2161C43.015 42.8538 46.7839 45.1332 50.4181 47.6084C52.1578 48.7933 53.9305 49.9919 55.493 51.404C56.7543 52.5361 57.8135 53.9578 57.6721 55.7644C57.4231 59.0319 53.7835 61.0651 51.0579 62.0247C47.217 63.3829 43.1388 63.8428 39.1166 63.9917C35.0944 64.1407 31.1737 63.9269 27.2612 63.3372C19.7696 62.2133 10.9 59.8854 6.75531 52.9769C5.88838 51.5327 5.26414 49.7272 5.80202 48.024C6.33991 46.3208 7.69088 45.2789 9.22936 44.6548C12.6967 43.2439 16.6827 43.8524 20.1581 44.7091C23.9931 45.6598 27.6283 47.247 31.1179 49.0511C34.6075 50.8551 37.9232 52.874 41.1174 55.1079C54.0491 64.1567 64.4705 76.6149 71.2458 90.909C72.0906 92.6939 72.8805 94.5071 73.6231 96.34C73.8225 96.8295 74.4646 97.1566 74.9603 97.2323C75.3259 97.2856 75.8933 97.1945 75.7011 96.6883C72.7703 89.0388 68.7069 81.8417 63.8323 75.3028C58.9577 68.7639 53.1357 62.7483 46.6819 57.6559C40.228 52.5635 33.1384 48.1687 25.497 45.1432C21.6806 43.6341 17.6587 42.5804 13.528 42.3581C10.2864 42.1821 5.88769 42.9042 4.09295 46.0538C2.12098 49.5074 4.82498 53.4328 7.09809 55.8529C9.96453 58.8943 13.7683 60.9209 17.6717 62.3226C25.4172 65.1103 34.1023 65.9426 42.3452 65.3594C46.336 65.0755 50.464 64.4908 54.1719 62.8318C56.9117 61.6089 60.0727 59.1395 59.8424 55.803C59.7095 53.9162 58.4943 52.3649 57.1716 51.1406C55.599 49.6889 53.8001 48.4519 52.0425 47.2361C48.3144 44.663 44.4099 42.3332 40.7717 39.6323C37.7461 37.3858 34.4837 34.7777 32.7367 31.3413C32.0164 29.9264 31.5703 28.3618 31.7338 26.7432C31.9309 24.7711 33.1056 23.0684 34.5891 21.7906C37.5176 19.27 41.4611 17.7952 45.1205 16.8138C48.78 15.8325 52.4509 15.4436 56.1552 15.605C57.9608 15.6832 59.751 15.924 61.515 16.2797C61.8857 16.3527 62.3461 16.2213 62.2131 15.7672C62.0801 15.313 61.3792 15.0186 60.9554 14.9294L60.944 14.9424Z" fill="#333333"/><path d="M63.8155 86.9191C67.3976 90.9116 70.984 94.9079 74.8579 98.6283C75.1763 98.9313 77.0788 99.6923 76.7505 98.5991C75.882 95.69 75.1483 92.7384 74.5659 89.7513C73.9834 86.7642 73.6938 83.751 73.1954 80.7536C73.082 80.0639 71.0294 79.1326 71.0503 80.0552C71.13 83.1366 71.7316 86.2554 72.3272 89.2618C72.9228 92.2681 73.676 95.2827 74.5588 98.2351L76.4515 98.2059C72.701 94.6093 69.2149 90.7549 65.7444 86.8911C65.3676 86.4755 64.7956 86.1028 64.2011 86.1394C63.7511 86.1652 63.4518 86.5227 63.8074 86.9197L63.8155 86.9191Z" fill="#333333"/></g><defs><clipPath id="clip0_4_1348"><rect width="89.6496" height="66.6815" fill="white" transform="translate(44.4297) rotate(41.3244)"/></clipPath></defs></svg>
+    </div>
+  
+    <div class="landing-price__img">
+     <img src="{{ section.settings.image | img_url: '1000x' }}" alt="{{ section.settings.image.alt }}">
+    </div>   
+    <div class="landing-price__info position-relative">
+      <p class="subtitle">{{ section.settings.subtitle_2 }}</p>
+      <div class="landing-price__box d-flex justify-content-center">
+      <span class="landing-price__old-price h2">{{ section.settings.old_price }}</span>
+      <span class="landing-price__new-price h2">{{ section.settings.new_price }}</span>
+      </div>
+      {% if section.settings.btn_text != blank %} 
+      {% assign product = section.settings.product %}
+      <form class="product-form w-100 d-flex justify-content-center" action="/cart/add" data-productid="{{product.id}}" method="post">
+        {%- liquid
+          assign current_variant = product.selected_or_first_available_variant | default: product.variants.first
+        -%}
+        <input type="hidden" name="id" data-productid="{{product.id}}" class="product-select"
+          value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />  
+        
+        <input type="hidden" name="properties[_quiz_kit_id]" value="5824" />       
+        <label class="btn btn--black button__outline">
+          <input type="submit" value="{{section.settings.btn_text }}" name="add" class=" product-form__submit" />
+        </label>
+      </form>
+      {% endif %}
+    </div>  
+  </div>
+    <svg class="landing-price__bg"  width="1439" height="277" viewBox="0 0 1439 277" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M514.358 277C293.585 277 117.865 237.778 -1.99931 186.171L-2 0L1439 9.15527e-05V211.355C1010.7 166.349 790.325 277 514.358 277Z" fill="#F2E9E0"/>
+    </svg>
+</div>
+  <div class="landing-price-new">
+      <div class="container">
+         {% if i.social-title != blank %}
+            <p class="social-title text-uppercase text-center poppins fw-600 ls-2"> {{ i.social-title }} </p>
+          {% endif %}
+          <div class="social-proofing__inner">
+            {% for block in section.blocks %}
+            {% assign m = block.settings %}
+            <div class="social-proofing__item">
+              <img class="social-proofing__images" src="{{ m.image | img_url: 'master' }}" alt="{{ m.image.alt }}">
+              <img class="social-proofing__images_mobile" src="{{ m.image-mobile | img_url: 'master' }}" alt="{{ m.image-mobile.alt }}">
+            </div>
+            {% endfor %}
+          </div>
+      </div>
+    </div>
+
+{% schema %}
+{
+    "name": "Landing Price 2",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+      },
+      {
+      "type": "text",
+      "id": "top_title",
+      "label": "Top Title"
+      },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      },
+      {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+      },
+      {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+      },
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+      },
+      {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+      },
+      {
+      "type": "text",
+      "id": "subtitle_2",
+      "label": "Subtitle for Price Block"
+      },
+      {
+      "type": "text",
+      "id": "old_price",
+      "label": "Old Price"
+      },
+      {
+      "type": "text",
+      "id": "new_price",
+      "label": "New Price"
+      },
+       {
+        "type": "text",
+        "id": "social-title",
+        "label": "Social title",
+        "default": "As seen in"
+      }
+    ],
+    "blocks": [
+       {
+        "type": "image_picker",
+        "name": "Social item",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image on desktop"
+          },
+          {
+            "type": "image_picker",
+            "id": "image-mobile",
+            "label": "Image on mobile"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Price 2"
+      }
+    ]
+}
+{% endschema %}
+
+
+
+  

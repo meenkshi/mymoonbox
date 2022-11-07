@@ -1,0 +1,513 @@
+<div class="steps position-relative">
+    <div class="steps__wrapper {% if section.settings.product__page == true %} steps__wrapper_product {% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="steps__inner">
+                {% if section.settings.steps__subtitle != blank %}
+                <div class="steps__subtitle" style="color:{{ section.settings.clr_subtitle }}"> {{
+                    section.settings.steps__subtitle }} </div>
+                {% endif %}
+                {% if section.settings.steps__title != blank %}
+                <h2 class="steps__title" style="color:{{ section.settings.clr_title }}"> {{
+                    section.settings.steps__title }} </h2>
+                {% endif %}
+            </div>
+            <div class="steps__items">
+                {% for block in section.blocks %}
+                <div class="steps__item">
+                    <div class="steps__item_wrapper">
+                        <div class="steps__item_images">
+                            {% if block.settings.steps__item_image != blank %}
+                            <img src=" {{ block.settings.steps__item_image | img_url: 'master' }} " alt=""
+                                class="steps__item_image">
+                            {% endif %}
+                            {% if block.settings.steps__item_gif != blank %}
+                            <img src=" {{ block.settings.steps__item_gif }} " alt="" class="steps__item_gif">
+                            {% endif %}
+                        </div>
+                        {% if block.settings.steps__item_title != blank %}
+                        <div class="steps__item_title" style="color:{{ section.settings.clr_text }}"> {{
+                            block.settings.steps__item_title }} </div>
+                        {% endif %}
+                        {% if block.settings.steps__item_text %}
+                        <div class="steps__item_text" style="color:{{ section.settings.clr_text }}"> {{
+                            block.settings.steps__item_text }} </div>
+                        {% endif %}
+                    </div>
+                    {% if block.settings.steps__item_link != blank or block.settings.steps_number_popup != blank %}
+                    <button class="steps__item_button steps__item_link button__show-bord steps-{{block.settings.steps_number_popup}}__popup">
+                        {{  block.settings.steps__item_link }}
+                    </button>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% if product.metafields.steps_popup.title != blank or product.metafields.steps_popup.subtitle_one != blank %}
+    <div class="additional-info__popup w-100 position-fixed steps__popup_one">
+        <div class="additional-info__popup_wrapper d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="additional-info__popup_inner w-100 position-relative"
+                    style="background-color: {{ section.settings.bcg-popup }} ;">
+                    {% if product.metafields.steps_popup.title != blank %}
+                    <h3 class="additional-info__popup_title position-relative text-center"
+                        style="color: {{ section.settings.popup-title-color }} ;">
+                        {{ product.metafields.steps_popup.title }} </h3>
+                    {% endif %}
+                    <ul class="additional-info__popup_items position-relative">
+                        {% if product.metafields.steps_popup.subtitle_one != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup.subtitle_one }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup.text_one }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup.subtitle_two != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup.subtitle_two }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup.text_two }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup.subtitle_three != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup.subtitle_three }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup.text_three }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup.subtitle_four != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup.subtitle_four }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup.text_four }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup.subtitle_five != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup.subtitle_five }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup.text_five }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup.subtitle_six != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup.subtitle_six }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup.text_six }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup.subtitle_seven != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup.subtitle_seven }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup.text_seven }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup.subtitle_eight != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup.subtitle_eight }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup.text_eight }}
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <button class="additional-info__popup_close d-block position-absolute steps_one"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if product.metafields.steps_popup_two.title != blank or product.metafields.steps_popup_two.subtitle_one != blank %}
+    <div class="additional-info__popup w-100 position-fixed steps__popup_two">
+        <div class="additional-info__popup_wrapper d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="additional-info__popup_inner w-100 position-relative"
+                    style="background-color: {{ section.settings.bcg-popup }} ;">
+                    {% if product.metafields.steps_popup_two.title != blank %}
+                    <h3 class="additional-info__popup_title position-relative text-center"
+                        style="color: {{ section.settings.popup-title-color }} ;">
+                        {{ product.metafields.steps_popup_two.title }} </h3>
+                    {% endif %}
+                    <ul class="additional-info__popup_items position-relative">
+                        {% if product.metafields.steps_popup_two.subtitle_one != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_two.subtitle_one }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_two.text_one }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_two.subtitle_two != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_two.subtitle_two }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_two.text_two }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_two.subtitle_three != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_two.subtitle_three }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_two.text_three }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_two.subtitle_four != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_two.subtitle_four }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_two.text_four }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_two.subtitle_five != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_two.subtitle_five }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_two.text_five }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_two.subtitle_six != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_two.subtitle_six }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_two.text_six }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_two.subtitle_seven != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_two.subtitle_seven }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_two.text_seven }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_two.subtitle_eight != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_two.subtitle_eight }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_two.text_eight }}
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <button class="additional-info__popup_close d-block position-absolute steps_two"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if product.metafields.steps_popup_three.title != blank or product.metafields.steps_popup_three.subtitle_one != blank %}
+    <div class="additional-info__popup w-100 position-fixed steps__popup_three">
+        <div class="additional-info__popup_wrapper d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="additional-info__popup_inner w-100 position-relative"
+                    style="background-color: {{ section.settings.bcg-popup }} ;">
+                    {% if product.metafields.steps_popup_three.title != blank %}
+                    <h3 class="additional-info__popup_title position-relative text-center"
+                        style="color: {{ section.settings.popup-title-color }} ;">
+                        {{ product.metafields.steps_popup_three.title }} </h3>
+                    {% endif %}
+                    <ul class="additional-info__popup_items position-relative">
+                        {% if product.metafields.steps_popup_three.subtitle_one != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_three.subtitle_one }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_three.text_one }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_three.subtitle_two != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_three.subtitle_two }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_three.text_two }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_three.subtitle_three != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_three.subtitle_three }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_three.text_three }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_three.subtitle_four != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_three.subtitle_four }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_three.text_four }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_three.subtitle_five != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_three.subtitle_five }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_three.text_five }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_three.subtitle_six != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_three.subtitle_six }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_three.text_six }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_three.subtitle_seven != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_three.subtitle_seven }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_three.text_seven }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.steps_popup_three.subtitle_eight != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.steps_popup_three.subtitle_eight }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.steps_popup_three.text_eight }}
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <button class="additional-info__popup_close d-block position-absolute steps_three"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script src="{{ 'steps.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+    "name": "Steps",
+    "settings": [
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2e9e0"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_subtitle",
+    "label": "Subtitle color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "steps__subtitle",
+    "label": "Subtitle"
+    },
+    {
+    "type": "text",
+    "id": "steps__title",
+    "label": "Title"
+    },
+    {
+    "type": "checkbox",
+    "id": "product__page",
+    "label": "Section in product page",
+    "default": false
+    },
+    {
+        "type": "color",
+        "id": "bcg-popup",
+        "label": "Background color",
+        "default": "#F3F2EC"
+    },
+    {
+        "type": "color",
+        "id": "popup-title-color",
+        "label": "Title",
+        "default": "#333"
+    },
+    {
+        "type": "color",
+        "id": "popup-subtitle-color",
+        "label": "Subtitle",
+        "default": "#333"
+    },
+    {
+        "type": "color",
+        "id": "popup-text-color",
+        "label": "Text",
+        "default": "#333"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Point steps",
+    "type": "image_picker",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "steps__item_image",
+    "label": "Image"
+    },
+    {
+    "type": "url",
+    "id": "steps__item_gif",
+    "label": "Link to gif"
+    },
+    {
+    "type": "text",
+    "id": "steps__item_title",
+    "label": "Step name"
+    },
+    {
+    "type": "richtext",
+    "id": "steps__item_text",
+    "label": "Step text"
+    },
+    {
+    "type": "text",
+    "id": "steps__item_link",
+    "label": "Button label"
+    },
+    {
+        "type": "text",
+        "id": "steps_number_popup",
+        "label": "Number popup",
+        "info": "first, second, third..."
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Steps"
+    }
+    ]
+}
+{% endschema %}

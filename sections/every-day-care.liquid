@@ -1,0 +1,266 @@
+<div class="every-day-care position-relative">
+  <div class="every-day-care__bg position-absolute">
+    <svg preserveAspectRatio="none" width="1440" height="277" viewBox="0 0 1440 277" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M924.642 0C1145.41 0 1321.14 39.2215 1441 90.829L1441 277L0 277V65.645C428.297 110.651 648.675 0 924.642 0Z" fill="#F2E9E0"/>
+      </svg>     
+  </div>
+  <div class="container container--landing position-relative">
+    {% if section.settings.title != blank %}
+      <h2>{{ section.settings.title }}</h2>
+    {% endif %} 
+    {% if section.settings.subtitle != blank %}
+      <p>{{ section.settings.subtitle }}</p>
+    {% endif %} 
+    <ul class="every-day-care__icons">
+      <li>
+        <div class="every-day-care__icon">{{ section.settings.icon_1 }}</div>
+        <p>{{ section.settings.text_1 }}</p>
+      </li>
+      <li>
+        <div class="every-day-care__icon">{{ section.settings.icon_2 }}</div>
+        <p>{{ section.settings.text_2 }}</p>
+      </li>
+      <li>
+        <div class="every-day-care__icon">{{ section.settings.icon_3 }}</div>
+        <p>{{ section.settings.text_3 }}</p>
+      </li>
+      <li>
+        <div class="every-day-care__icon">{{ section.settings.icon_4 }}</div>
+        <p>{{ section.settings.text_4 }}</p>
+      </li>
+      <li>
+        <div class="every-day-care__icon">{{ section.settings.icon_5 }}</div>
+        <p>{{ section.settings.text_5 }}</p>
+      </li>
+    </ul>
+
+    <ol>
+      {%- for block in section.blocks -%}
+        <li>          
+          <div class="every-day-care__img position-relative">
+            <img
+              srcset="{%- if block.settings.image.width >= 375 -%}{{ block.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+                {%- if block.settings.image.width >= 550 -%}{{ block.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+                {%- if block.settings.image.width >= 750 -%}{{ block.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if block.settings.image.width >= 1100 -%}{{ block.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                {%- if block.settings.image.width >= 1780 -%}{{ block.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+                {%- if block.settings.image.width >= 2000 -%}{{ block.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                {%- if block.settings.image.width >= 3000 -%}{{ block.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                {%- if block.settings.image.width >= 3840 -%}{{ block.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
+                {{ block.settings.image | image_url }} {{ block.settings.image.width }}w"
+              sizes=" (min-width: 750px) 50vw, 100vw"
+              src="{{ block.settings.image | image_url: width: 1500 }}"
+              loading="lazy"
+              alt="{{ block.settings.image.alt | escape }}"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.width | divided_by: block.settings.image.aspect_ratio }}"
+            >
+              <div class="every-day-care__price">
+                <span class="every-day-care__unit">Value</span>
+                <span class="every-day-care__value">{{ block.settings.value }}</span>
+              </div>
+          </div>
+          <div class="every-day-care__content">
+            <div class="every-day-care__block-number">{{ block.settings.number }}</div>
+            <h3>{{ block.settings.title }}</h3>
+            <p> {{ block.settings.text }}</p>
+
+            {% assign num = block.settings.score %}
+            <div class="every-day-care__score">
+              
+              {% assign range = (1..num) %}
+              {% for i in range %}
+                <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.5 0L11.5206 6.21885H18.0595L12.7694 10.0623L14.7901 16.2812L9.5 12.4377L4.20993 16.2812L6.23056 10.0623L0.940492 6.21885H7.47937L9.5 0Z" fill="#333333"/>
+                </svg>                  
+              {% endfor %}
+
+            </div>  
+            <p class="every-day-care__review"> {{ block.settings.review }} </p>
+
+            <ul class="every-day-care__block-icons">
+              <li>
+                <div class="every-day-care__block-icon">{{ block.settings.icon_1 }}</div>
+                <p>{{ block.settings.text_1 }}</p>
+              </li>
+              <li>
+                <div class="every-day-care__block-icon">{{ block.settings.icon_2 }}</div>
+                <p>{{ block.settings.text_2 }}</p>
+              </li>
+              <li>
+                <div class="every-day-care__block-icon">{{ block.settings.icon_3 }}</div>
+                <p>{{ block.settings.text_3 }}</p>
+              </li>
+              <li>
+                <div class="every-day-care__block-icon">{{ block.settings.icon_4 }}</div>
+                <p>{{ block.settings.text_4 }}</p>
+              </li>
+            </ul>
+          </div> 
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Every Day Care",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+      },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      },
+      {
+      "type": "html",
+      "id": "icon_1",
+      "label": "Icon 1"
+      },
+      {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text 1"
+      },
+      {
+      "type": "html",
+      "id": "icon_2",
+      "label": "Icon 2"
+      },
+      {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text 2"
+      },
+      {
+      "type": "html",
+      "id": "icon_3",
+      "label": "Icon 3"
+      },
+      {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text 3"
+      },
+      {
+      "type": "html",
+      "id": "icon_4",
+      "label": "Icon 4"
+      },
+      {
+      "type": "text",
+      "id": "text_4",
+      "label": "Text 4"
+      },
+      {
+      "type": "html",
+      "id": "icon_5",
+      "label": "Icon 5"
+      },
+      {
+      "type": "text",
+      "id": "text_5",
+      "label": "Text 5"
+      }
+    ],
+    "blocks": [
+      {
+      "name": "Block",
+      "type": "text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Block Number"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+        "type": "range",
+          "id": "score",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Score",
+          "default": 3
+        },
+        {
+          "type": "text",
+          "id": "review",
+          "label": "Review"
+        },
+        {
+          "type": "html",
+          "id": "icon_1",
+          "label": "Icon 1"
+          },
+          {
+          "type": "text",
+          "id": "text_1",
+          "label": "Text 1"
+          },
+          {
+          "type": "html",
+          "id": "icon_2",
+          "label": "Icon 2"
+          },
+          {
+          "type": "text",
+          "id": "text_2",
+          "label": "Text 2"
+          },
+          {
+          "type": "html",
+          "id": "icon_3",
+          "label": "Icon 3"
+          },
+          {
+          "type": "text",
+          "id": "text_3",
+          "label": "Text 3"
+          },
+          {
+          "type": "html",
+          "id": "icon_4",
+          "label": "Icon 4"
+          },
+          {
+          "type": "text",
+          "id": "text_4",
+          "label": "Text 4"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Every Day Care"
+      }
+    ]
+}
+{% endschema %}

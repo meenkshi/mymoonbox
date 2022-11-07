@@ -1,0 +1,139 @@
+<div class="course-content">
+    <div class="course-content__wrapper{% if section.settings.decor == "first" %} line-decor__two course-content__decor{% endif %}{% if
+        section.settings.decor=="second" %} line-decor__one course-content__decor_second{% endif %}{% if
+        section.settings.template=="second" %} course-content__wrapper_second{% endif %}{% if
+        section.settings.template=="third" %} course-content__wrapper_third{% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div
+                class="course-content__inner{% if section.settings.reverse %} course-content__inner_reverse{% endif %}">
+                {% if section.settings.image != blank %}
+                <div class="course-content__image">
+                    <img src="{{ section.settings.image | img_url: 'master' }}" alt="">
+                </div>
+                {% endif %}
+                <div class="course-content__box">
+                    {% if section.settings.title != blank %}
+                    <h2 class="course-content__title" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title }} </h2>
+                    {% endif %}
+                    {% if section.settings.image != blank %}
+                    <div class="course-content__image_mobile">
+                        <img src="{{ section.settings.image | img_url: 'master' }}" alt="">
+                    </div>
+                    {% endif %}
+                    {% if section.settings.desc != blank %}
+                    <div class="course-content__text" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.desc }} </div>
+                    {% endif %}
+                    {% if section.blocks != blank %}
+                    <ul class="course-content__items">
+                        {% for block in section.blocks %}
+                        <li class="decor_leaf course-content__item" style="color:{{ section.settings.clr_text }}"> {{
+                            block.settings.item }} </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Course content",
+    "settings": [
+    {
+    "type": "select",
+    "id": "decor",
+    "label": "Decor",
+    "options": [
+    {
+    "value": "no",
+    "label": "No"
+    },
+    {
+    "value": "first",
+    "label": "First type"
+    },
+    {
+    "value": "second",
+    "label": "Second type"
+    }
+    ]
+    },
+    {
+    "type": "select",
+    "id": "template",
+    "label": "Template type",
+    "options": [
+    {
+    "value": "first",
+    "label": "First type"
+    },
+    {
+    "value": "second",
+    "label": "Second type"
+    },
+    {
+    "value": "third",
+    "label": "Third type"
+    }
+    ]
+    },
+    {
+    "type": "checkbox",
+    "id": "reverse",
+    "label": "The image must be on the right?",
+    "default": false
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2f3ec"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "desc",
+    "label": "Text"
+    },
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "List item",
+    "type": "text",
+    "settings": [
+    {
+    "type": "text",
+    "id": "item",
+    "label": "Text"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Course content"
+    }
+    ]
+}
+{% endschema %}

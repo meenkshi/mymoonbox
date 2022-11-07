@@ -1,0 +1,135 @@
+<div class="block-info">
+    <div class="block-info__wrapper{% if section.settings.reverse %} block-info__wrapper_reverse{% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="block-info__items">
+                <div class="block-info__item">
+                    <img src="{{ section.settings.image | img_url: 'master' }}" alt="" class="block-info__image">
+                </div>
+                <div class="block-info__content">
+                    <div class="block-info__box">
+                        {% if section.settings.subtitle != blank %}
+                        <div class="block-info__subtitle" style="color:{{ section.settings.clr_text }}"> {{
+                            section.settings.subtitle }} </div>
+                        {% endif %}
+                        {% if section.settings.title != blank %}
+                        <div class="block-info__title" style="color:{{ section.settings.clr_title }}"> {{
+                            section.settings.title }} </div>
+                        {% endif %}
+                        <div class="block-info__shell">
+                            <img src="{{ section.settings.image | img_url: 'master' }}" alt=""
+                                class="block-info__image_mobile">
+                            {% if section.settings.desc != blank %}
+                            <div class="block-info__pack">
+                                <div class="block-info__batch">
+                                    <div class="block-info__text" style="color:{{ section.settings.clr_text }}"> {{
+                                        section.settings.desc }} </div>
+                                    {% endif %}
+                                    {% if section.blocks != blank %}
+                                    <ul class="block-info__list">
+                                        {% for block in section.blocks %}
+                                        <li class="decor_leaf block-info__list_item" style="color:{{ section.settings.clr_text }}">
+                                            {{
+                                            block.settings.item-text }} </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                    {% if section.settings.button != blank %}
+                                    <a href="{{ section.settings.button-url }}"
+                                        class="block-info__button_mobile button__secondary"> {{
+                                        section.settings.button }} </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if section.settings.button != blank %}
+                    <a href="{{ section.settings.button-url }}" class="block-info__button button__secondary"> {{
+                        section.settings.button }} </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Block info",
+"settings": [
+{
+"type": "checkbox",
+"id": "reverse",
+"label": "Should the image be on the right?",
+"default": false
+},
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Overlay",
+"default": "#f3f2ec"
+},
+{
+"type": "color",
+"id": "clr_title",
+"label": "Title",
+"default": "#333"
+},
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text",
+"default": "#333"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "subtitle",
+"label": "Subtitle"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "desc",
+"label": "Text"
+},
+{
+"type": "text",
+"id": "button",
+"label": "Button label"
+},
+{
+"type": "url",
+"id": "button-url",
+"label": "Button url"
+}
+],
+"blocks": [
+{
+"name": "Info list",
+"type": "text",
+"settings": [
+{
+"type": "text",
+"id": "item-text",
+"label": "Item text"
+}
+]
+}
+],
+"presets": [
+{
+"category": "New",
+"name":"Block info"
+}
+]
+}
+{% endschema %}

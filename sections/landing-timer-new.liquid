@@ -1,0 +1,114 @@
+<div class="landing-timer landing-timer-new position-relative z2">
+  <div class="container">
+    {% if section.settings.subtitle != blank %}
+      <p class="subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 class="h2 h2--svg{% if section.settings.title2 %} h2-type{% endif %}">{{ section.settings.title }}</h2>
+    {% endif %}
+    <div class="landing-timer__wrapper">
+      {% comment %} <div id="countdownultimate-KT" class="hide-kt"></div> {% endcomment %}
+      <div class="landing-timer__countdown">
+        <input class="landing-timer__score visually-hidden" type="text" value="{{ section.settings.score }}">
+        <div class="landing-timer__data d-flex">
+          <div class="text-center d-flex flex-column">
+            <span class="landing-timer__text days"></span>
+            <span class="landing-timer__unit">days</span>
+          </div>
+          <span class="landing-timer__separator">:</span>
+          <div class="text-center d-flex flex-column">
+            <span class="landing-timer__text hours"></span>
+            <span class="landing-timer__unit">hours</span>
+          </div>          
+          <span class="landing-timer__separator">:</span>
+          <div class="text-center d-flex flex-column">
+            <span class="landing-timer__text minutes"></span>
+            <span class="landing-timer__unit">minutes</span>
+          </div>
+          <span class="landing-timer__separator">:</span>
+          <div class="text-center d-flex flex-column">
+            <span class="landing-timer__text seconds"></span>
+            <span class="landing-timer__unit">seconds</span>
+          </div>        
+        </div>
+      </div>
+      <p class="landing-timer__message">{{ section.settings.message }}</p>
+    </div>
+
+    {% assign product = section.settings.product %}
+    {% if section.settings.btn_text != blank and section.settings.product != blank %}     
+    <form class="product-form w-100 d-flex justify-content-center add-to-cart" action="/cart/add" data-productid="{{product.id}}" method="post">
+      {% comment %} {%- liquid
+        assign current_variant = product.selected_or_first_available_variant | default: product.variants.first
+      -%} {% endcomment %}
+      <input type="hidden" name="id" data-productid="{{product.id}}" class="product-select"
+        value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />  
+      
+      <input type="hidden" name="properties[_quiz_kit_id]" value="5824" />     
+      <input type="hidden" name="product-price" value="{{ product.selected_or_first_available_variant.price }}" />    
+      <input type="hidden" name="product-variant-id" value="{{ product.selected_or_first_available_variant.id }}" /> 
+      <label class="btn btn--black button__primary">
+        <input type="submit" value="{{section.settings.btn_text }}" name="add" class=" product-form__submit" /> 
+      </label>
+    </form>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Landing Timer 2",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+      },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "LIMITED TIME OFFER"
+      }, 
+      {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Master Your Cycle for an affordable <strong>$19 today</strong> only, before it goes back up to $197.</p>"
+      },
+      {
+      "type": "checkbox",
+      "id": "title2",
+      "label": "Show title type 2?",
+      "default": false
+      },
+      {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "I’m ready, sign me up for $19!"
+      },
+      {
+      "type": "range",
+      "id": "score",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "label": "Timer Score",
+      "default": 1
+      },  
+      {
+      "type": "text",
+      "id": "message",
+      "label": "Message",
+      "default": "OFFER EXPIRED"
+      }   
+    ],
+    "presets": [
+      {
+        "name": "Landing Timer 2"
+      }
+    ]
+}
+{% endschema %}

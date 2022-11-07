@@ -1,0 +1,130 @@
+<div class="quiz-content">
+    <div class="quiz-content__wrapper {% if section.settings.type == 'two' %} quiz-content__wrapper_two{% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="quiz-content__inner d-flex flex-wrap justify-content-between">
+                <div class="quiz-content__item d-flex flex-wrap">
+                    {% if section.settings.title != blank %}
+                    <h2 class="quiz-content__title" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title }} </h2>
+                    {% endif %}
+                    {% if section.settings.title_mobile != blank %}
+                    <h2 class="quiz-content__title mobile" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title_mobile }} </h2>
+                    {% else %}
+                    <h2 class="quiz-content__title mobile" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title }} </h2>
+                    {% endif %}
+                    <div class="quiz-content__image mobile">
+                        {%- assign image = section.settings.image_mobile -%}
+                        <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                        {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                        {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                            {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                            {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                            {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                            {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                            {{ image | img_url: 'master' }} {{ image.width }}w" src="{{ image | img_url: '1500x' }}"
+                            alt="{{ image.alt | escape }}" loading="lazy" class="w-100">
+                    </div>
+                    <div class="quiz-content__image tablet">
+                        {%- assign image = section.settings.image -%}
+                        <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                        {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                        {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                            {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                            {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                            {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                            {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                            {{ image | img_url: 'master' }} {{ image.width }}w" src="{{ image | img_url: '1500x' }}"
+                            alt="{{ image.alt | escape }}" loading="lazy" class="w-100">
+                    </div>
+                    {% if section.settings.desc != blank %}
+                    <div class="quiz-content__text" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.desc }} </div>
+                    {% endif %}
+                </div>
+                {% if section.settings.image != blank %}
+                <div class="quiz-content__image">
+                    {%- assign image = section.settings.image -%}
+                    <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                    {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                    {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                        {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                        {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                        {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                        {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                        {{ image | img_url: 'master' }} {{ image.width }}w" src="{{ image | img_url: '1500x' }}"
+                        alt="{{ image.alt | escape }}" loading="lazy" class="w-100">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Quiz content",
+    "settings": [
+    {
+    "type": "select",
+    "id": "type",
+    "label": "What type do you want to use?",
+    "options": [
+    {
+    "value": "one",
+    "label": "First"
+    },
+    {
+    "value": "two",
+    "label": "Second"
+    }
+    ]
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#F3F2EC"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text",
+    "default": "#333"
+    },
+    {
+    "type": "richtext",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "title_mobile",
+    "label": "Title on mobile"
+    },
+    {
+    "type": "richtext",
+    "id": "desc",
+    "label": "Text"
+    },
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+    },
+    {
+    "type": "image_picker",
+    "id": "image_mobile",
+    "label": "Image on mobile"
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Quiz content"
+    }
+    ]
+}
+{% endschema %}

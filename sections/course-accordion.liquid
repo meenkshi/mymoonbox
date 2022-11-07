@@ -1,0 +1,577 @@
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css" type="text/css">
+
+<div class="course-accordion">
+    <div class="course-accordion__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <h2 class="course-accordion__title" style="color:{{ section.settings.clr_text }}"> {{
+                section.settings.title }} </h2>
+            <div class="course-accordion__inner">
+                <!-- left block -->
+                <ul class="course-accordion__items">
+                    {% for block in section.blocks %}
+                    {% if block.settings.item-title-left != blank %}
+                    <li class="course-accordion__item">
+                        <div class="course-accordion__item_title" style="color:{{ section.settings.clr_text }}"> {{
+                            block.settings.item-title-left }} </div>
+                        <!-- one -->
+                        <div class="course-accordion__item_panel">
+                            {% if block.settings.video-link-one-left != blank or block.settings.video-image-one-left
+                            != blank %}
+                            <div class="course-accordion__parth">
+                                <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                    href="{{ block.settings.video-link-one-left }}" aria-hidden="true" rel="lightbox">
+                                    <div class="button__play_wrapper">
+                                        <div class="button__play">play</div>
+                                    </div>
+                                    <img src=" {{ block.settings.video-image-one-left | img_url: 'master' }} "
+                                        class="video-info__content_image" alt="">
+                                </a>
+                                <div class="course-accordion__item_text"> {{ block.settings.text-one-left }} </div>
+                            </div>
+                            {% endif %}
+                            <!-- two -->
+                            {% if block.settings.video-link-two-left != blank or block.settings.video-image-two-left
+                            != blank %}
+                            <div class="course-accordion__parth">
+                                <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                    href="{{ block.settings.video-link-two-left }}" aria-hidden="true" rel="lightbox">
+                                    <div class="button__play_wrapper">
+                                        <div class="button__play">play</div>
+                                    </div>
+                                    <img src=" {{ block.settings.video-image-two-left | img_url: 'master' }} "
+                                        class="video-info__content_image" alt="">
+                                </a>
+                                <div class="course-accordion__item_text"> {{ block.settings.text-two-left }} </div>
+                            </div>
+                            {% endif %}
+                            <!-- three -->
+                            {% if block.settings.video-link-three-left != blank or
+                            block.settings.video-image-three-left != blank
+                            %}
+                            <div class="course-accordion__parth">
+                                <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                    href="{{ block.settings.video-link-three-left }}" aria-hidden="true" rel="lightbox">
+                                    <div class="button__play_wrapper">
+                                        <div class="button__play">play</div>
+                                    </div>
+                                    <img src=" {{ block.settings.video-image-three-left | img_url: 'master' }} "
+                                        class="video-info__content_image" alt="">
+                                </a>
+                                <div class="course-accordion__item_text"> {{ block.settings.text-three-left }} </div>
+                            </div>
+                            {% endif %}
+                            <!-- four -->
+                            {% if block.settings.video-link-four-left != blank or block.settings.video-image-four-left
+                            != blank %}
+                            <div class="course-accordion__parth">
+                                <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                    href="{{ block.settings.video-link-four-left }}" aria-hidden="true" rel="lightbox">
+                                    <div class="button__play_wrapper">
+                                        <div class="button__play">play</div>
+                                    </div>
+                                    <img src=" {{ block.settings.video-image-four-left | img_url: 'master' }} "
+                                        class="video-info__content_image" alt="">
+                                </a>
+                                <div class="course-accordion__item_text"> {{ block.settings.text-four-left }} </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <!-- right block -->
+                <ul class="course-accordion__items">
+                    {% for block in section.blocks %}
+                    {% if block.settings.item-title-right != blank %}
+                    <li class="course-accordion__item">
+                        <div class="course-accordion__item_title" style="color:{{ section.settings.clr_text }}"> {{
+                            block.settings.item-title-right }} </div>
+                        <!-- one -->
+                        <div class="course-accordion__item_panel">
+                            {% if block.settings.video-link-one-right != blank or block.settings.video-image-one-right
+                            != blank %}
+                            <div class="course-accordion__parth">
+                                <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                    href="{{ block.settings.video-link-one-right }}" aria-hidden="true" rel="lightbox">
+                                    <div class="button__play_wrapper">
+                                        <div class="button__play">play</div>
+                                    </div>
+                                    <img src=" {{ block.settings.video-image-one-right | img_url: 'master' }} "
+                                        class="video-info__content_image" alt="">
+                                </a>
+                                <div class="course-accordion__item_text"> {{ block.settings.text-one-right }} </div>
+                            </div>
+                            {% endif %}
+                            <!-- two -->
+                            {% if block.settings.video-link-two-right != blank or block.settings.video-image-two-right
+                            != blank %}
+                            <div class="course-accordion__parth">
+                                <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                    href="{{ block.settings.video-link-two-right }}" aria-hidden="true" rel="lightbox">
+                                    <div class="button__play_wrapper">
+                                        <div class="button__play">play</div>
+                                    </div>
+                                    <img src=" {{ block.settings.video-image-two-right | img_url: 'master' }} "
+                                        class="video-info__content_image" alt="">
+                                </a>
+                                <div class="course-accordion__item_text"> {{ block.settings.text-two-right }} </div>
+                            </div>
+                            {% endif %}
+                            <!-- three -->
+                            {% if block.settings.video-link-three-right != blank or
+                            block.settings.video-image-three-right != blank
+                            %}
+                            <div class="course-accordion__parth">
+                                <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                    href="{{ block.settings.video-link-three-right }}" aria-hidden="true"
+                                    rel="lightbox">
+                                    <div class="button__play_wrapper">
+                                        <div class="button__play">play</div>
+                                    </div>
+                                    <img src=" {{ block.settings.video-image-three-right | img_url: 'master' }} "
+                                        class="video-info__content_image" alt="">
+                                </a>
+                                <div class="course-accordion__item_text"> {{ block.settings.text-three-right }} </div>
+                            </div>
+                            {% endif %}
+                            <!-- four -->
+                            {% if block.settings.video-link-four-right != blank or block.settings.video-image-four-right
+                            != blank %}
+                            <div class="course-accordion__parth">
+                                <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                    href="{{ block.settings.video-link-four-right }}" aria-hidden="true" rel="lightbox">
+                                    <div class="button__play_wrapper">
+                                        <div class="button__play">play</div>
+                                    </div>
+                                    <img src=" {{ block.settings.video-image-four-right | img_url: 'master' }} "
+                                        class="video-info__content_image" alt="">
+                                </a>
+                                <div class="course-accordion__item_text"> {{ block.settings.text-four-right }} </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="course-accordion__case">
+            <!-- mobile swiper -->
+            <ul class="course-accordion__items_mobile swiper-wrapper">
+                {% for block in section.blocks %}
+                {% if block.settings.item-title-left != blank %}
+                <li class="course-accordion__item">
+                    <div class="course-accordion__item_title" style="color:{{ section.settings.clr_text }}"> {{
+                        block.settings.item-title-left }} </div>
+                    <!-- one -->
+                    <div class="course-accordion__item_panel">
+                        {% if block.settings.video-link-one-left != blank or block.settings.video-image-one-left
+                        != blank %}
+                        <div class="swiper course-accordion__swiper">
+                            <div class="swiper-wrapper course-accordion__swiper-wrapper">
+                                <div class="course-accordion__parth swiper-slide">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link-one-left }}" aria-hidden="true"
+                                        rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.video-image-one-left | img_url: 'master' }} "
+                                            class="video-info__content_image" alt="">
+                                    </a>
+                                    <div class="course-accordion__item_text"> {{ block.settings.text-one-left }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <!-- two -->
+                                {% if block.settings.video-link-two-left != blank or
+                                block.settings.video-image-two-left
+                                != blank %}
+                                <div class="course-accordion__parth swiper-slide">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link-two-left }}" aria-hidden="true"
+                                        rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.video-image-two-left | img_url: 'master' }} "
+                                            class="video-info__content_image" alt="">
+                                    </a>
+                                    <div class="course-accordion__item_text"> {{ block.settings.text-two-left }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <!-- three -->
+                                {% if block.settings.video-link-three-left != blank or
+                                block.settings.video-image-three-left != blank
+                                %}
+                                <div class="course-accordion__parth swiper-slide">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link-three-left }}" aria-hidden="true"
+                                        rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.video-image-three-left | img_url: 'master' }} "
+                                            class="video-info__content_image" alt="">
+                                    </a>
+                                    <div class="course-accordion__item_text"> {{ block.settings.text-three-left }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <!-- four -->
+                                {% if block.settings.video-link-four-left != blank or
+                                block.settings.video-image-four-left
+                                != blank %}
+                                <div class="course-accordion__parth swiper-slide">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link-four-left }}" aria-hidden="true"
+                                        rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.video-image-four-left | img_url: 'master' }} "
+                                            class="video-info__content_image" alt="">
+                                    </a>
+                                    <div class="course-accordion__item_text"> {{ block.settings.text-four-left }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </li>
+                {% endif %}
+                {% if block.settings.item-title-right != blank %}
+                <li class="course-accordion__item">
+                    <div class="course-accordion__item_title" style="color:{{ section.settings.clr_text }}"> {{
+                        block.settings.item-title-right }} </div>
+                    <div class="course-accordion__item_panel">
+                        {% if block.settings.video-link-one-right != blank or block.settings.video-image-one-right
+                        != blank %}
+                        <!-- one -->
+                        <div class="swiper course-accordion__swiper">
+                            <div class="swiper-wrapper course-accordion__swiper-wrapper">
+                                <div class="course-accordion__parth swiper-slide">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link-one-right }}" aria-hidden="true"
+                                        rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.video-image-one-right | img_url: 'master' }} "
+                                            class="video-info__content_image" alt="">
+                                    </a>
+                                    <div class="course-accordion__item_text"> {{ block.settings.text-one-right }} </div>
+                                </div>
+                                {% endif %}
+                                <!-- two -->
+                                {% if block.settings.video-link-two-right != blank or
+                                block.settings.video-image-two-right
+                                != blank %}
+                                <div class="course-accordion__parth swiper-slide">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link-two-right }}" aria-hidden="true"
+                                        rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.video-image-two-right | img_url: 'master' }} "
+                                            class="video-info__content_image" alt="">
+                                    </a>
+                                    <div class="course-accordion__item_text"> {{ block.settings.text-two-right }} </div>
+                                </div>
+                                {% endif %}
+                                <!-- three -->
+                                {% if block.settings.video-link-three-right != blank or
+                                block.settings.video-image-three-right != blank
+                                %}
+                                <div class="course-accordion__parth swiper-slide">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link-three-right }}" aria-hidden="true"
+                                        rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.video-image-three-right | img_url: 'master' }} "
+                                            class="video-info__content_image" alt="">
+                                    </a>
+                                    <div class="course-accordion__item_text"> {{ block.settings.text-three-right }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <!-- four -->
+                                {% if block.settings.video-link-four-right != blank or
+                                block.settings.video-image-four-right
+                                != blank %}
+                                <div class="course-accordion__parth swiper-slide">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link-four-right }}" aria-hidden="true"
+                                        rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.video-image-four-right | img_url: 'master' }} "
+                                            class="video-info__content_image" alt="">
+                                    </a>
+                                    <div class="course-accordion__item_text"> {{ block.settings.text-four-right }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="{{ 'course-accordion.js' | asset_url }}" defer="defer"></script>
+
+<style>
+    .iframe-lightbox-link {
+        width: 100%;
+    }
+
+    .iframe-lightbox.is-showing.is-opened {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .iframe-lightbox iframe {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 989px) {
+        .iframe-lightbox iframe {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+    }
+</style>
+
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
+
+<script type="text/javascript">
+    [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function (el) {
+        el.lightbox = new IframeLightbox(el, {
+        });
+    });
+</script>
+
+{% schema %}
+{
+"name": "Course accordion",
+"settings": [
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#f3f2ec"
+},
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text",
+"default": "#333"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+}
+],
+"blocks": [
+{
+"name": "Accordion item left",
+"type": "image_picker",
+"settings": [
+{
+"type": "text",
+"id": "item-title-left",
+"label": "Item title"
+},
+{
+"type": "header",
+"content": "video 1"
+},
+{
+"type": "image_picker",
+"id": "video-image-one-left",
+"label": "Image for video 1"
+},
+{
+"type": "url",
+"id": "video-link-one-left",
+"label": "Link for video 1"
+},
+{
+"type": "text",
+"id": "text-one-left",
+"label": "Text for video 1"
+},
+{
+"type": "header",
+"content": "video 2"
+},
+{
+"type": "image_picker",
+"id": "video-image-two-left",
+"label": "Image for video 2"
+},
+{
+"type": "url",
+"id": "video-link-two-left",
+"label": "Link for video 2"
+},
+{
+"type": "text",
+"id": "text-two-left",
+"label": "Text for video 2"
+},
+{
+"type": "header",
+"content": "video 3"
+},
+{
+"type": "image_picker",
+"id": "video-image-three-left",
+"label": "Image for video 3"
+},
+{
+"type": "url",
+"id": "video-link-three-left",
+"label": "Link for video 3"
+},
+{
+"type": "text",
+"id": "text-three-left",
+"label": "Text for video 3"
+},
+{
+"type": "header",
+"content": "video 4"
+},
+{
+"type": "image_picker",
+"id": "video-image-four-left",
+"label": "Image for video 4"
+},
+{
+"type": "url",
+"id": "video-link-four-left",
+"label": "Link for video 4"
+},
+{
+"type": "text",
+"id": "text-four-left",
+"label": "Text for video 4"
+}
+]
+},
+{
+"name": "Accordion item right",
+"type": "text",
+"settings": [
+{
+"type": "text",
+"id": "item-title-right",
+"label": "Item title"
+},
+{
+"type": "header",
+"content": "video 1"
+},
+{
+"type": "image_picker",
+"id": "video-image-one-right",
+"label": "Image for video 1"
+},
+{
+"type": "url",
+"id": "video-link-one-right",
+"label": "Link for video 1"
+},
+{
+"type": "text",
+"id": "text-one-right",
+"label": "Text for video 1"
+},
+{
+"type": "header",
+"content": "video 2"
+},
+{
+"type": "image_picker",
+"id": "video-image-two-right",
+"label": "Image for video 2"
+},
+{
+"type": "url",
+"id": "video-link-two-right",
+"label": "Link for video 2"
+},
+{
+"type": "text",
+"id": "text-two-right",
+"label": "Text for video 2"
+},
+{
+"type": "header",
+"content": "video 3"
+},
+{
+"type": "image_picker",
+"id": "video-image-three-right",
+"label": "Image for video 3"
+},
+{
+"type": "url",
+"id": "video-link-three-right",
+"label": "Link for video 3"
+},
+{
+"type": "text",
+"id": "text-three-right",
+"label": "Text for video 3"
+},
+{
+"type": "header",
+"content": "video 4"
+},
+{
+"type": "image_picker",
+"id": "video-image-four-right",
+"label": "Image for video 4"
+},
+{
+"type": "url",
+"id": "video-link-four-right",
+"label": "Link for video 4"
+},
+{
+"type": "text",
+"id": "text-four-right",
+"label": "Text for video 4"
+}
+]
+}
+],
+"presets": [
+{
+"category": "New",
+"name":"Course Accordion"
+}
+]
+}
+{% endschema %}

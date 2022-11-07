@@ -1,0 +1,187 @@
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css" type="text/css">
+
+<div class="stories{% if section.settings.show_decor %} line-decor__one{% endif %}">
+    <div class="stories__wrapper{% if section.settings.show_bord %} mobile-bord{% endif %}{% if section.settings.type == 'quiz-result' %} stories__wrapper_quiz{% endif %}" 
+    style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            {% if section.settings.title != blank %}
+            <h2 class="stories__title" style="color:{{ section.settings.clr_text }}"> {{ section.settings.title }} </h2>
+            {% endif %}
+            <div class="stories__inner">
+                <div class="swiper stories__swiper">
+                    <div class="swiper-wrapper stories__swiper-wrapper">
+                        {% for block in section.blocks %}
+                        <div class="swiper-slide stories__swiper-slide">
+                            <div class="stories__items">
+                                {% if block.settings.image != blank %}
+                                <div class="stories__video">
+                                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                                        href="{{ block.settings.video-link }}" aria-hidden="true" rel="lightbox">
+                                        <div class="button__play_wrapper">
+                                            <div class="button__play">play</div>
+                                        </div>
+                                        <img src=" {{ block.settings.image | img_url: 'master' }} " alt="">
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="stories__item">
+                                    {% if block.settings.comment != blank %}
+                                    <div class="stories__comment" style="color:{{ section.settings.clr_text }}"> {{
+                                        block.settings.comment }} </div>
+                                    {% endif %}
+                                    {% if block.settings.name %}
+                                    <div class="stories__line">1</div>
+                                    <div class="stories__name" style="color:{{ section.settings.clr_text }}"> {{
+                                        block.settings.name }} </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="stories__arrows">
+                    <div class="stories__prev">1</div>
+                    <div class="stories__next">2</div>
+                </div>
+                {% if section.settings.button != blank %}
+                <a href="{{ section.settings.button-link }}" class="stories__button button__outline"> {{
+                    section.settings.button }} </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .iframe-lightbox-link {
+        width: 100%;
+    }
+
+    .iframe-lightbox.is-showing.is-opened {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .iframe-lightbox iframe {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 989px) {
+        .iframe-lightbox iframe {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+    }
+</style>
+
+<script src="{{ 'stories.js' | asset_url }}" defer="defer"></script>
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
+
+<script type="text/javascript">
+    [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function (el) {
+        el.lightbox = new IframeLightbox(el, {
+        });
+    });
+</script>
+
+
+{% schema %}
+{
+    "name": "Stories",
+    "settings": [
+    {
+    "type": "select",
+    "id": "type",
+    "label": "What type do you want to use?",
+    "options": [
+    {
+    "value": "one",
+    "label": "first"
+    },
+    {
+    "value": "quiz-result",
+    "label": "Quiz result"
+    }
+    ]
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f3f2ec"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "checkbox",
+    "id": "show_decor",
+    "label": "Show decor?",
+    "default": false
+    },
+    {
+    "type": "checkbox",
+    "id": "show_bord",
+    "label": "Show line at the bottom on mobile?",
+    "default": true
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "text",
+    "id": "button",
+    "label": "Button label"
+    },
+    {
+    "type": "url",
+    "id": "button-link",
+    "label": "Button link"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Stories item",
+    "type": "image_picker",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+    },
+    {
+    "type": "url",
+    "id": "video-link",
+    "label": "Video link"
+    },
+    {
+    "type": "text",
+    "id": "comment",
+    "label": "Comment"
+    },
+    {
+    "type": "text",
+    "id": "name",
+    "label": "Author"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name": "Stories"
+    }
+    ]
+}
+{% endschema %}

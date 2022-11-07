@@ -1,0 +1,133 @@
+<div class="landing-timer">
+  <div class="container container--landing">
+    {% if section.settings.subtitle != blank %}
+      <p class="subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 class="h2 h2--svg">{{ section.settings.title }}</h2>
+    {% endif %}
+    <div class="landing-timer__wrapper">
+      {% comment %} <div id="countdownultimate-KT" class="hide-kt"></div> {% endcomment %}
+      <div class="landing-timer__countdown">
+        <input class="landing-timer__score visually-hidden" type="text" value="{{ section.settings.score }}">
+        <div class="landing-timer__data d-flex">
+          <div class="text-center d-flex flex-column">
+            <span class="landing-timer__text days"></span>
+            <span class="landing-timer__unit">days</span>
+          </div>
+          <span class="landing-timer__separator">:</span>
+          <div class="text-center d-flex flex-column">
+            <span class="landing-timer__text hours"></span>
+            <span class="landing-timer__unit">hours</span>
+          </div>          
+          <span class="landing-timer__separator">:</span>
+          <div class="text-center d-flex flex-column">
+            <span class="landing-timer__text minutes"></span>
+            <span class="landing-timer__unit">minutes</span>
+          </div>
+          <span class="landing-timer__separator">:</span>
+          <div class="text-center d-flex flex-column">
+            <span class="landing-timer__text seconds"></span>
+            <span class="landing-timer__unit">seconds</span>
+          </div>        
+        </div>
+      </div>
+      <p class="landing-timer__message">{{ section.settings.message }}</p>
+    </div>
+
+    {% assign product = section.settings.product %}
+    <form class="product-form w-100 d-flex justify-content-center add-to-cart" action="/cart/add" data-productid="{{product.id}}" method="post">
+      {%- liquid
+        assign current_variant = product.selected_or_first_available_variant | default: product.variants.first
+      -%}
+      <input type="hidden" name="id" data-productid="{{product.id}}" class="product-select"
+        value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />  
+      
+      <input type="hidden" name="properties[_quiz_kit_id]" value="5824" />       
+      <label class="btn btn--black button__primary">
+        <input type="submit" value="{{section.settings.btn_text }}" name="add" class=" product-form__submit" />
+      </label>
+    </form>
+  </div>
+</div>
+
+<script>
+
+  document.addEventListener('quizKitAddToCartSuccess', function (e) {
+    // code for refreshing your Ajax cart and opening it here
+    const price = {{ product.selected_or_first_available_variant.price }};
+    const variantId = {{ product.selected_or_first_available_variant.id }};
+    form.addEventListener('submit', function () {
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://api.quizkitapp.com/api/v1/quizzes/5824/add-to-cart");
+      xhr.setRequestHeader("Accept", "application/json");
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.onload = () => console.log(xhr.responseText);
+
+      let data = `{
+        "price": ${price},
+        "variantId": ${variantId},
+        "source": "quiz_result"
+      }`;
+
+      xhr.send(data);
+      //console.log(data);
+    });
+  }, false);
+
+
+</script>
+
+
+{% schema %}
+{
+    "name": "Landing Timer",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+      },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "LIMITED TIME OFFER"
+      }, 
+      {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Master Your Cycle for an affordable <strong>$19 today</strong> only, before it goes back up to $197.</p>"
+      },
+      {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "I’m ready, sign me up for $19!"
+      },
+      {
+      "type": "range",
+      "id": "score",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "label": "Timer Score",
+      "default": 1
+      },  
+      {
+      "type": "text",
+      "id": "message",
+      "label": "Message",
+      "default": "OFFER EXPIRED"
+      }   
+    ],
+    "presets": [
+      {
+        "name": "Landing Timer"
+      }
+    ]
+}
+{% endschema %}

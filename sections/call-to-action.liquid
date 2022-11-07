@@ -1,0 +1,107 @@
+{% if section.settings.show_section %}
+  {%- capture call_to_action -%}
+    <div class="call-to-action" data-section-id="{{ section.id }}" style="background-color:{{ section.settings.sec_bg_clr }};">
+      <div class="container">
+        <div class="call-to-action__wrap d-flex flex-wrap align-items-md-center">
+          <div class="call-to-action__img">
+            {% if section.settings.title != blank %}
+              <h2 class="call-to-action__title call-to-action__title--mobile" style="color:{{ section.settings.clr_text }}">{{ section.settings.title }}</h2>
+            {% endif %}
+
+            <figure>
+              {%- assign image = section.settings.img -%}
+
+              {% if image == blank %}
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              {% else %}
+                <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                    {%- if image.width >= 400 -%}{{ image | img_url: '400x' }} 400w,{%- endif -%}
+                    {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                    {%- if image.width >= 750 -%}{{ image | img_url: '570x' }} 570w,{%- endif -%}
+                    {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                    {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                    {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                    {{ image | img_url: 'master' }} {{ image.width }}w"
+                  src="{{ image | img_url: '1500x' }}"
+                  sizes="(max-width: 570px)"
+                  alt="{{ image.alt | escape }}"
+                  height="{{ image.height }}"
+                  width="{{ image.width }}"
+                  loading="lazy"
+                >
+              {% endif %}
+            </figure>
+          </div>
+          <div class="call-to-action__info">
+            {% if section.settings.title != blank %}
+              <h2 class="call-to-action__title call-to-action__title--desktop" style="color:{{ section.settings.clr_text }}">{{ section.settings.title }}</h2>
+            {% endif %}
+            {% if section.settings.button_url != blank %}
+              <a href="{{ section.settings.button_url | default: '#' }}" class="call-to-action__button button__primary">{{ section.settings.button_label }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endcapture -%}
+  {{ call_to_action | strip_newlines | remove: "  " | remove: "	" }}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Сall to action",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section?",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Better Period. Money Back Guarantee."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Schedule a call-to-action Today"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color",
+      "id": "sec_bg_clr",
+      "label": "Overlay",
+      "default": "#F2E9E0"
+    },
+    {
+      "type": "color",
+      "id": "clr_text",
+      "label": "Text",
+      "default": "#333"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Сall to action",
+      "category": "3. Banners"
+    }
+  ]
+}
+{% endschema %}

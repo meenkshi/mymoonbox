@@ -1,0 +1,152 @@
+<div class="product-feedback">
+    <div class="product-feedback__wrapper{% if section.settings.gaps %} product-feedback__wrapper_gaps{% endif %}{% if section.settings.decor-hide %} product-feedback__wrapper_decor-hide{% endif %}"
+        style="background-color: {{ section.settings.sec_bg_clr }};">
+        <div class="product-feedback__slider">
+            <div class="product-feedback__slider_box">
+                <div class="swiper product-feedback__swiper">
+                    <div class="swiper-wrapper product-feedback__swiper-wrapper">
+                        {% if product.metafields.feedback.comment_one != blank %}
+                        <div class="swiper-slide product-feedback__swiper-slide">
+                            <div class="product-feedback__content">
+                                <div class="product-feedback__stars">
+                                    <div class="product-feedback__stars_item">
+                                        {% assign num = product.metafields.feedback.number_of_stars_one | handleize %}
+                                        {% for i in (1..num) %}
+                                        {% render 'icon-star' %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="product-feedback__comment" style="color:{{ section.settings.commetn_clr }}">
+                                    {{ product.metafields.feedback.comment_one }} </div>
+                                <div class="product-feedback__author" style="color:{{ section.settings.author_clr }}">
+                                    {{ product.metafields.feedback.author_one }} </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if product.metafields.feedback.comment_two != blank %}
+                        <div class="swiper-slide product-feedback__swiper-slide">
+                            <div class="product-feedback__content">
+                                <div class="product-feedback__stars">
+                                    <div class="product-feedback__stars_item">
+                                        {% assign num = product.metafields.feedback.number_of_stars_two | handleize %}
+                                        {% for i in (1..num) %}
+                                        {% render 'icon-star' %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="product-feedback__comment" style="color:{{ section.settings.commetn_clr }}">
+                                    {{ product.metafields.feedback.comment_two }} </div>
+                                <div class="product-feedback__author" style="color:{{ section.settings.author_clr }}">
+                                    {{ product.metafields.feedback.author_two }} </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if product.metafields.feedback.comment_three != blank %}
+                        <div class="swiper-slide product-feedback__swiper-slide">
+                            <div class="product-feedback__content">
+                                <div class="product-feedback__stars">
+                                    <div class="product-feedback__stars_item">
+                                        {% assign num = product.metafields.feedback.number_of_stars_three | handleize %}
+                                        {% for i in (1..num) %}
+                                        {% render 'icon-star' %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="product-feedback__comment" style="color:{{ section.settings.commetn_clr }}">
+                                    {{ product.metafields.feedback.comment_three }} </div>
+                                <div class="product-feedback__author" style="color:{{ section.settings.author_clr }}">
+                                    {{ product.metafields.feedback.author_three }} </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if product.metafields.feedback.comment_four != blank %}
+                        <div class="swiper-slide product-feedback__swiper-slide">
+                            <div class="product-feedback__content">
+                                <div class="product-feedback__stars">
+                                    <div class="product-feedback__stars_item">
+                                        {% assign num = product.metafields.feedback.number_of_stars_four | handleize %}
+                                        {% for i in (1..num) %}
+                                        {% render 'icon-star' %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="product-feedback__comment" style="color:{{ section.settings.commetn_clr }}">
+                                    {{ product.metafields.feedback.comment_four }} </div>
+                                <div class="product-feedback__author" style="color:{{ section.settings.author_clr }}">
+                                    {{ product.metafields.feedback.author_four }} </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if product.metafields.feedback.comment_five != blank %}
+                        <div class="swiper-slide product-feedback__swiper-slide">
+                            <div class="product-feedback__content">
+                                <div class="product-feedback__stars">
+                                    <div class="product-feedback__stars_item">
+                                        {% assign num = product.metafields.feedback.number_of_stars_five | handleize %}
+                                        {% for i in (1..num) %}
+                                        {% render 'icon-star' %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="product-feedback__comment" style="color:{{ section.settings.commetn_clr }}">
+                                    {{ product.metafields.feedback.comment_five }} </div>
+                                <div class="product-feedback__author" style="color:{{ section.settings.author_clr }}">
+                                    {{ product.metafields.feedback.author_five }} </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="swiper-pagination product-feedback__swiper-pagination"></div>
+                </div>
+                <div class="product-feedback__swiper-button-prev">0</div>
+                <div class="product-feedback__swiper-button-next">0</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ 'product-feedback.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+"name": "Product feedback",
+"settings": [
+{
+"type": "checkbox",
+"id": "gaps",
+"label": "Increase gaps on top",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "decor-hide",
+"label": "Show decor only tablet?",
+"default": false
+},
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#f3f2ec"
+},
+{
+"type": "color",
+"id": "commetn_clr",
+"label": "Comment color",
+"default": "#333"
+},
+{
+"type": "color",
+"id": "author_clr",
+"label": "Author color",
+"default": "#333"
+}
+],
+"presets": [
+{
+"category": "New",
+"name":"Product feedback"
+}
+]
+}
+{% endschema %}

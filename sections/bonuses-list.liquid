@@ -1,0 +1,154 @@
+<div class="bonuses-list {% if section.settings.bonuses_left %} bonuses-list--bonuses-left {% endif %} ">
+  <div class="container container--landing"> 
+    <div class="bonuses-list__wrapper">
+      <div class="bonuses-list__left" >
+        <h2 class="h2">{{ section.settings.title }}</h2>
+        <ul class="list-unstyled">
+          {%- for block in section.blocks -%}
+            <li>
+              {% render 'icon-leaf' %}
+              <p class="text">{{ block.settings.text }}</p>
+            </li>
+          {%- endfor -%}
+          {% if section.settings.bonuses_left %} 
+            <li class="subtitle">
+              {{ section.settings.title_3 }}
+            </li>
+            <li>
+              {% render 'icon-leaf' %}
+              <p class="text">{{ section.settings.text_4 }}</p>
+            </li>
+            <li>
+              {% render 'icon-leaf' %}
+              <p class="text">{{ section.settings.text_5 }}</p>
+            </li>
+          {% endif %}
+        </ul>
+        {% if section.settings.bonuses_left %}
+          <h3 class="subtitle">{{ section.settings.title_2 }}</h3>
+        {% endif %}
+      </div>
+      <div class="bonuses-list__right position-relative">
+        <div class="bonuses-list__img position-absolute" >
+          <img
+            srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+              {%- if section.settings.image.width >= 550 -%}{{ section.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+              {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+              {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+              {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+              {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+              {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+              {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+              {%- if section.settings.image.width >= 3840 -%}{{ section.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
+              {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
+            sizes=" (min-width: 750px) 50vw, 100vw"
+            src="{{ section.settings.image | image_url: width: 1500 }}"
+            loading="lazy"
+            alt="{{ section.settings.image.alt | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+          >
+        </div>
+        <div class="bonuses-list__bonuses position-relative">
+          {% if section.settings.title_2 %} 
+            <h3 class="subtitle">{{ section.settings.title_2 }}</h3>
+          {% endif %}
+          <ul class="list-unstyled">
+            <li>
+              {% render 'icon-leaf-red' %}
+              <p class="text">{{ section.settings.text_1 }}</p>
+            </li>
+            <li>
+              {% render 'icon-leaf-red' %}
+              <p class="text">{{ section.settings.text_2 }}</p>
+            </li>
+            {% if section.settings.text_3 != blank %}
+              <li>
+                {% render 'icon-leaf-red' %}
+                <p class="text">{{ section.settings.text_3 }}</p>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Bonuses List",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+      },
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+      },
+      {
+      "type": "text",
+      "id": "title_2",
+      "label": "Bonus Block Title"
+      },
+      {
+      "type": "text",
+      "id": "text_1",
+      "label": "Bonus Text 1"
+      },
+      {
+      "type": "text",
+      "id": "text_2",
+      "label": "Bonus Text 2"
+      },
+      {
+      "type": "text",
+      "id": "text_3",
+      "label": "Bonus Text 3"
+      },
+      {
+      "type": "checkbox",
+      "id": "bonuses_left",
+      "default": false,
+      "label": "Bonuses Left"
+      },
+      {
+      "type": "text",
+      "id": "title_3",
+      "label": "Bonus Block Left Title"
+      },
+      {
+      "type": "text",
+      "id": "text_4",
+      "label": "Bonus Text 4"
+      },
+      {
+      "type": "text",
+      "id": "text_5",
+      "label": "Bonus Text 5"
+      }
+    ],
+    "blocks": [
+      {
+      "name": "Items list",
+      "type": "text",
+      "settings": [
+          {
+          "type": "text",
+          "id": "text",
+          "label": "Item Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Bonuses List"
+      }
+    ]
+}
+{% endschema %}

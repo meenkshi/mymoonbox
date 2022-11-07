@@ -1,0 +1,69 @@
+<div class="landing-percent">
+  <div class="container container--landing">
+    <div class="landing-percent__wrapper position-relative">    
+      <p class="subtitle">{{ section.settings.subtitle }}</p>
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      <ul class="list-unstyled">
+        {%- for block in section.blocks -%}
+          <li>
+            <div class="position-relative">
+              {{ block.settings.svg }}
+              <div class="landing-percent__content position-absolute">
+                <p>{{ block.settings.data }}</p>
+                <span>{{ block.settings.text }}</span>
+              </div>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+    "name": "Landing Percent Block",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+      }       
+    ],
+    "blocks": [
+      {
+      "name": "Items list",
+      "type": "text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "svg",
+          "label": "Percent SVG"
+          },
+          {
+          "type": "text",
+          "id": "data",
+          "label": "Percent Data"
+          },
+          {
+          "type": "text",
+          "id": "text",
+          "label": "Percent Item"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Percent Block"
+      }
+    ]
+}
+{% endschema %}

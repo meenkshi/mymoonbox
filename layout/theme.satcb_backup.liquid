@@ -1,0 +1,601 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+  {%- if settings.favicon != blank -%}
+  <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+  {%- endif -%}
+
+  {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- endunless -%}
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% render 'meta-tags' %}
+
+  <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+  <script src="{{- 'vendor.js' | asset_url -}}" defer=defer></script>
+  {{ content_for_header }}
+
+  {%- liquid
+  assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+  assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+  assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+  %}
+
+  {% style %}
+  {{ settings.type_body_font | font_face: font_display: 'swap' }}
+  {{ body_font_bold | font_face: font_display: 'swap' }}
+  {{ body_font_italic | font_face: font_display: 'swap' }}
+  {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+  {{ settings.type_header_font | font_face: font_display: 'swap' }}
+
+  :root {
+  --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  --font-body-style: {{ settings.type_body_font.style }};
+  --font-body-weight: {{ settings.type_body_font.weight }};
+
+  --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  --font-heading-style: {{ settings.type_header_font.style }};
+  --font-heading-weight: {{ settings.type_header_font.weight }};
+
+  --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+  --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
+
+  --color-base-text: {{ settings.colors_text.red }}, {{ settings.colors_text.green }}, {{ settings.colors_text.blue }};
+  --color-shadow: {{ settings.colors_text.red }}, {{ settings.colors_text.green }}, {{ settings.colors_text.blue }};
+  --color-base-background-1: {{ settings.colors_background_1.red }}, {{ settings.colors_background_1.green }}, {{
+  settings.colors_background_1.blue }};
+  --color-base-background-2: {{ settings.colors_background_2.red }}, {{ settings.colors_background_2.green }}, {{
+  settings.colors_background_2.blue }};
+  --color-base-solid-button-labels: {{ settings.colors_solid_button_labels.red }}, {{
+  settings.colors_solid_button_labels.green }}, {{ settings.colors_solid_button_labels.blue }};
+  --color-base-outline-button-labels: {{ settings.colors_outline_button_labels.red }}, {{
+  settings.colors_outline_button_labels.green }}, {{ settings.colors_outline_button_labels.blue }};
+  --color-base-accent-1: {{ settings.colors_accent_1.red }}, {{ settings.colors_accent_1.green }}, {{
+  settings.colors_accent_1.blue }};
+  --color-base-accent-2: {{ settings.colors_accent_2.red }}, {{ settings.colors_accent_2.green }}, {{
+  settings.colors_accent_2.blue }};
+  --payment-terms-background-color: {{ settings.colors_background_1 }};
+
+  --gradient-base-background-1: {% if settings.gradient_background_1 != blank %}{{ settings.gradient_background_1 }}{%
+  else %}{{ settings.colors_background_1 }}{% endif %};
+  --gradient-base-background-2: {% if settings.gradient_background_2 != blank %}{{ settings.gradient_background_2 }}{%
+  else %}{{ settings.colors_background_2 }}{% endif %};
+  --gradient-base-accent-1: {% if settings.gradient_accent_1 != blank %}{{ settings.gradient_accent_1 }}{% else %}{{
+  settings.colors_accent_1 }}{% endif %};
+  --gradient-base-accent-2: {% if settings.gradient_accent_2 != blank %}{{ settings.gradient_accent_2 }}{% else %}{{
+  settings.colors_accent_2 }}{% endif %};
+
+  --media-padding: {{ settings.media_padding }}px;
+  --media-border-opacity: {{ settings.media_border_opacity | divided_by: 100.0 }};
+  --media-border-width: {{ settings.media_border_thickness }}px;
+  --media-radius: {{ settings.media_radius }}px;
+  --media-shadow-opacity: {{ settings.media_shadow_opacity | divided_by: 100.0 }};
+  --media-shadow-horizontal-offset: {{ settings.media_shadow_horizontal_offset }}px;
+  --media-shadow-vertical-offset: {{ settings.media_shadow_vertical_offset }}px;
+  --media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;
+
+  --page-width: {{ settings.page_width | divided_by: 10 }}rem;
+  --page-width-margin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;
+
+  --card-image-padding: {{ settings.card_image_padding | divided_by: 10.0 }}rem;
+  --card-corner-radius: {{ settings.card_corner_radius | divided_by: 10.0 }}rem;
+  --card-text-alignment: {{ settings.card_text_alignment }};
+  --card-border-width: {{ settings.card_border_thickness | divided_by: 10.0 }}rem;
+  --card-border-opacity: {{ settings.card_border_opacity | divided_by: 100.0 }};
+  --card-shadow-opacity: {{ settings.card_shadow_opacity | divided_by: 100.0 }};
+  --card-shadow-horizontal-offset: {{ settings.card_shadow_horizontal_offset | divided_by: 10.0 }}rem;
+  --card-shadow-vertical-offset: {{ settings.card_shadow_vertical_offset | divided_by: 10.0 }}rem;
+  --card-shadow-blur-radius: {{ settings.card_shadow_blur | divided_by: 10.0 }}rem;
+
+  --badge-corner-radius: {{ settings.badge_corner_radius | divided_by: 10.0 }}rem;
+
+  --popup-border-width: {{ settings.popup_border_thickness }}px;
+  --popup-border-opacity: {{ settings.popup_border_opacity | divided_by: 100.0 }};
+  --popup-corner-radius: {{ settings.popup_corner_radius }}px;
+  --popup-shadow-opacity: {{ settings.popup_shadow_opacity | divided_by: 100.0 }};
+  --popup-shadow-horizontal-offset: {{ settings.popup_shadow_horizontal_offset }}px;
+  --popup-shadow-vertical-offset: {{ settings.popup_shadow_vertical_offset }}px;
+  --popup-shadow-blur-radius: {{ settings.popup_shadow_blur }}px;
+
+  --drawer-border-width: {{ settings.drawer_border_thickness }}px;
+  --drawer-border-opacity: {{ settings.drawer_border_opacity | divided_by: 100.0 }};
+  --drawer-shadow-opacity: {{ settings.drawer_shadow_opacity | divided_by: 100.0 }};
+  --drawer-shadow-horizontal-offset: {{ settings.drawer_shadow_horizontal_offset }}px;
+  --drawer-shadow-vertical-offset: {{ settings.drawer_shadow_vertical_offset }}px;
+  --drawer-shadow-blur-radius: {{ settings.drawer_shadow_blur }}px;
+
+  --spacing-sections-desktop: {{ settings.spacing_sections }}px;
+  --spacing-sections-mobile: {% if settings.spacing_sections < 24 %}{{ settings.spacing_sections }}{% else %}{{
+    settings.spacing_sections | times: 0.7 | round | at_least: 20 }}{% endif %}px; --grid-desktop-vertical-spacing: {{
+    settings.spacing_grid_vertical }}px; --grid-desktop-horizontal-spacing: {{ settings.spacing_grid_horizontal }}px;
+    --grid-mobile-vertical-spacing: {{ settings.spacing_grid_vertical | divided_by: 2 }}px;
+    --grid-mobile-horizontal-spacing: {{ settings.spacing_grid_horizontal | divided_by: 2 }}px;
+    --text-boxes-border-opacity: {{ settings.text_boxes_border_opacity | divided_by: 100.0 }};
+    --text-boxes-border-width: {{ settings.text_boxes_border_thickness }}px; --text-boxes-radius: {{
+    settings.text_boxes_radius }}px; --text-boxes-shadow-opacity: {{ settings.text_boxes_shadow_opacity | divided_by:
+    100.0 }}; --text-boxes-shadow-horizontal-offset: {{ settings.text_boxes_shadow_horizontal_offset }}px;
+    --text-boxes-shadow-vertical-offset: {{ settings.text_boxes_shadow_vertical_offset }}px;
+    --text-boxes-shadow-blur-radius: {{ settings.text_boxes_shadow_blur }}px; --buttons-radius: {{
+    settings.buttons_radius }}px; --buttons-radius-outset: {% if settings.buttons_radius> 0 %}{{ settings.buttons_radius
+    | plus: settings.buttons_border_thickness }}{% else %}0{% endif %}px;
+    --buttons-border-width: {% if settings.buttons_border_opacity > 0 %}{{ settings.buttons_border_thickness }}{% else
+    %}0{% endif %}px;
+    --buttons-border-opacity: {{ settings.buttons_border_opacity | divided_by: 100.0 }};
+    --buttons-shadow-opacity: {{ settings.buttons_shadow_opacity | divided_by: 100.0 }};
+    --buttons-shadow-horizontal-offset: {{ settings.buttons_shadow_horizontal_offset }}px;
+    --buttons-shadow-vertical-offset: {{ settings.buttons_shadow_vertical_offset }}px;
+    --buttons-shadow-blur-radius: {{ settings.buttons_shadow_blur }}px;
+    --buttons-border-offset: {% if settings.buttons_radius > 0 or settings.buttons_shadow_opacity > 0 %}0.3{% else %}0{%
+    endif %}px;
+
+    --inputs-radius: {{ settings.inputs_radius }}px;
+    --inputs-border-width: {{ settings.inputs_border_thickness }}px;
+    --inputs-border-opacity: {{ settings.inputs_border_opacity | divided_by: 100.0 }};
+    --inputs-shadow-opacity: {{ settings.inputs_shadow_opacity | divided_by: 100.0 }};
+    --inputs-shadow-horizontal-offset: {{ settings.inputs_shadow_horizontal_offset }}px;
+    --inputs-margin-offset: {% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_opacity > 0
+    %}{{ settings.inputs_shadow_vertical_offset | abs }}{% else %}0{% endif %}px;
+    --inputs-shadow-vertical-offset: {{ settings.inputs_shadow_vertical_offset }}px;
+    --inputs-shadow-blur-radius: {{ settings.inputs_shadow_blur }}px;
+    --inputs-radius-outset: {% if settings.inputs_radius > 0 %}{{ settings.inputs_radius | plus:
+    settings.inputs_border_thickness }}{% else %}0{% endif %}px;
+
+    --variant-pills-radius: {{ settings.variant_pills_radius }}px;
+    --variant-pills-border-width: {{ settings.variant_pills_border_thickness }}px;
+    --variant-pills-border-opacity: {{ settings.variant_pills_border_opacity | divided_by: 100.0 }};
+    --variant-pills-shadow-opacity: {{ settings.variant_pills_shadow_opacity | divided_by: 100.0 }};
+    --variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;
+    --variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;
+    --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
+    }
+
+    *,
+    *::before,
+    *::after {
+    box-sizing: inherit;
+    }
+
+    html {
+    box-sizing: border-box;
+    /*font-size: calc(var(--font-body-scale) * 62.5%);*/
+    height: 100%;
+    }
+
+    body {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 100%;
+    min-height: 100%;
+    margin: 0;
+    font-size: 1rem;
+    letter-spacing: normal;
+    line-height: calc(1 + 0.8 / var(--font-body-scale));
+    font-family: var(--font-body-family);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    }
+
+    @media screen and (min-width: 750px) {
+    body {
+    font-size: 1.6rem;
+    }
+    }
+    {% endstyle %}
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    {%- unless settings.type_body_font.system? -%}
+    <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+    {%- unless settings.type_header_font.system? -%}
+    <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+
+    {%- if settings.predictive_search_enabled -%}
+    <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print"
+      onload="this.media='all'">
+    {%- endif -%}
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ 'main.min.css' | asset_url }}" type="text/css">
+</head>
+
+<body class="gradient">
+  <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+    {{ "accessibility.skip_to_text" | t }}
+  </a>
+
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+  <ul hidden>
+    <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+  </ul>
+
+  <script>
+    window.shopUrl = '{{ shop.url }}';
+    window.routes = {
+      cart_add_url: '{{ routes.cart_add_url }}',
+      cart_change_url: '{{ routes.cart_change_url }}',
+      cart_update_url: '{{ routes.cart_update_url }}',
+      predictive_search_url: '{{ routes.predictive_search_url }}'
+    };
+
+    window.cartStrings = {
+      error: `{{ 'sections.cart.cart_error' | t }}`,
+      quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
+    }
+
+    window.variantStrings = {
+      addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+      soldOut: `{{ 'products.product.sold_out' | t }}`,
+      unavailable: `{{ 'products.product.unavailable' | t }}`,
+    }
+
+    window.accessibilityStrings = {
+      imageAvailable: `{{ 'products.product.media.image_available' | t: index: '[index]' }}`,
+      shareSuccess: `{{ 'general.share.success_message' | t }}`,
+      pauseSlideshow: `{{ 'sections.slideshow.pause_slideshow' | t }}`,
+      playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
+    }
+  </script>
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' | script_tag }}
+  <script type='text/javascript' src='//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js'></script>
+  {%- if settings.predictive_search_enabled -%}
+  <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+  <script src="https://widget.reviews.io/polaris/build.js"></script>
+<script>
+new ReviewsWidget('#ReviewsWidget', {
+//Your REVIEWS.io Store ID and widget type:
+store: 'mymoonboxau.myshopify.com',
+widget: 'polaris',
+
+//Content settings (store_review,product_review,third_party_review,questions). Choose what to display in this widget:
+options: {
+    types: 'product_review',
+    lang: 'en',
+    //Possible layout options: bordered, large and reverse.
+    layout: '',
+    //How many reviews & questions to show per page?
+    per_page: 6,
+    store_review:{
+      hide_if_no_results: false,
+    },
+    third_party_review:{
+      hide_if_no_results: false,
+    },
+    product_review: {
+      sku: "{{ product.variants | map: 'sku' | join: ';' }};{{ product.variants | map: 'id' | join: ';' }}",
+      enable_rich_snippets: true,
+
+      /* Your custom Structured Data */
+      structured_data: {
+
+        category: {{ product.type | json }},
+        {% capture gtin_length %}
+          {{ product.variants.first.barcode | size }}
+        {% endcapture %}
+
+        {% if gtin_length == "14" %}
+          gtin14:"{{product.variants.first.barcode}}",
+        {% elsif gtin_length == "13" %}
+          gtin13:"{{product.variants.first.barcode}}",
+        {% elsif gtin_length == "12" %}
+          gtin12:"{{product.variants.first.barcode}}",
+        {% endif %}
+
+        url: "{{ shop.url }}{{ product.url }}",
+
+        {%- if product.featured_image -%}
+          image: "https:{{ product.featured_image | product_img_url: 'grande' }}",
+        {%- endif -%}
+
+        {% if variant.image %}
+          {% assign variant_image_size = variant.image.width | append: 'x' %}
+          image: "http:{{ variant.image.src | img_url: variant_image_size }}",
+        {% endif %}
+
+        description: "{{ product.description | strip_html | strip_newlines | escape }}",
+        {% assign ruk_current_variant = product.selected_or_first_available_variant %}
+        {% assign ruk_variant_count = product.variants | size %}
+        {% assign ruk_count = 0 %}
+
+        {% if product.variants %}
+          {% assign ruk_count = ruk_count | plus: 1 %}
+
+          offers: [{
+              type: "Offer",
+              priceCurrency: "{{ cart.currency.iso_code }}",
+              price: "{{ ruk_current_variant.price | money_without_currency | replace: ',', '.' }}",
+              itemCondition: "http://schema.org/NewCondition",
+              availability: "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+              url: "{{ shop.url }}{{ ruk_current_variant.url }}",
+
+              {% if ruk_current_variant.image %}
+                  {% assign variant_image_size = ruk_current_variant.image.width | append: 'x' %}
+                  image: "https:{{ ruk_current_variant.image.src | img_url: variant_image_size }}",
+              {% else %}
+                  image: "https:{{ product.featured_image.src | img_url: 'grande' }}",
+              {% endif %}
+
+              {% if ruk_current_variant.title != 'Default Title' %}
+                  name: "{{ product.title | strip_html | escape }} - {{ fa_current_variant.title | escape }}",
+              {% else %}
+                  name: "{{ product.title | strip_html | escape }}",
+              {% endif %}
+
+              {% if ruk_current_variant.barcode.size == 12 %}
+                  gtin12: "{{ ruk_current_variant.barcode }}",
+              {% endif %}
+
+              {% if ruk_current_variant.barcode.size == 13 %}
+                  gtin13: "{{ ruk_current_variant.barcode }}",
+              {% endif %}
+
+              {% if ruk_current_variant.barcode.size == 14 %}
+                  gtin14: "{{ ruk_current_variant.barcode }}",
+              {% endif %}
+
+              {% if ruk_current_variant.sku != blank %}
+                  sku: "{{ ruk_current_variant.sku }}",
+              {% else %}
+                  sku: "{{ ruk_current_variant.id }}",
+              {% endif %}
+
+              {% if product.description != blank %}
+                  description: "{{ product.description | strip_html | escape | strip_newlines }}",
+              {% endif %}
+
+              priceValidUntil: "{{ 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' | uri_encode | replace:'+','%20' }}"
+          }],
+        {% endif %}
+
+        brand: {
+          type: 'Brand',
+          name: '{{ product.vendor | escape }}',
+        },
+      },
+    },
+
+    /* Toggle Options */
+    questions:{
+          hide_if_no_results:false,
+          enable_ask_question:true,
+          show_dates:true,
+          grouping:"{{ product.variants | map: 'sku' | join: ';' }};{{ product.variants | map: 'id' | join: ';' }}"
+    },
+
+    //Header settings:
+    header:{
+        enable_summary: true, //Show overall rating & review count
+        enable_ratings: true,
+        enable_attributes: false,
+        enable_image_gallery: false, //Show photo & video gallery
+        enable_percent_recommended: false, //Show what percentage of reviewers recommend it
+        enable_write_review: true, //Show "Write Review" button
+        enable_ask_question: false, //Show "Ask Question" button
+        enable_sub_header: false, //Show subheader
+        rating_decimal_places: 2,
+    },
+
+    //Filtering settings:
+    filtering:{
+        enable: false, //Show filtering options
+        enable_text_search: false, //Show search field
+        enable_sorting: false, //Show sorting options (most recent, most popular)
+        enable_overall_rating_filter: false, //Show overall rating breakdown filter
+        enable_language_filter: false, // Filter by review language
+        enable_language_filter_language_change: false, // Update widget language based on language selected
+        enable_ratings_filters: false, //Show product attributes filter
+        enable_attributes_filters: false, //Show author attributes filter
+    },
+
+    //Review settings:
+    reviews:{
+        enable_avatar: true, //Show author avatar
+        enable_reviewer_name:  true, //Show author name
+        enable_reviewer_address:  false, //Show author location
+        reviewer_address_format: 'city, country', //Author location display format
+        enable_verified_badge: true, //Show "Verified Customer" badge
+        review_content_filter: 'undefined', //Filter content
+        enable_reviewer_recommends: true, //Show "I recommend it" badge
+        enable_attributes: false, //Show author attributes
+        enable_product_name: false, //Show display product name
+        enable_review_title: false, //Show review title
+        enable_replies: undefined, //Show review replies
+        enable_images: false, //Show display review photos
+        enable_ratings: false, //Show product attributes (additional ratings)
+        enable_share: false, //Show share buttons
+        enable_helpful_vote: true, //Show "was this helpful?" section
+        enable_helpful_display: true, //Show how many times times review upvoted
+        enable_report: false, //Show report button
+        enable_date: false, //Show when review was published
+    },
+},
+//Translation settings
+translations: {
+    'Verified Customer': 'Verified Customer'
+},
+//Style settings:
+styles: {
+    //Base font size is a reference size for all text elements. When base value gets changed, all TextHeading and TexBody elements get proportionally adjusted.
+    '--base-font-size': '16px',
+
+    //Button styles (shared between buttons):
+    '--common-button-font-family': 'inherit',
+    '--common-button-font-size':'16px',
+    '--common-button-font-weight':'400',
+    '--common-button-letter-spacing':'0',
+    '--common-button-text-transform':'none',
+    '--common-button-vertical-padding':'11px',
+    '--common-button-horizontal-padding':'15px',
+    '--common-button-border-width':'0',
+    '--common-button-border-radius':'4px',
+
+    //Primary button styles:
+    '--primary-button-bg-color': '#333',
+    '--primary-button-border-color': '#333',
+    '--primary-button-text-color': '#F3F2EC',
+
+    //Secondary button styles:
+    '--secondary-button-bg-color': 'transparent',
+    '--secondary-button-border-color': '#0E1311',
+    '--secondary-button-text-color': '#0E1311',
+
+    //Star styles:
+    '--common-star-color': '#333',
+    '--common-star-disabled-color': 'rgba(0,0,0,0.25)',
+    '--medium-star-size': '24.5px',
+    '--small-star-size': '16px',
+
+    //Heading styles:
+    '--heading-text-color': '#333',
+    '--heading-text-font-weight': '400',
+    '--heading-text-font-family': 'inherit',
+    '--heading-text-line-height': '1.2',
+    '--heading-text-letter-spacing': '0',
+    '--heading-text-transform': 'none',
+
+    //Body text styles:
+    '--body-text-color': '#333',
+    '--body-text-font-weight': '400',
+    '--body-text-font-family': 'inherit',
+    '--body-text-line-height': '1.4',
+    '--body-text-letter-spacing': '0',
+    '--body-text-transform': 'none',
+
+    //Input field styles:
+    '--inputfield-text-font-family': 'inherit',
+    '--input-text-font-size': '14px',
+    '--inputfield-text-font-weight': '400',
+    '--inputfield-text-color': '#333',
+    '--inputfield-border-color': 'rgba(0,0,0,0.2)',
+    '--inputfield-background-color': 'transparent',
+    '--inputfield-border-width': '1px',
+    '--inputfield-border-radius': '0px',
+
+    '--common-border-color': 'rgba(0,0,0,0.15)',
+    '--common-border-width': '0',
+    '--common-sidebar-width': '164px',
+
+    //Slider indicator (for attributes) styles:
+    '--slider-indicator-bg-color': 'rgba(0,0,0,0.1)',
+    '--slider-indicator-button-color': '#0E1311',
+    '--slider-indicator-width': '190px',
+
+    //Badge styles:
+    '--badge-icon-color': '#333',
+    '--badge-icon-font-size': '16px',
+    '--badge-text-color': '#333',
+    '--badge-text-font-size': 'inherit',
+    '--badge-text-letter-spacing': 'inherit',
+    '--badge-text-transform': 'inherit',
+
+    //Author styles:
+    '--author-font-size': 'inherit',
+    '--author-text-transform': 'none',
+
+    //Author avatar styles:
+    '--avatar-thumbnail-size': '102px',
+    '--avatar-thumbnail-border-radius': '50%',
+    '--avatar-thumbnail-text-color': '#333',
+    '--avatar-thumbnail-bg-color': 'transparent',
+
+    //Product photo or review photo styles:
+    '--photo-video-thumbnail-size': '80px',
+    '--photo-video-thumbnail-border-radius': '0px',
+
+    //Media (photo & video) slider styles:
+    '--mediaslider-scroll-button-icon-color': '#000',
+    '--mediaslider-scroll-button-bg-color': 'rgba(255, 255, 255, 0.85)',
+    '--mediaslider-overlay-text-color': '#ffffff',
+    '--mediaslider-overlay-bg-color': 'rgba(0, 0, 0, 0.8))',
+    '--mediaslider-item-size': '110px',
+
+    //Pagination & tabs styles (normal):
+    '--pagination-tab-text-color': '#333',
+    '--pagination-tab-text-transform': 'none',
+    '--pagination-tab-text-letter-spacing': '0',
+    '--pagination-tab-text-font-size': '16px',
+    '--pagination-tab-text-font-weight': '400',
+
+    //Pagination & tabs styles (active):
+    '--pagination-tab-active-text-color': '#0E1311',
+    '--pagination-tab-active-text-font-weight': '400',
+    '--pagination-tab-active-border-color': '#0E1311',
+    '--pagination-tab-border-width': '3px',
+},
+});
+</script>
+<script src="https://widget.reviews.io/rating-snippet/dist.js"></script>
+<link rel="stylesheet" href="https://widget.reviews.io/rating-snippet/dist.css" />
+<script>
+ratingSnippet("ruk_rating_snippet",{
+  store: "mymoonboxau.myshopify.com",
+  color: "#333",
+  linebreak: true,
+  usePolaris: true,
+  text: "Reviews"
+});
+</script>
+  <script src="{{ 'common.min.js' | asset_url }}" defer="defer"></script>
+</body>
+
+</html>
+
+<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.0.12) -->
+<script type="text/javascript">
+  // Overrides:
+  // var afterpay_min = 0.04;            // As per your Afterpay contract.
+  // var afterpay_max = 2000.00;         // As per your Afterpay contract.
+  // var afterpay_cbt_enabled = false;   // As per your Afterpay contract; change to true to display Cross-Border Trade artwork (for AU/NZ).
+  // var afterpay_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
+  var afterpay_product_selector = '#product__afterpay';
+  // var afterpay_cart_integration_enabled = true;
+  // var afterpay_cart_static_selector = '#cart-subtotal-selector';
+  
+  // Non-editable fields:
+  var afterpay_shop_currency = {{ shop.currency | json }};
+  var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
+  var afterpay_shop_money_format = {{ shop.money_format | json }};
+  var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+  var afterpay_theme_name = {{ theme.name | json }};
+  var afterpay_product = {{ product | json }};
+  var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+  var afterpay_cart_total_price = {{ cart.total_price | json }};
+  var afterpay_js_snippet_version = '1.0.12';
+  </script>
+  <script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+  <!-- End Shopify-Afterpay JavaScript Snippet (v1.0.12) -->
+  

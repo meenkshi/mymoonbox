@@ -1,0 +1,90 @@
+<div class="landing-info">
+  <svg class="landing-info__bg1" width="1437" height="277" viewBox="0 0 1437 277" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M920.642 0C1141.41 0 1317.14 39.2215 1437 90.829L1437 277L-4 277V65.645C424.297 110.651 644.675 0 920.642 0Z" fill="#F2E9E0"/>
+  </svg>
+  <div class="landing-info__wrapper position-relative">
+    <div class="container container--landing position-relative">
+      <p class="landing-info__subtitle">{{ section.settings.subtitle }}</p>
+      <h2 class="h2">{{ section.settings.title }}</h2>
+      <div class="landing-info__content">
+        <div class="landing-info__img">
+          <img
+            srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+              {%- if section.settings.image.width >= 550 -%}{{ section.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+              {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+              {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+              {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+              {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+              {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+              {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+              {%- if section.settings.image.width >= 3840 -%}{{ section.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
+              {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
+            sizes=" (min-width: 750px) 50vw, 100vw"
+            src="{{ section.settings.image | image_url: width: 1500 }}"
+            loading="lazy"
+            alt="{{ section.settings.image.alt | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+          >
+        </div>
+        <div class="landing-info__review">          
+          <h3>{{ section.settings.content_title }}</h3>
+          <p>{{ section.settings.content_text }}</p>
+          <span>{{ section.settings.author }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <svg class="landing-info__bg2" width="1436" height="277" viewBox="0 0 1436 277" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M511.358 277C290.585 277 114.865 237.778 -4.99931 186.171L-5 0L1436 9.15527e-05V211.355C1007.7 166.349 787.325 277 511.358 277Z" fill="#F2E9E0"/>
+  </svg>   
+    
+</div>
+
+{% schema %}
+{
+    "name": "Landing Info",
+    "tag": "section",
+    "settings": [      
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+      },
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+      },
+      {
+      "type": "text",
+      "id": "content_title",
+      "label": "Title"
+      },
+      {
+      "type": "text",
+      "id": "content_text",
+      "label": "Text"
+      },
+      {
+      "type": "text",
+      "id": "author",
+      "label": "Author"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Info"
+      }
+    ]
+}
+{% endschema %}
+
+
+  

@@ -1,0 +1,81 @@
+<div class="card-product__wrapper">
+  <div class="card-product__inner">
+    <div class="card-product__media">
+      <a href="{{ card_product.url | default: '#' }}"
+        class="card-product__media_item{% if card_product.media[1] != nil and show_secondary_image %} two-image{% endif %}">
+        <img srcset=" {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | img_url: '360x' }} 360w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | img_url: '533x' }} 533w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | img_url: '720x' }} 720w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | img_url: '940x' }} 940w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | img_url: '1066x' }} 1066w,{%- endif -%}
+                  {{ card_product.featured_media | img_url: 'master' }} {{ card_product.featured_media.width }}w"
+          src="{{ card_product.featured_media | img_url: '533x' }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+          alt="{{ card_product.featured_media.alt | escape }}" {% unless lazy_load==false %}loading="lazy" {% endunless
+          %} width="{{ card_product.featured_media.width }}" height="{{ card_product.featured_media.height }}">
+
+        {%- if card_product.media[1] != nil and show_secondary_image -%}
+        <img srcset=" {%- if card_product.media[1].width >= 360 -%}{{ card_product.media[1] | img_url: '360x' }} 360w,{%- endif -%}
+          {%- if card_product.media[1].width >= 533 -%}{{ card_product.media[1] | img_url: '533x' }} 533w,{%- endif -%}
+          {%- if card_product.media[1].width >= 720 -%}{{ card_product.media[1] | img_url: '720x' }} 720w,{%- endif -%}
+          {%- if card_product.media[1].width >= 940 -%}{{ card_product.media[1] | img_url: '940x' }} 940w,{%- endif -%}
+          {%- if card_product.media[1].width >= 1066 -%}{{ card_product.media[1] | img_url: '1066x' }} 1066w,{%- endif -%}
+          {{ card_product.media[1] | img_url: 'master' }} {{ card_product.media[1].width }}w"
+          src="{{ card_product.media[1] | img_url: '533x' }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+          alt="{{ card_product.media[1].alt | escape }}" class="second-image" loading="lazy"
+          width="{{ card_product.media[1].width }}" height="{{ card_product.media[1].height }}">
+        {%- endif -%}
+      </a>
+      <form class="product-form" action="/cart/add" data-productid="{{ product.id }}" data-productid="{{card_product.id}}" method="post">
+        <input type="hidden" name="id" data-productid="{{ product.id }}" data-productid="{{card_product.id}}" class="product-select"
+          value="{{ card_product.variants[0].id }}" data-variant-title="{{ card_product.variants[0].title }}" />
+        <input type="submit" value="{{'products.product.add_to_cart' | t }}" name="add"
+          class="product-form__submit card-product__button" />
+      </form>
+
+
+    </div>
+    <div class="card-product__content">
+      {%- if show_rating -%}
+      <div class="card-product__rating">
+        <div class="ruk_rating_snippet"
+          data-sku="{{ card_product.handle }};{{ card_product.variants | map: 'sku' | join: ';' }};{{ card_product.variants | map: 'id' | join: ';' }}">
+        </div>
+      </div>
+      {%- endif -%}
+      {%- if show_vendor -%}
+      <!-- <span class="visually-hidden" style="color:{{ section.settings.clr_text }}">{{ 'accessibility.vendor' | t }}</span> -->
+      <div class="card-product__vendor" style="color:{{ section.settings.clr_text }}">{{ card_product.vendor }}</div>
+      {%- endif -%}
+      <div class="card-product__information">
+        <h3 class="card-product__heading" style="color:{{ section.settings.clr_text }}">
+          <a href="{{ card_product.url | default: '#' }}" class="full-unstyled-link">
+            {{ card_product.title | escape }}
+          </a>
+        </h3>
+        <div class="card-product__info">
+          <span class="caption-large light" style="color:{{ section.settings.clr_text }}">{{ block.settings.description
+            | escape }}</span>
+          {% render 'price', product: card_product, price_class: '' %}
+        </div>
+      </div>
+      <div class="card-product__support">
+        {{ card_product.metafields.collection_page.text }}
+      </div>
+
+    </div>
+  </div>
+  <form class="product-form" action="/cart/add" data-productid="{{ product.id }}" data-productid="{{card_product.id}}" method="post">
+    <input type="hidden" name="id" data-productid="{{ product.id }}" data-productid="{{card_product.id}}" class="product-select"
+      value="{{ card_product.variants[0].id }}" data-variant-title="{{ card_product.variants[0].title }}" />
+    <input type="submit" value="{{'products.product.add_to_cart' | t }}" name="add"
+      class="product-form__submit card-product__button card-product__button_mobile" />
+  </form>
+</div>
+
+<style>
+  .card-product__media_item {
+    background-image: url(' {{ section.settings.product-bg | img_url: '533x' }} ');
+  }
+</style>

@@ -1,0 +1,304 @@
+<div class="collection">
+  <div class="collection__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+    <div class="collection__decor">
+      {% if section.settings.enable_filtering %}
+      <div class="collection-filter">
+        <div class="collection-filter__wrapper">
+          <div class="container">
+            <nav class="collection-filter__navigation">
+              <ul class="collection-filter__list" role="list">
+                {%- for link in section.settings.collection-nav.links -%}
+                <li>
+                  <a href="{{ link.url }}"
+                    class="collection-filter__link{% if link.current %}  collection-filter__link_active{%endif %}" {% if
+                    link.current %} aria-current="page" {% endif %}>
+                    {{ link.title | escape }}
+                  </a>
+                </li>
+                {%- endfor -%}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <div class="container">
+        <div class="collection__content">
+          {% for block in section.blocks limit: 1 %}
+          {%- assign collection = collections[block.settings.collection] -%}
+          {%- if collection.products.size == 0 -%}
+          <div class="collection__empty" id="product-grid" data-id="{{ section.id }}">
+            <h2 class="collection__empty_title" style="color:{{ section.settings.clr_text }}">
+              {{ 'sections.collection_template.empty' | t }}<br>
+              {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "" }}
+            </h2>
+          </div>
+          {%- else -%}
+          <div class="collection__inner{% if block.settings.section-type == 'two' %} collection__inner_two{% endif %}">
+            <div class="collection__top">
+              {% if collection.title != blank %}
+              <h2 class="collection__title"> {{ collection.title }} </h2>
+              {% endif %}
+              {% if collection.description != blank %}
+              <div class="collection__text"> {{ collection.description }} </div>
+              {% endif %}
+            </div>
+            <div id="AjaxinateLoop">
+              <ul class="collection__items">
+                {%- for product in collection.products -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                {%- assign lazy_load = true -%}
+                {%- endif -%}
+                <li class="collection__item" style="color:{{ section.settings.clr_text }}">
+                  {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  lazy_load: lazy_load
+                  %}
+                </li>
+                {%- endfor -%}
+              </ul>
+              {%- endif -%}
+            </div>
+          </div>
+          {% endfor %}
+          {% for block in section.blocks limit: section.settings.limit offset: 1 %}
+          {%- assign collection = collections[block.settings.collection] -%}
+          {% assign collectionAllTags = collections.all.tags %}
+          {%- if collection.products.size == 0 -%}
+          <div class="collection__empty" id="product-grid" data-id="{{ section.id }}">
+            <h2 class="collection__empty_title" style="color:{{ section.settings.clr_text }}">
+              {{ 'sections.collection_template.empty' | t }}<br>
+              {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "" }}
+            </h2>
+          </div>
+          {%- else -%}
+          <div class="collection__inner{% if block.settings.section-type == " two" %} collection__inner_two{% endif %}">
+            <div class="collection__top">
+              {% if collection.title != blank %}
+              <h2 class="collection__title"> {{ collection.title }} </h2>
+              {% endif %}
+              {% if collection.description != blank %}
+              <div class="collection__text"> {{ collection.description }} </div>
+              {% endif %}
+            </div>
+            <div id="AjaxinateLoopTwo">
+              <ul class="collection__items">
+                {%- for product in collection.products -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                {%- assign lazy_load = true -%}
+                {%- endif -%}
+                <li class="collection__item" style="color:{{ section.settings.clr_text }}">
+                  {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  lazy_load: lazy_load
+                  %}
+                </li>
+                {%- endfor -%}
+              </ul>
+              {%- endif -%}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="collection__content collection__content_mobile">
+          {% for block in section.blocks limit: 1 %}
+          {%- assign collection = collections[block.settings.collection] -%}
+          {% assign collectionAllTags = collections.all.tags %}
+          {%- if collection.products.size == 0 -%}
+          <div class="collection__empty" id="product-grid" data-id="{{ section.id }}">
+            <h2 class="collection__empty_title" style="color:{{ section.settings.clr_text }}">
+              {{ 'sections.collection_template.empty' | t }}<br>
+              {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "" }}
+            </h2>
+          </div>
+          {%- else -%}
+          <div class="collection__inner{% if block.settings.section-type == " two" %} collection__inner_two{% endif %}">
+            <div class="collection__top">
+              {% if collection.title != blank %}
+              <h2 class="collection__title"> {{ collection.title }} </h2>
+              {% endif %}
+              {% if collection.description != blank %}
+              <div class="collection__text"> {{ collection.description }} </div>
+              {% endif %}
+            </div>
+            <div class="AjaxinateLoop">
+              <ul class="collection__items">
+                {%- for product in collection.products -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                {%- assign lazy_load = true -%}
+                {%- endif -%}
+                <li class="collection__item" style="color:{{ section.settings.clr_text }}">
+                  {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  lazy_load: lazy_load
+                  %}
+                </li>
+                {%- endfor -%}
+              </ul>
+              {%- endif -%}
+            </div>
+          </div>
+          {% endfor %}
+          {% for block in section.blocks limit: section.settings.limit offset: 1 %}
+          {%- assign collection = collections[block.settings.collection] -%}
+          {% assign collectionAllTags = collections.all.tags %}
+          {%- if collection.products.size == 0 -%}
+          <div class="collection__empty" id="product-grid" data-id="{{ section.id }}">
+            <h2 class="collection__empty_title" style="color:{{ section.settings.clr_text }}">
+              {{ 'sections.collection_template.empty' | t }}<br>
+              {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "" }}
+            </h2>
+          </div>
+          {%- else -%}
+          <div class="collection__inner{% if block.settings.section-type == 'two' %} collection__inner_two{% endif %}">
+            <div class="collection__top">
+              {% if collection.title != blank %}
+              <h2 class="collection__title"> {{ collection.title }} </h2>
+              {% endif %}
+              {% if collection.description != blank %}
+              <div class="collection__text"> {{ collection.description }} </div>
+              {% endif %}
+            </div>
+            <div class="AjaxinateLoopTwo">
+              <ul class="collection__items">
+                {%- for product in collection.products -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                {%- assign lazy_load = true -%}
+                {%- endif -%}
+                <li class="collection__item" style="color:{{ section.settings.clr_text }}">
+                  {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  lazy_load: lazy_load
+                  %}
+                </li>
+                {%- endfor -%}
+              </ul>
+              {%- endif -%}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "class": "section",
+  "settings": [
+  {
+  "type": "checkbox",
+  "id": "show_secondary_image",
+  "default": false,
+  "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+  },
+  {
+  "type": "color",
+  "id": "sec_bg_clr",
+  "label": "Background color",
+  "default": "#f3f2ec"
+  },
+  {
+  "type": "color",
+  "id": "clr_text",
+  "label": "Text color",
+  "default": "#333"
+  },
+  {
+  "type": "link_list",
+  "id": "collection-nav",
+  "label": "Navigation"
+  },
+  {
+  "type": "image_picker",
+  "id": "product-bg",
+  "label": "Background on product image"
+  },
+  {
+  "type": "header",
+  "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+  },
+  {
+  "type": "checkbox",
+  "id": "show_vendor",
+  "default": false,
+  "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+  },
+  {
+  "type": "checkbox",
+  "id": "show_rating",
+  "default": false,
+  "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+  "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+  },
+  {
+  "type": "checkbox",
+  "id": "show_metafield",
+  "label": "Show metafield",
+  "default": false
+  },
+  {
+  "type": "header",
+  "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+  },
+  {
+  "type": "checkbox",
+  "id": "enable_filtering",
+  "default": true,
+  "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+  "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+  }
+  ],
+  "blocks": [
+  {
+  "type": "collection",
+  "limit": 2,
+  "name": "Collection products",
+  "settings": [
+  {
+  "type": "collection",
+  "id": "collection",
+  "label": "Collection"
+  },
+  {
+  "type": "select",
+  "id": "section-type",
+  "label": "Type title & text",
+  "options": [
+  {
+  "value": "one",
+  "label": "one"
+  },
+  {
+  "value": "two",
+  "label": "two"
+  }
+  ]
+  }
+  ]
+  }
+  ]
+}
+{% endschema %}

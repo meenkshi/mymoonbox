@@ -1,0 +1,62 @@
+<div class="social-proofing">
+    <div class="social-proofing__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+          {% if section.settings.title != blank %}
+            <p class="subtitle">{{ section.settings.title }}</p>
+          {% endif %}
+            <div class="social-proofing__inner">
+                {% for block in section.blocks %}
+                <div class="social-proofing__item">
+                    <img class="social-proofing__images"
+                        src="{{ block.settings.social-proofing__image | img_url: 'master' }}" alt="">
+                    <img class="social-proofing__images_mobile"
+                        src="{{ block.settings.social-proofing__image_mobile | img_url: 'master' }}" alt="">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Social-proofing",
+    "settings": [
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+      },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f3f2ec"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Social-proofing item",
+    "type": "image_picker",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "social-proofing__image",
+    "label": "Image desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "social-proofing__image_mobile",
+    "label": "Image mobile"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Social proofing"
+    }
+    ]
+}
+{% endschema %}

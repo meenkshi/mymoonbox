@@ -1,0 +1,37 @@
+<div class="course-banner">
+    <div class="course-banner__wrapper" style="background-image: url(' {{ section.settings.bg-image | img_url: 'master' }}');">
+        <div class="container">
+            <div class="course-banner__inner">
+                {% if section.settings.subtitle != blank %}
+                <div class="course-banner__subtitle" style="color:{{ section.settings.clr_text }}"> {{
+                    section.settings.subtitle }} </div>
+                {% endif %}
+                <h1 class="course-banner__title" style="color:{{ section.settings.clr_text }}"> {{ page.content }} </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Course banner",
+    "settings": [
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text",
+    "default": "#333"
+    },
+    {
+    "type": "image_picker",
+    "id": "bg-image",
+    "label": "Background image"
+    },
+    {
+    "type": "text",
+    "id": "subtitle",
+    "label": "Subtitle"
+    }
+    ]
+}
+{% endschema %}

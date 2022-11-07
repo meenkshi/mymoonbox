@@ -1,0 +1,178 @@
+<div class="bundle-bonus">
+    <div class="bundle-bonus__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="bundle-bonus__inner">
+                {% if section.settings.title != blank %}
+                <h2 class="bundle-bonus__title" style="color:{{ section.settings.clr_title }}"> {{
+                    section.settings.title }} </h2>
+                {% endif %}
+                {% if section.settings.desc != blank %}
+                <div class="bundle-bonus__text" style="color:{{ section.settings.clr_text }}"> {{ section.settings.desc
+                    }} </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="bundle-bonus__box">
+            <div class="container">
+                <div class="bundle-bonus__items">
+                    <div class="bundle-bonus__item">
+                        <div class="bundle-bonus__item_case">
+                            {% if section.settings.image-left != blank %}
+                            <img src=" {{ section.settings.image-left | img_url: 'master' }} " alt=""
+                                class="bundle-bonus__image">
+                            <img src=" {{ section.settings.image-left_mobile | img_url: 'master' }} " alt=""
+                                class="bundle-bonus__image_mobile">
+                            {% endif %}
+                        </div>
+                        {% if section.settings.title-left != blank %}
+                        <div class="bundle-bonus__item_title" style="color:{{ section.settings.clr_text }}"> {{
+                            section.settings.title-left }} </div>
+                        {% endif %}
+                        {% if section.settings.price-left != blank %}
+                        <div class="bundle-bonus__item_text" style="color:{{ section.settings.clr_text }}"> {{
+                            section.settings.price-left }} </div>
+                        {% endif %}
+                    </div>
+                    <div class="bundle-bonus__item">
+                        <div class="bundle-bonus__item_case">
+                            {% if section.settings.image-right != blank %}
+                            <img src=" {{ section.settings.image-right | img_url: 'master' }} " alt=""
+                                class="bundle-bonus__image">
+                            <img src=" {{ section.settings.image-right_mobile | img_url: 'master' }} " alt=""
+                                class="bundle-bonus__image_mobile">
+                            {% endif %}
+                        </div>
+                        {% if section.settings.title-right != blank %}
+                        <div class="bundle-bonus__item_title" style="color:{{ section.settings.clr_text }}"> {{
+                            section.settings.title-right }} </div>
+                        {% endif %}
+                        {% if section.settings.price-right %}
+                        <div class="bundle-bonus__item_text" style="color:{{ section.settings.clr_text }}"> {{
+                            section.settings.price-right }} </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if section.settings.price != blank or section.settings.button != blank %}
+            <div class="bundle-bonus__save">
+                <div class="container">
+                    <div class="bundle-bonus__save_wrap">
+                        {% if section.settings.price != blank %}
+                        <div class="bundle-bonus__save_price" style="color:{{ section.settings.clr_text }}"> {{
+                            section.settings.price }} </div>
+                        {% endif %}
+                        {% if section.settings.button != blank %}
+                        <a href="{{ section.settings.button-link }}" class="bundle-bonus__save_button button__primary">
+                            {{
+                            section.settings.button }} </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Bundle page - Bonus",
+"settings": [
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#f3f2ec"
+},
+{
+"type": "color",
+"id": "clr_title",
+"label": "Title color",
+"default": "#333"
+},
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text color",
+"default": "#333"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "desc",
+"label": "Text"
+},
+{
+"type": "header",
+"content": "Left block"
+},
+{
+"type": "image_picker",
+"id": "image-left",
+"label": "Image"
+},
+{
+"type": "image_picker",
+"id": "image-left_mobile",
+"label": "Image on tablet and mobile"
+},
+{
+"type": "text",
+"id": "title-left",
+"label": "Block title"
+},
+{
+"type": "text",
+"id": "price-left",
+"label": "Block price"
+},
+{
+"type": "header",
+"content": "Right block"
+},
+{
+"type": "image_picker",
+"id": "image-right",
+"label": "Image"
+},
+{
+"type": "image_picker",
+"id": "image-right_mobile",
+"label": "Image on tablet and mobile"
+},
+{
+"type": "text",
+"id": "title-right",
+"label": "Block title"
+},
+{
+"type": "text",
+"id": "price-right",
+"label": "Block price"
+},
+{
+"type": "header",
+"content": "Bottom block"
+},
+{
+"type": "text",
+"id": "price",
+"label": "Price"
+},
+{
+"type": "text",
+"id": "button",
+"label": "Button label"
+},
+{
+"type": "url",
+"id": "button-url",
+"label": "Button url"
+}
+]
+}
+{% endschema %}

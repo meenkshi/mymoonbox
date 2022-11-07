@@ -1,0 +1,142 @@
+<div class="saving">
+    <div class="saving__wrapper{% if section.settings.type == 'quiz-result' %} saving__wrapper_quiz{% endif %}" 
+    style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="saving__items">
+                <div class="saving__content">
+                    {% if section.settings.saving__title != blank %}
+                    <h2 class="saving__title" style="color:{{ section.settings.clr_title }}"> {{
+                        section.settings.saving__title }} </h2>
+                    {% endif %}
+                    <div class="saving__images_mobile">
+                        {% if section.settings.saving__image-one != blank %}
+                        <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                        {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                        {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                        {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                        {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                        {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                        {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                        {{ image | img_url: 'master' }} {{ image.width }}w"
+                            src="{{ section.settings.saving__image-one_mobile | img_url: 'master' }}"
+                            sizes="(max-width: 990px)" alt="{{ image.alt | escape }}" height="{{ image.height }}"
+                            width="{{ image.width }}" loading="lazy" class="saving__image-one_mobile">
+                        {% endif %}
+                    </div>
+                    {% if section.settings.saving__text != blank %}
+                    <div class="saving__text" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.saving__text }} </div>
+                    {% endif %}
+                    {% if section.settings.saving__button_lable != blank %}
+                    <a href="{{ section.settings.saving__button_url }}" class="saving__button button__primary">
+                        {{section.settings.saving__button_lable }} </a>
+                    {% endif %}
+                </div>
+                <div class="saving__images">
+                    {% if section.settings.saving__image-one != blank %}
+                    <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                    {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                    {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                    {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                    {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                    {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                    {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                    {{ image | img_url: 'master' }} {{ image.width }}w"
+                        src="{{ section.settings.saving__image-one | img_url: 'master' }}" sizes="(max-width: 990px)"
+                        alt="{{ image.alt | escape }}" height="{{ image.height }}" width="{{ image.width }}"
+                        loading="lazy" class="saving__image-one">
+                    <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                    {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                    {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                    {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                    {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                    {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                    {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                    {{ image | img_url: 'master' }} {{ image.width }}w"
+                        src="{{ section.settings.saving__image-one_mobile | img_url: 'master' }}"
+                        sizes="(max-width: 990px)" alt="{{ image.alt | escape }}" height="{{ image.height }}"
+                        width="{{ image.width }}" loading="lazy" class="saving__image-one_mobile">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Saving",
+    "settings": [
+    {
+    "type": "select",
+    "id": "type",
+    "label": "What type do you want to use?",
+    "options": [
+    {
+    "value": "one",
+    "label": "first"
+    },
+    {
+    "value": "quiz-result",
+    "label": "Quiz result"
+    }
+    ]
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#F0DFD5"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "saving__title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "saving__text",
+    "label": "Text"
+    },
+
+    {
+    "type": "text",
+    "id": "saving__button_lable",
+    "label": "Button label"
+    },
+    {
+    "type": "url",
+    "id": "saving__button_url",
+    "label": "Button url"
+    },
+    {
+    "type": "image_picker",
+    "id": "saving__image-one",
+    "label": "Image on desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "saving__image-one_mobile",
+    "label": "Image on tablet & mobile"
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Saving"
+    }
+    ]
+}
+{% endschema %}

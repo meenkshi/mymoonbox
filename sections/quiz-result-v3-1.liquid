@@ -1,0 +1,48 @@
+{% assign i = section.settings %}
+
+<div class="qr1">
+  <div class="qr1__wrapper">
+    <div class="container">
+      <div class="qr1__inner d-flex align-items-center justify-content-center flex-column flex-lg-row">
+        {% if i.image != blank %}
+          <div class="qr1__image d-flex">
+            <img src="{{ i.image | img_url: '600x' }}" alt="{{ i.image.alt }}">
+          </div>
+        {% endif %}
+        {% if i.title != blank %}
+          <h2 class="qr1__title color-black fw-400 playfair position-relative z1"> {{ i.title }} 
+            <span class="position-relative z1"> {{ i.title-decor }} </span> 
+          </h2>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Quiz Result v3 section 1",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+  },
+  {
+    "type": "richtext",
+    "id": "title",
+    "label": "Title"
+  },
+  {
+    "type": "text",
+    "id": "title-decor",
+    "label": "Decor word"
+  }
+  ],
+  "presets": [
+  {
+    "name": "Quiz Result v3 section 1"
+  }
+  ]
+  }
+{% endschema %}

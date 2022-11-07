@@ -1,0 +1,145 @@
+{%- assign i = section.settings -%}
+
+<div class="qr2">
+  <div class="qr2__wrapper position-relative z1">
+    <div class="qr2__inner overflow-hidden bcg-center">
+      <div class="container">
+        <div class="qr2__box">
+          {% if i.subtitle != blank %}
+            <h3 class="qr2__subtitle text-center poppins fw-600 ls-2 color-black"> 
+              <span class="position-relative z1 d-inline-block text-center text-uppercase"> {{ i.subtitle }} </span> 
+            </h3>
+          {% endif %}
+          {% if i.title != blank %}
+            <h2 class="qr2__title text-uppercase text-center playfair fw-400 color-black"> {{ i.title }} </h2>
+          {% endif %}
+        </div>
+      </div>
+      {% if i.image != blank %}
+        <div class="qr2__image position-absolute z2 d-flex align-items-center justify-content-center">
+          <img class="d-none d-sm-block" src="{{ i.image | img_url: 'master' }}" alt="{{ i.image.alt }}">
+          <img class="d-sm-none" src="{{ i.image-mobile | img_url: 'master' }}" alt="{{ i.image.alt }}">
+        </div>
+      {% endif %}
+      {% if i.image-text != blank %}
+        <div class="qr2__image-text position-absolute overflow-hidden z1 d-none d-lg-flex ">
+          <img src="{{ i.image-text | img_url: 'master' }}" alt="{{ i.image-text.alt }}">
+        </div>
+      {% endif %}
+    </div>
+    <div class="qr2__social">
+      <div class="container">
+         {% if i.social-title != blank %}
+            <p class="qr2__social-title text-uppercase text-center poppins fw-600 ls-2"> {{ i.social-title }} </p>
+          {% endif %}
+          <div class="social-proofing__inner">
+            {% for block in section.blocks %}
+            {% assign m = block.settings %}
+            <div class="social-proofing__item">
+              <img class="social-proofing__images" src="{{ m.image | img_url: 'master' }}" alt="{{ m.image.alt }}">
+              <img class="social-proofing__images_mobile" src="{{ m.image-mobile | img_url: 'master' }}" alt="{{ m.image-mobile.alt }}">
+            </div>
+            {% endfor %}
+          </div>
+      </div>
+    </div>
+    <div class="qr2__case">
+      <div class="container">
+        <div class="qr2__case_box d-flex align-items-center justify-content-center flex-column flex-lg-row">
+          {% if i.photo != blank %}
+            <div class="qr2__case_photo d-flex">
+              <img src="{{ i.photo | img_url: '600x' }}" alt="{{ i.photo.alt }}">
+            </div>
+          {% endif %}
+          {% if i.case-text != blank %}
+            <div class="qr2__case_text fw-400 playfair"> {{ i.case-text }} 
+              <span> {{ i.case-svg }} </span> 
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Quiz Result v3 section 2",
+    "settings": [
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "subtitle"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image on tablet & desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-mobile",
+        "label": "Image on mobile"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-text",
+        "label": "Image text"
+      },
+      {
+        "type": "text",
+        "id": "social-title",
+        "label": "Social title",
+        "default": "As seen in"
+      },
+      {
+        "type": "header",
+        "content": "Image and text"
+      },
+      {
+        "type": "image_picker",
+        "id": "photo",
+        "label": "Image"
+      },
+      {
+        "type": "richtext",
+        "id": "case-text",
+        "label": "Text"
+      },
+      {
+        "type": "html",
+        "id": "case-svg",
+        "label": "Paste svg"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image_picker",
+        "name": "Social item",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image on desktop"
+          },
+          {
+            "type": "image_picker",
+            "id": "image-mobile",
+            "label": "Image on mobile"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Quiz Result v3 section 2"
+      }
+    ]
+  }
+{% endschema %}

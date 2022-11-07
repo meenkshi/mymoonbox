@@ -1,0 +1,265 @@
+<div class="faq">
+    <div class="faq__wrapper{% if section.settings.page == 'second-type' %} faq__wrapper_generic{% endif %}{% if
+        section.settings.page == 'third-type' %} faq__wrapper_healthy{% endif %}{% if section.settings.page == 'fourth-type'
+        %} faq__wrapper_fourth{% endif %}{% if section.settings.page == 'fifth-type' %} faq__wrapper_fifth{% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="faq__items">
+                <div class="faq__item">
+                    {% if section.settings.faq__title != blank %}
+                    <h2 class="faq__title" style="color:{{ section.settings.clr_title }}">
+                        {{ section.settings.faq__title }} </h2>
+                    {% endif %}
+                    {% for image in product.metafields.faq.image %}
+                    {% if image.src != blank %}
+                    <figure>
+                        <img src="{{ image.src }}" alt="{{ image.alt }}" class="faq__image" />
+                    </figure>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="faq-accordion">
+                    <ul class="faq-accordion__items">
+                        {% if product.metafields.faq.title_one != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_one }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_one }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_two != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_two }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_two }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_three != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_three }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_three }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_four != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_four }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_four }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_five != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_five }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_five }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_six != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_six }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_six }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_seven != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_seven }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_seven }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_eight != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_eight }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_eight }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_nine != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_nine }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_nine }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_ten != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_ten }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_ten }} </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_eleven != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_eleven}} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_eleven }}
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_twelve != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_twelve }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_twelve }}
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_thirteen != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_thirteen }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_thirteen }}
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_fourteen != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_fourteen }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_fourteen }}
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.faq.title_fifteen != blank %}
+                        <li class="faq-accordion__item">
+                            <div class="faq-accordion__item_title"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                {{ product.metafields.faq.title_fifteen }} </div>
+                            <div class="faq-accordion__item_text"
+                                style="color:{{ section.settings.accordion_clr_text }}">
+                                <div class="faq-accordion__item_content"> {{ product.metafields.faq.text_fifteen }}
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>
+
+
+{% schema %}
+{
+    "name": "FAQ",
+    "settings": [
+    {
+    "type": "select",
+    "id": "page",
+    "label": "Which template to apply?",
+    "options": [
+    {
+    "value": "first-type",
+    "label": "First type"
+    },
+    {
+    "value": "second-type",
+    "label": "Second type"
+    },
+    {
+    "value": "third-type",
+    "label": "Third type"
+    },
+    {
+    "value": "fourth-type",
+    "label": "Fourth type"
+    },
+    {
+    "value": "fifth-type",
+    "label": "Five type"
+    }
+    ]
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f3f2ec"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "accordion_clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "faq__title",
+    "label": "Title"
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"FAQ"
+    }
+    ]
+}
+{% endschema %}

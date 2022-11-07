@@ -1,0 +1,89 @@
+<div class="inside-book">
+    <div class="inside-book__wrapper" style="background-color: {{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="inside-book__items">
+                <div class="inside-book__item">
+                    {% if section.settings.title != blank %}
+                    <h2 class="inside-book__title" style="color:{{ section.settings.clr_title }}">{{
+                        section.settings.title }}</h2>
+                    {% endif %}
+                    {% if section.settings.image != blank %}
+                    <img src=" {{ section.settings.image | img_url: 'master' }} " alt="" class="inside-book__image">
+                    {% endif %}
+                </div>
+                <ul class="inside-book__content">
+                    {% if section.settings.image-mobile != blank %}
+                    <img src=" {{ section.settings.image-mobile | img_url: 'master' }} " alt="" class="inside-book__image_mobile">
+                    {% endif %}
+                    {% for block in section.blocks %}
+                    <li class="inside-book__content_item">
+                        <div class="inside-book__content_title" style="color:{{ section.settings.clr_text }}"> {{
+                            block.settings.item-title }} </div>
+                        <div class="inside-book__content_text" style="color:{{ section.settings.clr_text }}"> {{
+                            block.settings.item-text }} </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Inside book",
+    "settings": [
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2e9e0"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image on desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "image-mobile",
+    "label": "Image on tablet and mobile"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Text item",
+    "type": "text",
+    "settings": [
+    {
+    "type": "text",
+    "id": "item-title",
+    "label": "Item title"
+    },
+    {
+    "type": "richtext",
+    "id": "item-text",
+    "label": "Item text"
+    }
+    ]
+    }
+    ]
+}
+{% endschema %}

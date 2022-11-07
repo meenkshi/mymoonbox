@@ -1,0 +1,151 @@
+<div class="landing-price-bottom landing-price-bottom-new position-relative">
+  <div class="container container--landing position-relative">
+    <div class="landing-price-bottom__wrapper">      
+      <h2 class="h2">{{ section.settings.title }}</h2>    
+      <p class="landing-price-bottom__subtitle">{{ section.settings.subtitle }}</p>  
+    </div>
+    <div class="landing-price__info position-relative"> 
+      {% if section.settings.image != blank %}        
+      <div class="landing-price-bottom__img position-absolute">
+        <img
+          srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if section.settings.image.width >= 550 -%}{{ section.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+            {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+            {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {%- if section.settings.image.width >= 3840 -%}{{ section.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
+            {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
+          sizes=" (min-width: 750px) 50vw, 100vw"
+          src="{{ section.settings.image | image_url: width: 1500 }}"
+          loading="lazy"
+          alt="{{ section.settings.image.alt | escape }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+        >
+      </div> 
+      {% endif %}       
+      <div class="landing-price-bottom__info-wrap position-relative">
+        <p class="subtitle">{{ section.settings.subtitle_2 }}</p>
+        <div class="landing-price__box d-flex justify-content-center">
+        {% if section.settings.old_price != blank %}
+        <span class="landing-price__old-price h2">{{ section.settings.old_price }}</span>
+        {% endif %}
+        {% if section.settings.new_price != blank %}
+        <span class="landing-price__new-price h2">{{ section.settings.new_price }}</span>
+        {% endif %}
+        </div>
+        {% if section.settings.btn_text != blank %} 
+          {% assign product = section.settings.product %}
+          <form class="product-form w-100 d-flex justify-content-center" action="/cart/add" data-productid="{{product.id}}" method="post">
+            {%- liquid
+              assign current_variant = product.selected_or_first_available_variant | default: product.variants.first
+            -%}
+            <input type="hidden" name="id" data-productid="{{product.id}}" class="product-select"
+              value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />  
+            
+            <input type="hidden" name="properties[_quiz_kit_id]" value="5824" />   
+            <input type="hidden" name="product-price" value="{{ product.selected_or_first_available_variant.price }}" />    
+            <input type="hidden" name="product-variant-id" value="{{ product.selected_or_first_available_variant.id }}" />     
+            <label class="btn btn--black button__outline">
+              <input type="submit" value="{{section.settings.btn_text }}" name="add" class=" product-form__submit" />
+            </label>
+          </form>
+        {% endif %}
+      </div>
+      </div>
+      {% if section.settings.svg-icon != blank or section.settings.svg-text != blank %}
+        <div class="landing-price__svg d-flex justify-content-center align-items-center">          
+          {{ section.settings.svg-icon }}
+          {% if section.settings.svg-text %}
+          <p class="landing-price__svg_text poppins text-center text-uppercase"> {{ section.settings.svg-text }} </p>       
+          {% endif %}
+        </div>
+      {% endif %}
+  </div>
+  {%- comment -%} <div class="landing-price-bottom__color-block"> 
+    <svg class="landing-price-bottom__bg" width="1437" height="277" preserveAspectRatio="none" viewBox="0 0 1437 277" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M920.642 0C1141.41 0 1317.14 39.2215 1437 90.829L1437 277L-4 277V65.645C424.297 110.651 644.675 0 920.642 0Z" fill="#F2E9E0"/>
+    </svg>
+    <div class="landing-price-bottom__color-block">
+      <div class="container container--landing position-relative">
+        <p class="subtitle">{{ section.settings.color_block_subtitle }}</p>
+        <svg  class="landing-price-bottom__svg" width="238" height="32" viewBox="0 0 238 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M179.433 0.128119C145.972 0.491897 136.405 0.728543 117.84 1.65231C98.6 2.60962 84.8312 3.56923 62.9845 5.47543C57.9199 5.91732 52.4971 6.3367 46.1398 6.77798C22.7866 8.39897 18.2422 8.83092 10.6927 10.1466C6.95217 10.7987 3.71726 11.2499 1.90418 11.3729C0.292219 11.4821 0 11.5509 0 11.8209C0 12.0596 2.57812 12.2687 3.98824 12.1443C4.49358 12.0999 5.86268 11.991 7.03083 11.9026C8.19897 11.8141 10.7696 11.5765 12.7434 11.3746C17.3912 10.899 19.6227 10.7491 27.6106 10.3755C41.0391 9.74748 51.1832 9.14399 63.6436 8.23187C68.2356 7.89566 74.3327 7.44933 77.1926 7.23995C98.8833 5.65173 125.379 4.23552 141.569 3.79913C161.216 3.26932 222.208 2.80093 221.178 3.18753C220.77 3.34085 213.791 4.4812 209.606 5.07826C205.763 5.62676 199.342 6.41788 191.444 7.31606C187.697 7.74218 182.556 8.33189 180.018 8.62659C170.485 9.73385 167.345 10.0773 161.929 10.6055C136.976 13.0389 120.494 15.1594 97.5527 18.8873C83.9166 21.103 72.7398 23.6467 60.2668 27.3732C53.1753 29.4918 52.4844 29.8682 53.1823 31.2321C53.6366 32.1196 57.2147 32.2346 64.4315 31.5936C77.6203 30.4223 90.0141 29.5139 102.02 28.8384C109.551 28.4147 110.549 28.3437 118.206 27.686C121.066 27.4404 126.009 27.0814 129.191 26.8884L134.977 26.5375L127.287 26.3992C115.634 26.1895 103.134 26.2022 99.0175 26.428C85.3882 27.1754 77.9751 27.7507 65.8664 29.0005C62.9802 29.2984 60.5454 29.5165 60.4554 29.4852C59.5883 29.1829 78.9973 24.6144 88.2565 22.9415C109.158 19.1648 130.682 16.347 163.76 13.0566C166.781 12.756 172.845 12.0986 177.235 11.5958C181.626 11.0928 188.547 10.3009 192.615 9.83571C208.274 8.04561 212.94 7.37887 227.989 4.78034C237.628 3.116 237.679 3.10176 237.942 2.00721C238.231 0.803752 237.459 0.257705 235.246 0.101625C233.145 -0.0467966 193.799 -0.0281139 179.433 0.128119ZM135.601 26.416C135.784 26.4526 136.047 26.4513 136.187 26.413C136.327 26.3747 136.178 26.3446 135.856 26.3463C135.534 26.348 135.419 26.3794 135.601 26.416Z" fill="black"/>
+        </svg>
+          
+        <div class="landing-price-bottom__white-block">
+          <p>{{ section.settings.white_block_text }}</p>
+          <span>{{ section.settings.white_block_text2 }}</span>
+        </div>
+        <p class="text">{{ section.settings.text }}</p>
+      </div>
+    </div>
+  </div> {%- endcomment -%}
+</div>
+
+{% schema %}
+{
+    "name": "Landing Price Bottom 2",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+      },
+      {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+      },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      },
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+      },
+      {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text"
+      },
+      {
+      "type": "text",
+      "id": "subtitle_2",
+      "label": "Subtitle for Price Block"
+      },
+      {
+      "type": "text",
+      "id": "old_price",
+      "label": "Old Price"
+      },
+      {
+      "type": "text",
+      "id": "new_price",
+      "label": "New Price"
+      },
+      {
+      "type": "html",
+      "id": "svg-icon",
+      "label": "SVG Icon"
+      },
+      {
+      "type": "text",
+      "id": "svg-text",
+      "label": "SVG text"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Price Bottom 2"
+      }
+    ]
+}
+{% endschema %}

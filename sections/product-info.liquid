@@ -1,0 +1,142 @@
+{% if section.settings.show_section %}
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css" type="text/css">
+
+<div class="product-info product-info--{{ section.id }}{% if section.settings.page == "healthy-hormones-ebook" %}
+  product-info__healthy{% endif %}" data-section-id="{{ section.id }}"
+  style="background-color:{{ section.settings.sec_bg_clr }};">
+  <div class="container">
+    <div class="product-info__wrap d-md-flex">
+      <div class="product-info__text">
+        {% if product.metafields.product_info.title != blank %}
+        <h2 class="product-info__title" style="color:{{ section.settings.clr_text }}">{{
+          product.metafields.product_info.title }}</h2>
+        {% else %}
+        <h2 class="product-info__title" style="color:{{ section.settings.clr_text }}">{{ section.settings.title }}</h2>
+        {% endif %}
+        <div class="product-info__box">
+          <div class="product-info__rte rte">
+            {{ product.metafields.product_info.description }}
+          </div>
+          {% for image in product.metafields.product_info.image_product_mobile %}
+          {% if image.src != blank %}
+          <figure>
+            <img src="{{ image.src }}" alt="{{ image.alt }}" class="product-info__image_mobile" />
+          </figure>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="product-info__media">
+        {% for image in product.metafields.product_info.image %}
+        {% if image.src != blank %}
+        <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+          href="{{ product.metafields.product_info.link_for_video }}" aria-hidden="true" rel="lightbox">
+          <div class="button__play_wrapper">
+            <div class="button__play">play</div>
+          </div>
+          <figure>
+            <img src="{{ image.src }}" alt="{{ image.alt }}" />
+          </figure>
+        </a>
+        {% endif %}
+        {% endfor %}
+        {% for image in product.metafields.product_info.image_product %}
+        {% if image.src != blank %}
+        <figure>
+          <img src="{{ image.src }}" alt="{{ image.alt }}" class="product-info__image" />
+        </figure>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .iframe-lightbox-link {
+    width: 100%;
+  }
+
+  .iframe-lightbox.is-showing.is-opened {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+
+  .iframe-lightbox iframe {
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 989px) {
+    .iframe-lightbox iframe {
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
+
+<script type="text/javascript">
+  [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function (el) {
+    el.lightbox = new IframeLightbox(el, {
+    });
+  });
+</script>
+{% endif %}
+
+
+
+{% schema %}
+{
+"name": "Product info",
+"settings": [
+{
+"type": "checkbox",
+"id": "show_section",
+"label": "Show section?",
+"default": true
+},
+{
+"type": "select",
+"id": "page",
+"label": "Which template to apply?",
+"options": [
+{
+"value": "product-page",
+"label": "Product page"
+},
+{
+"value": "healthy-hormones-ebook",
+"label": "Healthy Hormones, Happy Periods eBook"
+}
+]
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title",
+"default": "This box is for you if"
+},
+{
+"type": "header",
+"content": "Color"
+},
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Overlay",
+"default": "#F3F2EC"
+},
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text",
+"default": "#333"
+}
+]
+}
+{% endschema %}

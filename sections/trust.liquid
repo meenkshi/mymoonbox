@@ -1,0 +1,98 @@
+<div class="trust">
+    <div class="trust__wrapper{% if section.settings.gaps == true %} trust__wrapper_gaps{% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <ul class="trust__items">
+                {% for block in section.blocks limit: 4 %}
+                <li class="trust__item">
+                    <div class="trust__content">
+                        {% if block.settings.icon != blank %}
+                        <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                        {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                        {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                        {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                        {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                        {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                        {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                        {{ image | img_url: 'master' }} {{ image.width }}w"
+                            src="{{ block.settings.icon | img_url: 'master' }}" sizes="(max-width: 990px)"
+                            alt="{{ image.alt | escape }}" height="{{ image.height }}" width="{{ image.width }}"
+                            loading="lazy" class="trust__icon">
+                        {% endif %}
+                        {% if block.settings.title != blank %}
+                        <div class="trust__title" style="color:{{ section.settings.clr_title }}"> {{
+                            block.settings.title
+                            }} </div>
+                        {% endif %}
+                    </div>
+                    {% if block.settings.text != blank %}
+                    <div class="trust__text" style="color:{{ section.settings.clr_text }}"> {{ block.settings.text }}
+                    </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Trust",
+    "settings": [
+    {
+    "type": "checkbox",
+    "id": "gaps",
+    "label": "Increase gaps on top",
+    "default": false
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2e9e0"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Trust item",
+    "type": "image_picker",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "icon",
+    "label": "Icon"
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "text",
+    "label": "Text"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Trust"
+    }
+    ]
+}
+{% endschema %}

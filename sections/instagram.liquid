@@ -1,0 +1,159 @@
+{% if section.settings.show_section %}
+  {%- capture instagram -%}
+    <div class="instagram{% if section.settings.decor %} line-decor__one instagram__decor{% endif %}" data-section-id="{{ section.id }}" 
+    style="background-color:{{ section.settings.sec_bg_clr }};">
+      <div class="instagram__wrap">
+        <div class="container">
+          <div class="instagram__head d-flex flex-wrap">
+            {% if section.settings.title != blank %}
+              <h2 class="instagram__title" style="color:{{ section.settings.clr_text }}">{{ section.settings.title }}</h2>
+            {% endif %}
+            {% if section.settings.show_subscription_section %}
+              <div class="newsletter">
+                {% if section.settings.subscription_text != blank %}
+                  <p class="newsletter__text" style="color:{{ section.settings.clr_text }}">{{ section.settings.subscription_text }}</p>
+                {% endif %}
+                <div class="klaviyo-form-WVLTPC">
+                  <!-- {% form 'customer', id: formId, novalidate: 'novalidate', class: 'newsletter-form form-single-field' %}
+                  {{ form.errors | default_errors }}
+                  {%- if form.posted_successfully? -%}
+                    <p class="form--success">{{ 'newsletter.success' | t }}</p>
+                  {%- else -%}
+                    <div class="input-group">
+                      <input type="hidden" name="contact[tags]" value="newsletter">
+                      <input type="email" name="contact[email]" id="Email" class="input-group__field newsletter__input" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ section.settings.placeholder }}" autocorrect="off" autocapitalize="off">
+                      <span class="input-group__btn">
+                        <button type="submit" class="btn newsletter__submit" name="commit" id="Subscribe">
+                          {%- render 'icon-arrow-right' -%}
+                        </button>
+                      </span>
+                    </div>
+                  {%- endif -%}
+                {% endform %} -->
+                </div>
+              </div>
+            {% endif %}
+          </div>
+          <div class="instagram__body">
+            <div class="instagram__carousel carousel d-flex flex-wrap align-items-center">
+              {% for block in section.blocks limit: section.blocks.size %}
+                <div class="carousel__item">
+                  <a href="{{ block.settings.link | default: '#' }}" class="instagram-card">
+                    <div class="imgWrap">
+                      {%- assign image = block.settings.image -%}
+                      <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                          {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                          {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                          {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                          {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                          {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                          {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                          {{ image | img_url: 'master' }} {{ image.width }}w"
+                        src="{{ image | img_url: '1500x' }}"
+                        sizes="(max-width: 270px)"
+                        alt="{{ image.alt | escape }}"
+                        height="{{ image.height }}"
+                        width="{{ image.width }}"
+                        loading="lazy"
+                      >
+                    </div>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endcapture -%}
+  {{ instagram | strip_newlines | remove: "  " | remove: "	" }}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Instagram",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section?",
+      "default": true
+    },
+    {
+    "type": "checkbox",
+    "id": "decor",
+    "label": "Show decor?",
+    "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Ready to join the Moon Movement? (and get 10% off!)"
+    },
+    {
+      "type": "header",
+      "content": "Subscription section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subscription_section",
+      "label": "Show Subscription section?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subscription_text",
+      "label": "Subscription Text",
+      "default": "Join over 10,000 Moonbox women worldwide upgrading their hormonal health & transforming their periods naturally and get 10% off your next order!"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "Your email"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color",
+      "id": "sec_bg_clr",
+      "label": "Overlay",
+      "default": "#F3F2EC"
+    },
+    {
+      "type": "color",
+      "id": "clr_text",
+      "label": "Text",
+      "default": "#333"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "instagram_item",
+      "limit": 4,
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Instagram url post"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram",
+      "category": "3. Banners"
+    }
+  ]
+}
+{% endschema %}

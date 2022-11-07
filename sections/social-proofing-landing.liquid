@@ -1,0 +1,48 @@
+<div class="social-proofing">
+  <div class="social-proofing__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+      <div class="container">
+        {% if section.settings.title != blank %}
+          <p class="subtitle">{{ section.settings.title }}</p>
+        {% endif %}
+          <div class="social-proofing__inner">
+              {% for block in section.blocks %}
+              <div class="social-proofing__item">
+                {{ block.settings.item }}
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Social-proofing-landing",
+  "settings": [
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    }
+  ],
+  "blocks": [
+  {
+  "name": "Social-proofing item",
+  "type": "text",
+  "settings": [
+    {
+      "type": "html",
+      "id": "item",
+      "label": "Item"
+      }
+    ]
+  }
+  ],
+  "presets": [
+  {
+  "category": "New",
+  "name":"Social proofing Landing"
+  }
+  ]
+}
+{% endschema %}

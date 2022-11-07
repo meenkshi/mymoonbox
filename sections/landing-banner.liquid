@@ -1,0 +1,40 @@
+<div class="landing-banner">
+  <div class="landing-banner__bg">
+    {% if section.settings.svg != blank %}
+      {{ section.settings.svg }}
+    {% endif %}
+  </div>
+  <div class="landing-banner__content">
+    <div class="container">    
+      <h2 class="h2">{{ section.settings.text }}</h2>
+    <div>
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Landing Banner",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "text",
+      "id": "svg",
+      "label": "Background"
+      },
+      {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Banner"
+      }
+    ]
+}
+{% endschema %}
+
+
+  
+

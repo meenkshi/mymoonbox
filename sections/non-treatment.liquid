@@ -1,0 +1,97 @@
+<div class="non-treatment">
+    <div class="non-treatment__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="non-treatment__content">
+                {% if section.settings.title != blank %}
+                <h2 class="non-treatment__title" style="color:{{ section.settings.accordion_clr_text }}"> {{
+                    section.settings.title }} </h2>
+                {% endif %}
+                {% if section.settings.desc != blank %}
+                <div class="non-treatment__text" style="color:{{ section.settings.accordion_clr_text }}"> {{
+                    section.settings.desc }} </div>
+                {% endif %}
+                <div class="non-treatment__items">
+                    {% for block in section.blocks limit: 5 %}
+                    <div class="non-treatment__item">
+                        <img src="{{ block.settings.image | img_url: 'master' }}" alt=""
+                            class="non-treatment__item_image">
+                        <div class="non-treatment__item_text" style="color:{{ section.settings.accordion_clr_text }}">
+                            {{ block.settings.item-text }} </div>
+                        {% if block.settings.item-text-mobile != blank %}
+                        <div class="non-treatment__item_mobile" style="color:{{ section.settings.accordion_clr_text }}">
+                            {{ block.settings.item-text-mobile }} </div>
+                        {% else %}
+                        <div class="non-treatment__item_mobile" style="color:{{ section.settings.accordion_clr_text }}">
+                            {{ block.settings.item-text }} </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if section.settings.desc != blank %}
+                <div class="non-treatment__text_mobile" style="color:{{ section.settings.accordion_clr_text }}"> {{
+                    section.settings.desc }} </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Non treatment",
+"settings": [
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#F0DFD5"
+},
+{
+"type": "color",
+"id": "accordion_clr_text",
+"label": "Text color",
+"default": "#333"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "desc",
+"label": "Text"
+}
+],
+"blocks": [
+{
+"name": "Item",
+"type": "image_picker",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "item-text",
+"label": "Text item"
+},
+{
+"type": "richtext",
+"id": "item-text-mobile",
+"label": "Mobile text",
+"info": "If there is no mobile text, the main one will be displayed"
+}
+]
+}
+],
+"presets": [
+{
+"category": "New",
+"name":"Non treatment"
+}
+]
+}
+{% endschema %}

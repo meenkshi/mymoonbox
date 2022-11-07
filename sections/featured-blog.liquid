@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
+
+
+
+{%- liquid
+  assign posts_displayed = section.settings.blog.articles_count
+  if section.settings.post_limit <= section.settings.blog.articles_count
+    assign posts_exceed_limit = true
+    assign posts_displayed = section.settings.post_limit
+  endif
+-%}
+
+{%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
+<div class="featured-blog">
+  <div class="featured-blog__wrapper line-decor__one" style="background-color:{{ section.settings.sec_bg_clr }};">
+    <div class="container">
+      <div class="featured-blog__inner">
+    <h2 class="featured-blog__title">{{ section.settings.heading | escape }}</h2>   
+        <ul class="featured-blog__list">
+          {%- for article in section.settings.blog.articles limit: 3 -%}
+            <li class="featured-blog__item">
+              {% render 'article-card', blog: section.settings.blog, article: article, media_aspect_ratio: 1.66, show_image: section.settings.show_image, show_date: section.settings.show_date, show_author: section.settings.show_author, show_excerpt: true %}
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <div class="featured-blog__slider">
+         <ul class="featured-blog__slider_wrapper swiper-wrapper">
+          {%- for article in section.settings.blog.articles limit: 3 -%}
+            <li class="featured-blog__item swiper-slide">
+              {% render 'article-card', blog: section.settings.blog, article: article, media_aspect_ratio: 1.66, show_image: section.settings.show_image, show_date: section.settings.show_date, show_author: section.settings.show_author, show_excerpt: true %}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      {%- if section.settings.post_limit < section.settings.blog.articles_count -%}
+        <div class="blog__view-all center small-hide medium-hide">
+          <a href="{{ section.settings.blog.url }}" class="blog__button button">
+            {{ 'sections.featured_blog.view_all' | t }}
+          </a>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+</div>
+</div>
+</div>
+</div>
+
+<script src="{{ 'featured-blog.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "t:sections.featured-blog.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+  {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2e9e0"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Blog posts",
+      "label": "t:sections.featured-blog.settings.heading.label"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.featured-blog.settings.blog.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_date.label"
+    },
+   {
+     "type": "checkbox",
+     "id": "show_tag",
+     "label": "Show tag",
+     "default": true
+   }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "News"
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,220 @@
+<div class="collection-banner">
+    <div class="collection-banner__wrapper{% if section.settings.type == "two" %} collection-banner__wrapper_two{%
+        endif %}">
+        <div class="container">
+            <div class="collection-banner__inner">
+                <div class="collection-banner__content">
+                    {% if section.settings.subtitle != blank %}
+                    <div class="collection-banner__subtitle"> {{ section.settings.subtitle }} </div>
+                    {% endif %}
+                    {% if section.settings.title != blank %}
+                    <h1 class="collection-banner__title" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title }} </h1>
+                    {% endif %}
+                    {% if section.settings.image != blank %}
+                    <div class="collection-banner__image_mobile">
+                        {%- assign image = section.settings.image -%}
+                        <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                    {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                    {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                    {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                    {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                          {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                          {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                          {{ image | img_url: 'master' }} {{ image.width }}w" src="{{ image | img_url: '1500x' }}"
+                            sizes="(max-width: 340px)" alt="{{ image.alt | escape }}" loading="lazy">
+                    </div>
+                    {% endif %}
+                    {% if section.settings.desc != blank %}
+                    <div class="collection-banner__text" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.desc }} </div>
+                    {% endif %}
+                    {% if section.settings.button != blank or section.settings.button-link != blank %}
+                    <a href="{{ section.settings.button-link }}" class="collection-banner__button button__secondary">
+                        {{ section.settings.button }}
+                    </a>
+                    {% endif %}
+                </div>
+                {% if section.settings.image != blank %}
+                <div class="collection-banner__image">
+                    {%- assign image = section.settings.image -%}
+                    <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                    {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                    {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                    {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                    {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                          {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                          {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                          {{ image | img_url: 'master' }} {{ image.width }}w" src="{{ image | img_url: '1500x' }}"
+                        sizes="(max-width: 340px)" alt="{{ image.alt | escape }}" loading="lazy">
+                </div>
+                {% endif %}
+                {% if section.settings.image-tablet != blank %}
+                <div class="collection-banner__image_tablet">
+                    {%- assign image = section.settings.image-tablet -%}
+                    <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                    {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                    {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                    {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                    {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                          {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                          {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                          {{ image | img_url: 'master' }} {{ image.width }}w" src="{{ image | img_url: '1500x' }}"
+                        sizes="(max-width: 340px)" alt="{{ image.alt | escape }}"  loading="lazy">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if section.settings.panel %}
+    <div class="collection-banner__box" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="collection-banner__items">
+                {% for block in section.blocks limit: 5 %}
+                <div class="collection-banner__item">
+                    <div class="collection-banner__item_image">
+                        <img src=" {{ block.settings.image | img_url: 'master' }} " alt="">
+                    </div>
+                    <div class="collection-banner__item_text" style="color:{{ section.settings.clr_text }}"> {{
+                        block.settings.item }} </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="collection-banner__items_mobile marquee" data-duplicated='true'>
+            <div class="collection-banner__case">
+                {% for block in section.blocks limit: 5 %}
+                <div class="collection-banner__item">
+                    <div class="collection-banner__item_image">
+                        <img src=" {{ block.settings.image | img_url: 'master' }} " alt="">
+                    </div>
+                    <div class="collection-banner__item_text" style="color:{{ section.settings.clr_text }}"> {{
+                        block.settings.item }} </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .collection-banner__wrapper {
+        background-image: url(' {{ section.settings.bg-image | img_url: 'master' }}');
+    }
+
+    @media (max-width: 767px) {
+        .collection-banner__wrapper {
+            background-image: url(' {{ section.settings.bg-image-mobile | img_url: 'master' }}');
+        }
+    }
+</style>
+
+<script src="{{ 'collection-banner.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+"name": "Banner",
+"settings": [
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text",
+"default": "#333"
+},
+{
+"type": "select",
+"id": "type",
+"label": "Type section",
+"options": [
+{
+"value": "one",
+"label": "first"
+},
+{
+"value": "two",
+"label": "second"
+}
+]
+},
+{
+"type": "image_picker",
+"id": "bg-image",
+"label": "Background image on desktop & tablet"
+},
+{
+"type": "image_picker",
+"id": "bg-image-mobile",
+"label": "Background image on mobile"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "If section two select image on desktop & mobile"
+},
+{
+"type": "image_picker",
+"id": "image-tablet",
+"label": "If section two select image on tablet"
+},
+{
+"type": "text",
+"id": "subtitle",
+"label": "Subtitle"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "desc",
+"label": "Text"
+},
+{
+"type": "text",
+"id": "button",
+"label": "Button lable"
+},
+{
+"type": "url",
+"id": "button-link",
+"label": "Button link"
+},
+{
+"type": "header",
+"content": "Bottom panel"
+},
+{
+"type": "checkbox",
+"id": "panel",
+"label": "Show bottom panel?"
+},
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#f3f2ec"
+}
+],
+"blocks": [
+{
+"name": "Item",
+"type": "image_picker",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "item",
+"label": "Text"
+}
+]
+}
+]
+}
+{% endschema %}

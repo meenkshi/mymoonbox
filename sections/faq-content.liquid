@@ -1,0 +1,306 @@
+<div class="faq-content">
+  <div class="faq-content__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+    <div class="container">
+      <div class="faq-content__inner d-flex justify-content-between">
+        <div class="faq-content__item">
+          {% if section.settings.desc != blank %}
+          <div class="faq-content__text" style="color:{{ section.settings.clr_text }}"> {{ section.settings.desc }}
+          </div>
+          {% endif %}
+          {% if section.settings.button != blank or section.settings.button-link != blank %}
+          <a href="{{ section.settings.button-link }}" class="button__secondary faq-content__button"> {{
+            section.settings.button }} </a>
+          {% endif %}
+        </div>
+        <div class="faq-content__case">
+          <ul class="faq-content__tabs d-flex">
+            {% for block in section.blocks %}
+            <li class="faq-content__tabs_item"> {{ block.settings.item-title }} </li>
+            {% endfor %}
+          </ul>
+          <div class="faq-content__accordion">
+            {% for block in section.blocks %}
+            <div class="faq-content__container">
+              <h3 class="faq-content__accordion_title"> {{ block.settings.item-title }} </h3>
+              <ul class="faq-content__accordion_items">
+                {% if block.settings.panel-one != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-one }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-one }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-two != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-two }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-two }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-three != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-three }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-three }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-four != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-four }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-four }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-five != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-five }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-five }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-six != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-six }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-six }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-seven != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-seven }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-seven }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-eight != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-eight }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-eight }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-nine != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-nine }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-nine }} </div>
+                </li>
+                {% endif %}
+                {% if block.settings.panel-ten != blank %}
+                <li class="faq-content__accordion_item">
+                  <div class="faq-content__accordion_panel position-relative" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.panel-ten }} </div>
+                  <div class="faq-content__accordion_text" style="color:{{ section.settings.clr_text }}"> {{
+                    block.settings.desc-ten }} </div>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'faq-content.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "FAQs",
+  "settings": [
+  {
+  "type": "color",
+  "id": "sec_bg_clr",
+  "label": "Background color",
+  "default": "#f3f2ec"
+  },
+  {
+  "type": "color",
+  "id": "clr_text",
+  "label": "Text color",
+  "default": "#333"
+  },
+  {
+  "type": "richtext",
+  "id": "desc",
+  "label": "Text"
+  },
+  {
+  "type": "text",
+  "id": "button",
+  "label": "Button label"
+  },
+  {
+  "type": "url",
+  "id": "button-link",
+  "label": "Button url"
+  }
+  ],
+  "blocks":
+  [
+  {
+  "name": "Accordion item",
+  "type": "text",
+  "limit": 5,
+  "settings": [
+  {
+  "type": "text",
+  "id": "item-title",
+  "label": "Title"
+  },
+  {
+  "type": "header",
+  "content": "One"
+  },
+  {
+  "type": "text",
+  "id": "panel-one",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-one",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "Two"
+  },
+  {
+  "type": "text",
+  "id": "panel-two",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-two",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "Three"
+  },
+  {
+  "type": "text",
+  "id": "panel-three",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-three",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "four"
+  },
+  {
+  "type": "text",
+  "id": "panel-four",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-four",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "five"
+  },
+  {
+  "type": "text",
+  "id": "panel-five",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-five",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "six"
+  },
+  {
+  "type": "text",
+  "id": "panel-six",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-six",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "seven"
+  },
+  {
+  "type": "text",
+  "id": "panel-seven",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-seven",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "eight"
+  },
+  {
+  "type": "text",
+  "id": "panel-eight",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-eight",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "nine"
+  },
+  {
+  "type": "text",
+  "id": "panel-nine",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-nine",
+  "label": "Text item"
+  },
+  {
+  "type": "header",
+  "content": "ten"
+  },
+  {
+  "type": "text",
+  "id": "panel-ten",
+  "label": "Title item"
+  },
+  {
+  "type": "richtext",
+  "id": "desc-ten",
+  "label": "Text item"
+  }
+  ]
+  }
+  ]
+}
+{% endschema %}

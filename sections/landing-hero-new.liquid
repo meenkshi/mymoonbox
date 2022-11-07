@@ -1,0 +1,121 @@
+<div class="landing-hero landing-hero-new position-relative">
+  <div class="landing-hero__bg position-absolute" style="background-image: url('{{ section.settings.image_bg | img_url: 'master' }}') ;">
+    <div class="landing-hero__svg position-absolute">{{ page.metafields.quiz-result-new.svg }}
+    </div>
+  </div>
+  <div class="container">
+    <div class="landing-hero__content position-relative">
+      <p class="landing-hero__subtitle">{{ page.metafields.quiz-result-new.subtitle }}
+      </p>
+      <p class="landing-hero__title">
+        <span class="url-name"></span>
+        <span>{{ page.metafields.quiz-result-new.title }}
+        </span>
+      </p>
+
+      <div class="landing-hero__media position-relative">
+        {% comment %}
+          <div class="landing-hero__text position-absolute">{{ page.metafields.quiz-result-new.text_svg }}</div>
+        {% endcomment %}
+        {% comment %}
+          <h2 class="position-absolute">{{ page.metafields.quiz-result-new.heading }}</h2>
+        {% endcomment %}
+        {%- for image in page.metafields.quiz-result-new.image -%}
+          <img src="{{ image.src }}" alt="{{ image.alt }}" loading="lazy"/>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="landing-hero__info">
+      <div class="h2">{{ page.metafields.quiz-result-new.question }}
+      </div>
+      <div class="text poppins fw-500">{{ page.metafields.quiz-result-new.description }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="landing-diagram landing-diagram-new">
+  <div class="landing-diagram__wrapper overflow-hidden">
+    <div class="container container--landing">
+      <div class="landing-diagram__inner" style="background-color: {{ section.settings.overlay }} ;">
+        <div class="landing-diagram__content">
+          <div class="landing-diagram__title">
+            <p class="subtitle">{{ section.settings.subtitle_2 }}
+            </p>
+            <h2 class="h2">{{ section.settings.title_2 }}
+            </h2>
+          </div>
+          <ul class="landing-diagram__items d-flex flex-wrap">
+            {% for block in section.blocks %}
+              <li class="landing-diagram__item d-flex align-items-center flex-column flex-md-row">                
+                <div class="landing-diagram__item_box">
+                  <div class="landing-diagram__item_bar d-flex justify-content-center align-items-center position-relative">
+                    <svg class="progress-ring position-absolute">
+                      <circle class="progress-ring__circle d-none d-md-block" cx="52" cy="52" r="49"></circle>                     
+                      <circle class="progress-ring__circle mobile d-md-none" cx="52" cy="52" r="37"></circle>                     
+                    </svg>
+                    <input class="visually-hidden" type="text" value="{{ block.settings.score }}">
+                    <p class="landing-diagram__item_percent playfair fw-400">{{ block.settings.score }}%</p>                
+                  </div>
+                </div>
+                <p class="landing-diagram__item_title text-uppercase"> {{ block.settings.text }} </p>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Quiz Landing Hero 2",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "overlay",
+        "label": "Overlay",
+        "default": "#F2E9E0"
+      }, {
+        "type": "image_picker",
+        "id": "image_bg",
+        "label": "Background Image"
+      }, {
+        "type": "text",
+        "id": "subtitle_2",
+        "label": "Subtitle 2"
+      }, {
+        "type": "text",
+        "id": "title_2",
+        "label": "Title 2"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Items list",
+        "type": "text",
+        "settings": [
+          {
+            "type": "range",
+            "id": "score",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "label": "Score",
+            "default": 1
+          }, {
+            "type": "text",
+            "id": "text",
+            "label": "Item"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Hero 2"
+      }
+    ]
+  }
+{% endschema %}

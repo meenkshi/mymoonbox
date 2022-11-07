@@ -1,0 +1,112 @@
+<div class="landing-slider">
+  <div class="container container--slider">
+    <p class="landing-slider__subtitle">{{ section.settings.subtitle }}</p>
+    <h2>{{ section.settings.title }}</h2>
+    <div class="landing-slider__slider swiper position-relative"">
+      <div class="landing-slider__nav">
+        <a href="#" class="landing-slider__button-prev">
+          <svg width="44" height="27" viewBox="0 0 44 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.6909 0.999992C17.6909 0.999992 20.3568 11.6 0.625 13.5" stroke="#333333" stroke-miterlimit="10"/>
+            <path d="M17.6909 26C17.6909 26 20.3568 15.4 0.625 13.5L43.7521 13.5" stroke="#333333" stroke-miterlimit="10"/>
+          </svg>            
+        </a>
+        <a href="#" class="landing-slider__button-next">
+          <svg width="45" height="27" viewBox="0 0 45 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26.9341 26C26.9341 26 24.2682 15.4 44 13.5" stroke="#333333" stroke-miterlimit="10"/>
+            <path d="M26.9341 1C26.9341 1 24.2682 11.6 44 13.5L0.872935 13.5" stroke="#333333" stroke-miterlimit="10"/>
+          </svg>            
+        </a>
+      </div>
+      <div class="swiper-wrapper">
+        {% for block in section.blocks  %}
+          <div class="swiper-slide">
+            <div class="landing-slider__review">
+              <img
+                  srcset="{%- if block.settings.image_1.width >= 375 -%}{{ block.settings.image_1 | image_url: width: 375 }} 375w,{%- endif -%}
+                    {%- if block.settings.image_1.width >= 550 -%}{{ block.settings.image_1 | image_url: width: 550 }} 550w,{%- endif -%}
+                    {%- if block.settings.image_1.width >= 750 -%}{{ block.settings.image_1 | image_url: width: 750 }} 750w,{%- endif -%}
+                    {%- if block.settings.image_1.width >= 1100 -%}{{ block.settings.image_1 | image_url: width: 1100 }} 1100w,{%- endif -%}
+                    {%- if block.settings.image_1.width >= 1500 -%}{{ block.settings.image_1 | image_url: width: 1500 }} 1500w,{%- endif -%}
+                    {%- if block.settings.image_1.width >= 1780 -%}{{ block.settings.image_1 | image_url: width: 1780 }} 1780w,{%- endif -%}
+                    {%- if block.settings.image_1.width >= 2000 -%}{{ block.settings.image_1 | image_url: width: 2000 }} 2000w,{%- endif -%}
+                    {%- if block.settings.image_1.width >= 3000 -%}{{ block.settings.image_1 | image_url: width: 3000 }} 3000w,{%- endif -%}
+                    {%- if block.settings.image_1.width >= 3840 -%}{{ block.settings.image_1 | image_url: width: 3840 }} 3840w,{%- endif -%}
+                    {{ block.settings.image_1 | image_url }} {{ block.settings.image_1.width }}w"
+                  sizes=" (min-width: 750px) 50vw, 100vw"
+                  src="{{ block.settings.image_1 | image_url: width: 1500 }}"
+                  loading="lazy"
+                  alt="{{ block.settings.image_1.alt | escape }}"
+                  width="{{ block.settings.image_1.width }}"
+                  height="{{ block.settings.image_1.width | divided_by: block.settings.image_1.aspect_ratio }}"
+              >
+            </div>
+            <div class="landing-slider__img position-relative">
+              <img
+                srcset="{%- if block.settings.image.width >= 375 -%}{{ block.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+                  {%- if block.settings.image.width >= 550 -%}{{ block.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+                  {%- if block.settings.image.width >= 750 -%}{{ block.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+                  {%- if block.settings.image.width >= 1100 -%}{{ block.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                  {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {%- if block.settings.image.width >= 1780 -%}{{ block.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+                  {%- if block.settings.image.width >= 2000 -%}{{ block.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                  {%- if block.settings.image.width >= 3000 -%}{{ block.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                  {%- if block.settings.image.width >= 3840 -%}{{ block.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
+                  {{ block.settings.image | image_url }} {{ block.settings.image.width }}w"
+                sizes=" (min-width: 750px) 50vw, 100vw"
+                src="{{ block.settings.image | image_url: width: 1500 }}"
+                loading="lazy"
+                alt="{{ block.settings.image.alt | escape }}"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.width | divided_by: block.settings.image.aspect_ratio }}"
+              >
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{- 'landing-slider.min.js' | asset_url -}}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Landing Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Review"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Landing Slider",
+      "category": "New"
+    }
+  ]
+}
+{% endschema %}

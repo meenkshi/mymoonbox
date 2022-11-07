@@ -1,0 +1,56 @@
+<div class="ticker">
+    <div class="line-decor__two ticker__wrapper">
+        <div class="ticker__inner">
+            <h3 class="ticker__title"> {{ section.settings.ticker__title }} </h3>
+            <div class="ticker__items marquee" data-duplicated='true'>
+                {% for block in section.blocks %}
+                    <div class="ticker__item"> {{ block.settings.ticker__item }} </div>
+                {% endfor %}
+            </div>
+            <div class="ticker__items_mobile">
+                <div class="container">
+                    <div class="ticker__text"> {{ section.settings.ticker__text }} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ 'ticker.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+    {
+    "name": "Ticker",
+    "settings": [
+    {
+    "type": "text",
+    "id": "ticker__title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "ticker__text",
+    "label": "All words in mobile"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Word item",
+    "type": "text",
+    "settings": [
+    {
+    "type": "text",
+    "id": "ticker__item",
+    "label": "Word"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "name": "Ticker",
+    "category": "New"
+    }
+    ]
+    }
+{% endschema %}

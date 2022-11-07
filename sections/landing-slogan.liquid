@@ -1,0 +1,59 @@
+<div class="landing-slogan {% if section.settings.color_title %} landing-slogan--color-title {% endif %}">
+  <div class="container container--landing">   
+    <h2 class="h2">{{ section.settings.title }}</h2>
+    {% if section.settings.subtitle != blank %}
+      <div class="landing-slogan__color-block">
+        <p>{{ section.settings.subtitle }}</p>
+      </div>
+    {% endif %} 
+    <div class="position-relative">
+      {% if section.settings.text != blank %}
+        <p class="landing-slogan__text">{{ section.settings.text }}</p>
+      {% endif %}
+      {% if section.settings.svg != blank %}
+        {{ section.settings.svg }}
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+    "name": "Landing Slogan",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "text",
+      "id": "svg",
+      "label": "SVG"
+      },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+      },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subitle"
+      },
+      {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+      },
+      {
+      "type": "checkbox",
+      "id": "color_title",
+      "default": false,
+      "label": "Color Title"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Slogan"
+      }
+    ]
+}
+{% endschema %}

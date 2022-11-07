@@ -1,0 +1,50 @@
+<div class="landing-diagram">
+</div>
+
+
+{% schema %}
+{
+    "name": "Landing Diagram",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      },
+      {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+      }       
+    ],
+    "blocks": [
+      {
+      "name": "Items list",
+      "type": "text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "svg",
+          "label": "Percent SVG"
+          },
+          {
+          "type": "text",
+          "id": "data",
+          "label": "Percent Data"
+          },
+          {
+          "type": "text",
+          "id": "text",
+          "label": "Percent Item"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Diagram"
+      }
+    ]
+}
+{% endschema %}

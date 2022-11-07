@@ -1,0 +1,52 @@
+<div class="info-start">
+    <div class="info-start__wrapper">
+        <div class="container">
+            <div class="info-start__items">
+                <div class="info-start__item_images">
+                    <img src=" {{ section.settings.info-start__image | img_url: 'master' }} " alt="" class="info-start__image">
+                </div>
+                <div class="info-start__item_text col-lg-6 col-xl-5">
+                    <h2 class="info-start__title"> {{ section.settings.info-start__title }} </h2>
+                    <img src=" {{ section.settings.info-start__image | img_url: 'master' }} " alt="" class="info-start__image_mobile">
+                    {% if section.settings.info-start__btn_lable != blank %}
+                    <a href=" {{ section.settings.info-start__btn_link }}  " class="info-start__btn button__primary"> {{ section.settings.info-start__btn_lable }} </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+   "name": "Info start",
+    "settings": [
+       {
+           "type": "image_picker",
+           "id": "info-start__image",
+           "label": "Image"
+       },
+      {
+          "type": "richtext",
+          "id": "info-start__title",
+          "label": "Title"
+      },
+     {
+         "type": "text",
+         "id": "info-start__btn_lable",
+         "label": "Button lable"
+     },
+    {
+        "type": "url",
+        "id": "info-start__btn_link",
+        "label": "Button url"
+    }
+    ],
+   "presets": [
+       {
+           "category": "New",
+           "name":"Info start"
+       }
+   ]
+}
+{% endschema %}

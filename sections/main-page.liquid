@@ -1,0 +1,82 @@
+{% if section.settings.show_section %}
+<div class="page">
+  <div class="page__wrapper overflow-hidden{% if section.settings.show_decor %} decor position-relative{% endif %}"
+    style="background-color: {{ section.settings.sec_bg_clr }};">
+    {% if section.settings.image-bg != blank %}
+    <div class="page__banner d-flex justify-content-center"
+      style="background-image: url('{{ section.settings.image-bg | img_url: 'master' }};')">
+      <div class="container">
+        <h1 class="page__title position-relative" style="color:{{ section.settings.clr_text }}"> {{ page.title | escape
+          }} </h1>
+      </div>
+    </div>
+    {% else %}
+    <div class="page__banner decor d-flex justify-content-center position-relative overflow-hidden"
+      style="background-color: {{ section.settings.banner_bg_clr }};">
+      <div class="container">
+        <h1 class="page__title position-relative" style="color:{{ section.settings.clr_text }}"> {{ page.title | escape
+          }} </h1>
+      </div>
+    </div>
+    {% endif %}
+    {% if section.settings.show_content %}
+    <div class="page__inner">
+      <div class="container">
+        <div class="page__content w-100" style="color:{{ section.settings.clr_text }}"> {{ page.content }} </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+  {
+  "type": "checkbox",
+  "id": "show_section",
+  "label": "Show section?",
+  "default": true
+  },
+  {
+  "type": "checkbox",
+  "id": "show_decor",
+  "label": "Show decor?",
+  "default": false
+  },
+  {
+  "type": "checkbox",
+  "id": "show_content",
+  "label": "Show content?",
+  "default": true
+  },
+  {
+  "type": "color",
+  "id": "sec_bg_clr",
+  "label": "Background color",
+  "default": "#f3f2ec"
+  },
+  {
+  "type": "color",
+  "id": "clr_text",
+  "label": "Text color",
+  "default": "#333"
+  },
+  {
+  "type": "image_picker",
+  "id": "image-bg",
+  "label": "Background image"
+  },
+  {
+  "type": "color",
+  "id": "banner_bg_clr",
+  "label": "Banner color",
+  "default": "#F0DFD5"
+  }
+  ]
+}
+{% endschema %}

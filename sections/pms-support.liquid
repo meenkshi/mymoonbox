@@ -1,0 +1,108 @@
+<div class="pms-support">
+    <div class="pms-support__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="pms-support__box">
+                {% if section.settings.pms-support__image != blank %}
+                <img src=" {{ section.settings.pms-support__image | img_url: 'master' }} " class="pms-support__image">
+                {% endif %}
+                <div class="pms-support__content">
+                    <h2 class="pms-support__title" style="color:{{ section.settings.clr_title }}"> {{
+                        section.settings.pms-support__title }} </h2>
+                    <div class="pms-support__text" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.pms-support__text }} </div>
+                    {% if section.settings.pms-support__image != blank %}
+                    <img src=" {{ section.settings.pms-support__image | img_url: 'master' }} "
+                        class="pms-support__image_tablet">
+                    {% endif %}
+                    <div class="pms-support__items">
+                        {% for block in section.blocks %}
+                        <div class="pms-support__item">
+                            <img src=" {{ block.settings.pms-support__item_img | img_url: 'master' }} " alt=""
+                                class="pms-support__item_image">
+                            <div class="pms-support__item_text" style="color:{{ section.settings.clr_text }}"> {{
+                                block.settings.pms-support__item_text }} </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a href=" {{ section.settings.pms-support__btn_link }} " class="pms-support__btn button__primary">
+                        {{ section.settings.pms-support__btn_label }} </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "PMS support",
+    "settings": [
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f2e9e0"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "image_picker",
+    "id": "pms-support__image",
+    "label": "Section main image"
+    },
+    {
+    "type": "text",
+    "id": "pms-support__title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "pms-support__text",
+    "label": "Text"
+    },
+    {
+    "type": "url",
+    "id": "pms-support__btn_link",
+    "label": "Button url"
+    },
+    {
+    "type": "text",
+    "id": "pms-support__btn_label",
+    "label": "Button label"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Advantage element",
+    "type" : "image_picker",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "pms-support__item_img",
+    "label": "Element image"
+    },
+    {
+    "type": "text",
+    "id": "pms-support__item_text",
+    "label": "Element text"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"PMS support"
+    }
+    ]
+}
+{% endschema %}

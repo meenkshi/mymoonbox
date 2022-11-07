@@ -1,0 +1,87 @@
+<div class="text-and-image {% if section.settings.green_bg %} text-and-image--green-bg {% endif %} {% if section.settings.red_bg %} text-and-image--red-bg {% endif %}">
+  <div class="container container--landing">
+    <div class="text-and-image__wrapper position-relative">
+      <div class="text-and-image__content position-relative">
+        {% if section.settings.text %}
+          <p class="text-and-image__text">{{ section.settings.text }}</p>
+        {% endif %}
+        <p class="text-and-image__subtitle">{{ section.settings.subtitle }}</p>
+        <div class="h2 h2--white">{{ section.settings.title }}</div>
+        {% if section.settings.svg %}
+          {{ section.settings.svg }}
+        {% endif %}
+      </div> 
+      <div class="text-and-image__img position-relative">
+        <img
+          srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if section.settings.image.width >= 550 -%}{{ section.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+            {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+            {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {%- if section.settings.image.width >= 3840 -%}{{ section.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
+            {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
+          sizes=" (min-width: 750px) 50vw, 100vw"
+          src="{{ section.settings.image | image_url: width: 1500 }}"
+          loading="lazy"
+          alt="{{ section.settings.image.alt | escape }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+        >
+      </div>     
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Text and Image",
+    "tag": "section",
+    "settings": [
+      {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+      },
+      {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+      },
+      {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+      },
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "green_bg",
+        "default": false,
+        "label": "Bacground Green"
+      },
+      {
+        "type": "checkbox",
+        "id": "red_bg",
+        "default": false,
+        "label": "Background Red"
+      },
+      {
+      "type": "text",
+      "id": "svg",
+      "label": "SVG"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text and Image"
+      }
+    ]
+}
+{% endschema %}

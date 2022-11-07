@@ -1,0 +1,163 @@
+<div class="statistics">
+    <div class="statistics__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="statistics__inner">
+            <div class="container-fluid statistics__container_desk">
+                <div class="statistics__content">
+                    <div class="statistics__items statistics__items_left">
+                        <div class="statistics__images">
+                            <img src=" {{ section.settings.images__left | img_url: 'master' }} " alt=""
+                                class="statistics__images_item">
+                            <img src=" {{ section.settings.images__left-hover | img_url: 'master' }} " alt=""
+                                class="statistics__images_item images__hover_left">
+                        </div>
+                        <a href=" {{ section.settings.link-left }} " class="statistics__link statistics__link_left">
+                            <p class="statistics__link_title" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.link__title-left }} </p>
+                            <p class="statistics__link_text" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.link__text-left }} </p>
+                        </a>
+                    </div>
+                    <div class="statistics__items statistics__items_right">
+                        <div class="statistics__images">
+                            <img src=" {{ section.settings.images__right | img_url: 'master' }} " alt=""
+                                class="statistics__images_item statistics__images_right">
+                            <img src=" {{ section.settings.images__right-hover | img_url: 'master' }} " alt=""
+                                class="statistics__images_item images__hover_right">
+                        </div>
+                        <a href=" {{ section.settings.link-right }} " class="statistics__link statistics__link_right">
+                            <p class="statistics__link_title" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.link__title-right }} </p>
+                            <p class="statistics__link_text" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.link__text-right }} </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="statistics__case">
+            <div class="container">
+                <div class="statistics__text" style="color:{{ section.settings.clr_title }}"> {{
+                    section.settings.statistics__text }} </div>
+                <div class="statistics__box">
+                    <div class="statistics__items statistics__items_left">
+                        <img src=" {{ section.settings.images__left-tablet | img_url: 'master' }} " alt=""
+                            class="statistics__images_item images__hover_left">
+                        <a href=" {{ section.settings.link-left }} " class="statistics__link statistics__link_left">
+                            <p class="statistics__link_title" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.link__title-left }} </p>
+                            <p class="statistics__link_text" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.link__text-left }} </p>
+                        </a>
+                    </div>
+                    <div class="statistics__items statistics__items_right">
+                        <img src=" {{ section.settings.images__right-tablet | img_url: 'master' }} " alt=""
+                            class="statistics__images_item images__hover_right">
+                        <a href=" {{ section.settings.link-right }} " class="statistics__link statistics__link_right">
+                            <p class="statistics__link_title" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.link__title-right }} </p>
+                            <p class="statistics__link_text" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.link__text-right }} </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Statistics",
+    "settings": [
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f3f2ec"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "richtext",
+    "id": "statistics__text",
+    "label": "Block text"
+    },
+    {
+    "type": "image_picker",
+    "id": "images__left",
+    "label": "Image on the left without hovering over the desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "images__left-hover",
+    "label": "Image on left when hovering over desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "images__left-tablet",
+    "label": "Image on the left the tablet and smaller"
+    },
+    {
+    "type": "image_picker",
+    "id": "images__right",
+    "label": "Image on the right without hovering over the desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "images__right-hover",
+    "label": "Image on right when hovering over desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "images__right-tablet",
+    "label": "Image on the right the tablet and smaller"
+    },
+    {
+    "type": "text",
+    "id": "link__title-left",
+    "label": "Title for left block"
+    },
+    {
+    "type": "text",
+    "id": "link__text-left",
+    "label": "Text for left block"
+    },
+    {
+    "type": "url",
+    "id": "link-left",
+    "label": "Url for left block"
+    },
+    {
+    "type": "text",
+    "id": "link__title-right",
+    "label": "Title for right block"
+    },
+    {
+    "type": "text",
+    "id": "link__text-right",
+    "label": "Text for right block"
+    },
+    {
+    "type": "url",
+    "id": "link-right",
+    "label": "Url for right block"
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Statistics"
+    }
+    ]
+}
+{% endschema %}

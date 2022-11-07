@@ -1,0 +1,134 @@
+{% if page.metafields.period_health_recomm.title_one != blank or page.metafields.period_health_recomm.title_two != blank
+or page.metafields.period_health_recomm.title_three != blank %}
+<div class="oval-images {% if section.settings.decor %} line-decor__one{% endif %}">
+    <div class="oval-images__wrapper oval-images__wrapper_quiz"
+        style="background-color: {{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="oval-images__box d-flex justify-content-between align-items-center flex-wrap">
+                {% if section.settings.title != blank %}
+                <h2 class="oval-images__title" style="color:{{ section.settings.clr_text }}">
+                    {{ section.settings.title }} </h2>
+                {% endif %}
+                {% if section.settings.desc %}
+                <div class="oval-images__text" style="color:{{ section.settings.clr_text }}">
+                    {{ section.settings.desc }} </div>
+                {% endif %}
+            </div>
+            <div class="oval-images__items">
+                {% if page.metafields.period_health_recomm.title_one != blank %}
+                <div class="oval-images__item">
+                    <div class="oval-images__item_wrapper">
+                        {%- for image in page.metafields.period_health_recomm.image_one -%}
+                        {% if image.src != blank %}
+                        <div class="oval-images__item_unit">
+                            <figure>
+                                <img src="{{ image.src }}" alt="{{ image.alt }}" class="oval-images__item_image"
+                                    loading="lazy" />
+                            </figure>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% if page.metafields.period_health_recomm.title_one != blank %}
+                        <div class="oval-images__item_text" style="color:{{ section.settings.clr_text }}">
+                            {{ page.metafields.period_health_recomm.title_one }} </div>
+                        {% endif %}
+                        {% if page.metafields.period_health_recomm.text_one != blank %}
+                        <div class="oval-images__item_description" style="color:{{ section.settings.clr_text }}">
+                            {{ page.metafields.period_health_recomm.text_one }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                {% if page.metafields.period_health_recomm.title_two != blank %}
+                <div class="oval-images__item">
+                    <div class="oval-images__item_wrapper">
+                        {%- for image in page.metafields.period_health_recomm.image_two -%}
+                        {% if image.src != blank %}
+                        <div class="oval-images__item_unit">
+                            <figure>
+                                <img src="{{ image.src }}" alt="{{ image.alt }}" class="oval-images__item_image"
+                                    loading="lazy" />
+                            </figure>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% if page.metafields.period_health_recomm.title_two != blank %}
+                        <div class="oval-images__item_text" style="color:{{ section.settings.clr_text }}">
+                            {{ page.metafields.period_health_recomm.title_two }} </div>
+                        {% endif %}
+                        {% if page.metafields.period_health_recomm.text_two != blank %}
+                        <div class="oval-images__item_description" style="color:{{ section.settings.clr_text }}">
+                            {{ page.metafields.period_health_recomm.text_two }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                {% if page.metafields.period_health_recomm.title_three != blank %}
+                <div class="oval-images__item">
+                    <div class="oval-images__item_wrapper">
+                        {%- for image in page.metafields.period_health_recomm.image_three -%}
+                        {% if image.src != blank %}
+                        <div class="oval-images__item_unit">
+                            <figure>
+                                <img src="{{ image.src }}" alt="{{ image.alt }}" class="oval-images__item_image"
+                                    loading="lazy" />
+                            </figure>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% if page.metafields.period_health_recomm.title_three != blank %}
+                        <div class="oval-images__item_text" style="color:{{ section.settings.clr_text }}">
+                            {{ page.metafields.period_health_recomm.title_three }} </div>
+                        {% endif %}
+                        {% if page.metafields.period_health_recomm.text_three != blank %}
+                        <div class="oval-images__item_description" style="color:{{ section.settings.clr_text }}">
+                            {{ page.metafields.period_health_recomm.text_three }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Period Recommendation",
+    "settings": [
+    {
+    "type": "checkbox",
+    "id": "decor",
+    "label": "Show decor?",
+    "default": false
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f1e7de"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "richtext",
+    "id": "title",
+    "label": "Title"
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name": "Period Recommendation"
+    }
+    ]
+}
+{% endschema %}

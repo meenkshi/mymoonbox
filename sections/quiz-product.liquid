@@ -1,0 +1,158 @@
+<div class="quiz-product">
+  <div class="quiz-product__wrapper" style="background-color: {{ section.settings.sec_bg_clr }};">
+    <div class="container">
+      {% if section.settings.title != blank %}
+      <h2 class="quiz-product__title" style="color:{{ section.settings.clr_text }}"> {{ section.settings.title }} </h2>
+      {% endif %}
+    </div>
+    <div class="quiz-product__inner">
+      <div class="container">
+        <ul class="quiz-product__items d-flex flex-column flex-md-row">
+          {%- assign collection = collections[section.settings.collection] -%}
+          {% for product in collection.products limit: 1 %}
+          <li class="quiz-product__item d-flex flex-column align-items-center justify-content-between w-100 w-md-50">
+            <div class="quiz-product__case d-flex flex-column align-items-center">
+            {% for block in section.blocks limit: 1 %}
+              {% if block.settings.item-text != blank %}
+              <div class="quiz-product__item_category"> {{ block.settings.item-text }} </div>
+              {% endif %}
+              {% endfor %}
+              <div class="quiz-product__image">
+                {%- assign image = product.featured_media -%}
+                <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+            {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+            {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+            {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                {{ image | img_url: 'master' }} {{ image.width }}w" src="{{ image | img_url: '1500x' }}"
+                  alt="{{ image.alt | escape }}" loading="lazy" class="w-100">
+              </div>
+              <div class="quiz-product__item_title"> {{ product.title }} </div>
+            </div>
+            <div class="quiz-product__box d-flex flex-column flex-lg-row align-items-center align-items-lg-start">
+              <form class="product-form" action="/cart/add" data-productid="{{ product.id }}" data-productid="{{product.id}}" method="post">
+                <input type="hidden" name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}" class="product-select"
+                  value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />
+                <input type="submit" value="{{'products.product.add_to_cart' | t }}" name="add"
+                  class="product-form__submit quiz-product__button_form button__outline" />
+              </form>
+              {% for block in section.blocks limit: 1 %}
+              {% if block.settings.button != blank or block.settings.button-link %}
+              <a href="{{ block.settings.button-link }}" class="quiz-product__button button__secondary"> {{
+                block.settings.button }} </a>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </li>
+          {% endfor %}
+          {% for product in collection.products offset: 1 %}
+          <li class="quiz-product__item d-flex flex-column align-items-center justify-content-between w-100 w-md-50">
+            <div class="quiz-product__case d-flex flex-column align-items-center">
+            {% for block in section.blocks offset: 1 %}
+              {% if block.settings.item-text != blank %}
+              <div class="quiz-product__item_category"> {{ block.settings.item-text }} </div>
+              {% endif %}
+              {% endfor %}
+              <div class="quiz-product__image">
+                {%- assign image = product.featured_media -%}
+                <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+            {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+            {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+            {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                {{ image | img_url: 'master' }} {{ image.width }}w" src="{{ image | img_url: '1500x' }}"
+                  alt="{{ image.alt | escape }}" loading="lazy" class="w-100">
+              </div>
+              <div class="quiz-product__item_title"> {{ product.title }} </div>
+            </div>
+            <div class="quiz-product__box d-flex flex-column flex-lg-row align-items-center align-items-lg-start">
+              <form class="product-form" action="/cart/add" data-productid="{{ product.id }}" data-productid="{{product.id}}" method="post">
+                <input type="hidden" name="id" data-productid="{{ product.id }}" data-productid="{{product.id}}" class="product-select"
+                  value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />
+                <input type="submit" value="{{'products.product.add_to_cart' | t }}" name="add"
+                  class="product-form__submit quiz-product__button_form button__outline" />
+              </form>
+              {% for block in section.blocks offset: 1 %}
+              {% if block.settings.button != blank or block.settings.button-link %}
+              <a href="{{ block.settings.button-link }}" class="quiz-product__button button__secondary"> {{
+                block.settings.button }} </a>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% if section.settings.desc != blank %}
+    <div class="container">
+      <div class="quiz-product__text position-relative" style="color:{{ section.settings.clr_text }}"> {{
+        section.settings.desc }}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Quiz product",
+  "settings": [
+  {
+  "type": "color",
+  "id": "sec_bg_clr",
+  "label": "Background color",
+  "default": "#f1e7de"
+  },
+  {
+  "type": "color",
+  "id": "clr_text",
+  "label": "Text color",
+  "default": "#333"
+  },
+  {
+  "type": "text",
+  "id": "title",
+  "label": "Title"
+  },
+  {
+  "type": "collection",
+  "id": "collection",
+  "label": "Collection"
+  },
+  {
+  "type": "text",
+  "id": "desc",
+  "label": "Text below"
+  }
+  ],
+  "blocks": [
+  {
+  "name": "Product item",
+  "type": "text",
+  "limit": 2,
+  "settings": [
+  {
+  "type": "text",
+  "id": "item-text",
+  "label": "Title"
+  },
+  {
+  "type": "text",
+  "id": "button",
+  "label": "Button lable"
+  },
+  {
+  "type": "url",
+  "id": "button-link",
+  "label": "Button url"
+  }
+  ]
+  }
+  ]
+}
+{% endschema %}

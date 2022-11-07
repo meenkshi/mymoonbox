@@ -1,0 +1,195 @@
+<div class="course">
+    <div class="line-decor__two course__wrapper">
+        <div class="course__inner" style="background-color: {{ section.settings.sec_bg_clr }};">
+            <div class="container">
+                <div class="course__items">
+                    <div class="row">
+                        <div class="course__box col-lg-11">
+                            <h3 class="course__subtitle" style="color:{{ section.settings.clr_subtitle }}"> {{
+                                section.settings.course__subtitle }} </h3>
+                            <h2 class="course__title" style="color:{{ section.settings.clr_title }}"> {{
+                                section.settings.course__title }} </h2>
+                            <div class="course__slider course__slider_mobile">
+                                <div class="course__slider_box">
+                                    <div class="swiper course__swiper">
+                                        <div class="swiper-wrapper course__swiper-wrapper">
+                                            {% for block in section.blocks %}
+                                            <img src=" {{ block.settings.swiper-slide | img_url: 'master' }} "
+                                                class="swiper-slide course__swiper-slide">
+                                            {% endfor %}
+                                        </div>
+                                        <div class="swiper-pagination course__swiper-pagination"></div>
+                                        <div class="course__swiper-button-prev">Prev</div>
+                                        <div class="course__swiper-button-next">Next</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course__text" style="color:{{ section.settings.clr_text }}"> {{
+                                section.settings.course__text }} </div>
+                            <div class="course__statistics">
+                                {% if section.settings.course__quantity_number != blank %}
+                                <div class="course__quantity">
+                                    <div class="course__quantity_number" style="color:{{ section.settings.clr_text }}">
+                                        {{ section.settings.course__quantity_number }}
+                                    </div>
+                                    <div class="course__quantity_text" style="color:{{ section.settings.clr_text }}"> {{
+                                        section.settings.course__quantity_text }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if section.settings.course__rate_number != blank and
+                                section.settings.course__quantity_number != blank %}
+                                <div class="course__line" style="display: block"></div>
+                                {% endif %}
+                                {% if section.settings.course__rate_number != blank %}
+                                <div class="course__rate">
+                                    <div class="course__rate_number" style="color:{{ section.settings.clr_text }}"> {{
+                                        section.settings.course__rate_number }} </div>
+                                    <div class="course__rate_text" style="color:{{ section.settings.clr_text }}"> {{
+                                        section.settings.course__rate_text }} </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% if section.settings.course__btn_lable != blank %}
+                            <a href=" {{ section.settings.course__btn_link }} " class="course__btn button__primary"> {{
+                                section.settings.course__btn_lable }} </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="course__slider">
+                        <div class="course__slider_box">
+                            <div class="swiper course__swiper">
+                                <div class="swiper-wrapper course__swiper-wrapper">
+                                    {% for block in section.blocks %}
+                                    <img src=" {{ block.settings.swiper-slide | img_url: 'master' }} "
+                                        class="swiper-slide course__swiper-slide">
+                                    {% endfor %}
+                                </div>
+                                <div class="swiper-pagination course__swiper-pagination"></div>
+                            </div>
+                            <div class="course__swiper-button-prev">Prev</div>
+                            <div class="course__swiper-button-next">Next</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="course__slider course__slider_tablet">
+                    <div class="course__slider_box">
+                        <div class="swiper course__swiper">
+                            <div class="swiper-wrapper course__swiper-wrapper">
+                                {% for block in section.blocks %}
+                                <img src=" {{ block.settings.swiper-slide | img_url: 'master' }} "
+                                    class="swiper-slide course__swiper-slide">
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination course__swiper-pagination"></div>
+                            <div class="course__swiper-button-prev">Prev</div>
+                            <div class="course__swiper-button-next">Next</div>
+                        </div>
+                    </div>
+                    <div class="course__slider_arrow-right" style="display: block"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ 'course.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+    "name": "Course",
+    "settings": [
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#F3F2EC"
+    },
+    {
+    "type": "color",
+    "id": "clr_subtitle",
+    "label": "Subtitle color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "course__subtitle",
+    "label": "Subtitle"
+    },
+    {
+    "type": "text",
+    "id": "course__title",
+    "label": "Title"
+    },
+    {
+    "type": "text",
+    "id": "course__text",
+    "label": "Text"
+    },
+    {
+    "type": "text",
+    "id": "course__quantity_number",
+    "label": "Statistics left block number"
+    },
+    {
+    "type": "text",
+    "id": "course__quantity_text",
+    "label": "Statistics left block number"
+    },
+    {
+    "type": "text",
+    "id": "course__rate_number",
+    "label": "Statistics right block number"
+    },
+    {
+    "type": "text",
+    "id": "course__rate_text",
+    "label": "Statistics right block text"
+    },
+    {
+    "type": "url",
+    "id": "course__btn_link",
+    "label": "Button url"
+    },
+    {
+    "type": "text",
+    "id": "course__btn_lable",
+    "label": "Button label"
+    }
+    ],
+    "blocks":[
+    {
+    "name": "Slider",
+    "type": "image_picker",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "swiper-slide",
+    "label": "Image from slider"
+    }
+    ]
+    }
+    
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Course"
+    }
+    ]
+}
+{% endschema %}

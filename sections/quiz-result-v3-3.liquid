@@ -1,0 +1,126 @@
+{%- assign i = section.settings -%}
+
+<div class="qr3">
+  <div class="qr3__wrapper line-decor__one position-relative z1">
+    <div class="container">
+      <div class="qr3__inner position-relative z1">
+        {% if i.title != blank %}
+        <h2 class="qr3__title text-center playfair position-relative z1"> {{ i.title }} 
+        {%- if page.template_suffix contains "result-quiz-result"-%}
+          <svg width="124" height="122" viewBox="0 0 124 122" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_4_856)"> <path d="M67.0975 16.5588C59.3273 14.9828 51.0705 15.6705 43.5936 18.5894C39.8529 20.0468 35.5726 22.0233 33.4663 25.6566C31.5443 28.9764 32.4888 32.7024 34.3642 35.71C36.5912 39.2814 40.0135 42.0698 43.3354 44.5661C47.2294 47.489 51.4059 50.015 55.4332 52.758C57.3611 54.071 59.3255 55.3992 61.0569 56.9641C62.4547 58.2186 63.6285 59.7941 63.4717 61.796C63.1959 65.417 59.1626 67.6701 56.1422 68.7334C51.8859 70.2385 47.3666 70.7482 42.9093 70.9133C38.452 71.0784 34.1073 70.8414 29.7716 70.1879C21.4698 68.9425 11.6409 66.3629 7.04789 58.7071C6.08719 57.1067 5.39544 55.1059 5.9915 53.2185C6.58756 51.3311 8.08464 50.1765 9.78953 49.4848C13.6318 47.9214 18.049 48.5957 21.9003 49.545C26.1501 50.5986 30.1785 52.3575 34.0455 54.3567C37.9126 56.3558 41.5869 58.5931 45.1265 61.0685C59.4569 71.0961 71.0055 84.9017 78.5136 100.742C79.4498 102.72 80.3251 104.729 81.148 106.76C81.3689 107.303 82.0805 107.665 82.6298 107.749C83.0349 107.808 83.6637 107.707 83.4507 107.146C80.2029 98.6694 75.7001 90.6938 70.2982 83.4477C64.8964 76.2016 58.4448 69.5353 51.2929 63.8922C44.141 58.249 36.2845 53.3789 27.8167 50.0261C23.5874 48.3538 19.1306 47.1861 14.5531 46.9398C10.9609 46.7447 6.08642 47.5449 4.09758 51.0352C1.91231 54.8623 4.90878 59.2123 7.42775 61.8942C10.6042 65.2646 14.8194 67.5104 19.145 69.0636C27.7282 72.1528 37.3527 73.0752 46.4871 72.4288C50.9096 72.1143 55.484 71.4663 59.593 69.6279C62.6291 68.2727 66.132 65.5362 65.8768 61.8389C65.7295 59.748 64.3829 58.0289 62.9171 56.6722C61.1744 55.0635 59.1809 53.6927 57.2333 52.3454C53.102 49.494 48.7751 46.9122 44.7434 43.9192C41.3906 41.4296 37.7753 38.5395 35.8394 34.7315C35.0412 33.1635 34.5468 31.4297 34.7281 29.6361C34.9465 27.4506 36.2482 25.5638 37.8921 24.1477C41.1374 21.3546 45.5074 19.7202 49.5626 18.6327C53.6179 17.5452 57.6858 17.1142 61.7908 17.2931C63.7917 17.3798 65.7755 17.6466 67.7303 18.0408C68.141 18.1217 68.6513 17.976 68.5039 17.4728C68.3565 16.9696 67.5799 16.6433 67.1101 16.5445L67.0975 16.5588Z" fill="#333333"></path> <path d="M70.279 96.3202C74.2486 100.745 78.2229 105.173 82.5158 109.296C82.8687 109.632 84.977 110.475 84.6131 109.263C83.6507 106.04 82.8376 102.769 82.1922 99.4587C81.5467 96.1486 81.2258 92.8095 80.6735 89.4878C80.5479 88.7236 78.2732 87.6915 78.2964 88.7139C78.3847 92.1286 79.0514 95.5848 79.7114 98.9162C80.3714 102.248 81.206 105.588 82.1844 108.86L84.2817 108.828C80.1257 104.842 76.2625 100.571 72.4166 96.2892C71.9991 95.8286 71.3652 95.4156 70.7064 95.4562C70.2077 95.4848 69.876 95.8809 70.2701 96.3209L70.279 96.3202Z" fill="#333333"></path> </g> <defs> <clipPath id="clip0_4_856"> <rect width="99.3459" height="73.8936" fill="white" transform="translate(48.7969) rotate(41.3244)"></rect> </clipPath> </defs> </svg>
+        {%- else -%}
+          {{ i.title-decor }} 
+        {%- endif -%}
+      </h2>
+        {% endif %}
+        <ul class="qr3__items d-flex flex-wrap">
+          {% for block in section.blocks %}
+          {% assign m = block.settings %}
+            {% if m.title != blank or m.image != blank %}
+              <li class="qr3__item">
+                {% if m.image != blank %}
+                <div class="qr3__item_image d-flex position-relative z1 justify-content-center">
+                  <img src="{{ m.image | img_url: "500x" }}" alt="{{ m.image.alt }}">
+                  {% if m.price != blank %}                    
+                  <div class="qr3__item_ellipse position-absolute z1 d-flex justify-content-center flex-column align-items-center" >
+                  <p class="qr3__item_subtitle fw-700 poppins text-uppercase ls-2">Value</p>
+                  <p class="qr3__item_price fw-700 playfair"> ${{ m.price }} </p>
+                  </div>
+                  {% endif %}
+                </div>
+                {% endif %}
+                <div class="qr3__item_content">
+                {% if m.title != blank %}
+                  <h3 class="qr3__item_title text-center playfair"> {{ m.title }} </h3>
+                {% endif %}
+                {% if m.text != blank %}
+                  <div class="qr3__item_text text-center poppins fw-400 w-100"> {{ m.text }} </div>
+                {% endif %}
+                {% if m.item1 != blank or m.item2 != blank or m.item3 != blank %}
+                  <ul class="qr3__item_list">
+                    {% if m.item1 != blank %}
+                      <li class="qr3__item_element poppins decor_leaf position-relative z1"> {{ m.item1 }} </li>
+                    {% endif %}
+                    {% if m.item2 != blank %}
+                      <li class="qr3__item_element poppins decor_leaf position-relative z1"> {{ m.item2 }} </li>
+                    {% endif %}
+                    {% if m.item3 != blank %}
+                      <li class="qr3__item_element poppins decor_leaf position-relative z1"> {{ m.item3 }} </li>
+                    {% endif %}
+                  </ul>
+                {% endif %}
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Quiz Result v3 section 3",
+  "settings": [
+  {
+    "type": "richtext",
+    "id": "title",
+    "label": "Title"
+  },
+  {
+    "type": "html",
+    "id": "title-decor",
+    "label": "SVG decor"
+  }
+  ],
+  "blocks": [
+    {
+      "type": "image_picker",
+      "name": "Item",
+      "settings": [
+         {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+         },
+         {
+          "type": "text",
+          "id": "price",
+          "label": "Price"
+         },
+         {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "text"
+        },
+        {
+          "type": "text",
+          "id": "item1",
+          "label": "List - Item 1"
+        },
+        {
+          "type": "text",
+          "id": "item2",
+          "label": "List - Item 2"
+        },
+        {
+          "type": "text",
+          "id": "item3",
+          "label": "List - Item 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+  {
+    "name": "Quiz Result v3 section 3"
+  }
+  ]
+  }
+{% endschema %}

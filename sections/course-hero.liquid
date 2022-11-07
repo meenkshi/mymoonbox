@@ -1,0 +1,197 @@
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css" type="text/css">
+
+<div class="course-hero">
+    <div class="course-hero__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="course-hero__inner">
+                <div class="course-hero__video">
+                    <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                        href="{{ section.settings.video-link }}" aria-hidden="true" rel="lightbox">
+                        <div class="button__play_wrapper">
+                            <div class="button__play">play</div>
+                        </div>
+                        <img src=" {{ section.settings.video-image | img_url: 'master' }} "
+                            class="video-info__content_image" alt="">
+                    </a>
+                </div>
+                {% if section.blocks != blank %}
+                <ul class="course-hero__items">
+                    {% for block in section.blocks %}
+                    <li class="course-hero__item">
+                        <img src="{{ block.settings.item | img_url: 'master' }}" alt="">
+                    </li>
+                    <li class="course-hero__item_mobile">
+                        <img src="{{ block.settings.item-mobile | img_url: 'master' }}" alt="">
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="course-hero__video_mobile">
+            <a class="iframe-lightbox-link" data-padding-bottom="56.25%" href="{{ section.settings.video-link }}"
+                aria-hidden="true" rel="lightbox">
+                <div class="button__play_wrapper">
+                    <div class="button__play">play</div>
+                </div>
+                <img src=" {{ section.settings.video-image-mobile | img_url: 'master' }} "
+                    class="video-info__content_image" alt="">
+            </a>
+        </div>
+    </div>
+    <div class="course-hero__box" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="course-hero__content">
+                <div class="course-hero__info">
+                    {% if section.settings.title != blank %}
+                    <h2 class="course-hero__title" style="color:{{ section.settings.clr_text }}">
+                        {{section.settings.title}} </h2>
+                    {% endif %}
+                    {% if section.settings.image != blank %}
+                    <div class="course-hero__image_mobile">
+                        <img src="{{ section.settings.image | img_url: 'master' }}" alt="">
+                    </div>
+                    {% endif %}
+                    {% if section.settings.desc != blank %}
+                    <div class="course-hero__text" style="color:{{ section.settings.clr_text }}">
+                        {{section.settings.desc}} </div>
+                    {% endif %}
+                    {% if section.settings.product != blank and section.settings.button != blank %}
+                    {% assign card_product = section.settings.product %}
+                    <form class="product-form w-100 d-flex" action="/cart/add" data-productid="{{card_product.id}}" method="post">
+                        <input type="hidden" name="id" data-productid="{{card_product.id}}" class="product-select"
+                          value="{{ card_product.variants[0].id }}" data-variant-title="{{ card_product.variants[0].title }}" />                    
+                        <input type="submit" value="{{ section.settings.button }}" name="add" class="product-form__submit course-hero__button button__outline" />
+                    </form>
+                    {% elsif section.settings.button != blank and section.settings.button-link != blank %}
+                    <a href=" {{section.settings.button-link}} " class="button__primary course-hero__button">
+                        {{section.settings.button}} </a>
+                    {% endif %}
+                </div>
+                {% if section.settings.image != blank %}
+                <div class="course-hero__image">
+                    <img src="{{ section.settings.image | img_url: 'master' }}" alt="">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .iframe-lightbox-link {
+        width: 100%;
+    }
+
+    .iframe-lightbox.is-showing.is-opened {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .iframe-lightbox iframe {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 989px) {
+        .iframe-lightbox iframe {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+    }
+</style>
+
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
+
+<script type="text/javascript">
+    [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function (el) {
+        el.lightbox = new IframeLightbox(el, {
+        });
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Course hero",
+    "settings": [
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#F1E7DE"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text",
+    "default": "#333"
+    },
+    {
+    "type": "image_picker",
+    "id": "video-image",
+    "label": "Image for video on desktop & tablet"
+    },
+    {
+    "type": "image_picker",
+    "id": "video-image-mobile",
+    "label": "Image for video on mobile"
+    },
+    {
+    "type": "url",
+    "id": "video-link",
+    "label": "Link for video"
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "desc",
+    "label": "Text"
+    },
+    {
+    "type": "product",
+    "id": "product",
+    "label": "Product for button"
+    },
+    {
+    "type": "text",
+    "id": "button",
+    "label": "Button label"
+    },
+    {
+    "type": "url",
+    "id": "button-link",
+    "label": "Button link"
+    },
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image with text"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Social proofing item",
+    "type": "image_picker",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "item",
+    "label": "Image on desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "item-mobile",
+    "label": "Image on tablet & mobile"
+    }
+    ]
+    }
+    ]
+}
+{% endschema %}

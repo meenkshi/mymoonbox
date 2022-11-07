@@ -1,0 +1,125 @@
+<div class="oval-images {% if section.settings.decor %} line-decor__one{% endif %}">
+    <div class="oval-images__wrapper{% if section.settings.type == 'two' %} oval-images__wrapper_two{% endif %}{% if 
+        section.settings.type == 'quiz-result' %} oval-images__wrapper_quiz{% endif %}"
+        style="background-color: {{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="oval-images__box d-flex justify-content-between align-items-center flex-wrap">
+                {% if section.settings.title != blank %}
+                <h2 class="oval-images__title" style="color:{{ section.settings.clr_text }}"> {{ section.settings.title
+                    }} </h2>
+                {% endif %}
+                {% if section.settings.desc %}
+                <div class="oval-images__text" style="color:{{ section.settings.clr_text }}"> {{ section.settings.desc
+                    }} </div>
+                {% endif %}
+            </div>
+            <div class="oval-images__items">
+                {% for block in section.blocks %}
+                <div class="oval-images__item">
+                    <div class="oval-images__item_wrapper">
+                        <div class="oval-images__item_unit">
+                            <img src=" {{ block.settings.image | img_url: 'master' }} " alt=""
+                                class="oval-images__item_image">
+                        </div>
+                        {% if block.settings.item-text != blank %}
+                        <div class="oval-images__item_text" style="color:{{ section.settings.clr_text }}"> {{
+                            block.settings.item-text }} </div>
+                        {% endif %}
+                        {% if block.settings.description %}
+                            <div class="oval-images__item_description" style="color:{{ section.settings.clr_text }}">
+                                {{ block.settings.description }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+    "name": "Oval images",
+    "settings": [
+    {
+    "type": "select",
+    "id": "type",
+    "label": "What type do you want to use?",
+    "options": [
+    {
+    "value": "one",
+    "label": "First"
+    },
+    {
+    "value": "two",
+    "label": "Second"
+    },
+    {
+    "value": "quiz-result",
+    "label": "Quiz result"
+    }
+    ]
+    },
+    {
+    "type": "checkbox",
+    "id": "decor",
+    "label": "Show decor?",
+    "default": false
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f1e7de"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "richtext",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "desc",
+    "label": "Text"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Image item",
+    "type": "image_picker",
+    "limit": 4,
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+    },
+    {
+    "type": "text",
+    "id": "item-text",
+    "label": "Text"
+    },
+    {
+    "type": "richtext",
+    "id": "description",
+    "label": "Description"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Oval images"
+    }
+    ]
+}
+{% endschema %}

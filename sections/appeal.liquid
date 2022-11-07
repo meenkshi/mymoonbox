@@ -1,0 +1,212 @@
+<div class="appeal">
+    <div class="appeal__wrapper{% if section.settings.type == 'type-two' %} appeal__wrapper_two{% endif %}{% if
+        section.settings.type == 'type-three'  %} appeal__wrapper_three{% endif %}{% if 
+        section.settings.type == 'type-four' %} appeal__wrapper_four{% endif %}{% if 
+        section.settings.type == 'type-five' %} appeal__wrapper_five{% endif %}{% if 
+        section.settings.type == 'quiz-one' %} appeal__wrapper_quiz-one{% endif %}{% if 
+        section.settings.type == 'quiz-two' %} appeal__wrapper_quiz-two{% endif %}{% if 
+        section.settings.type == 'result-one' %} appeal__wrapper_result{% endif %}{% if 
+        section.settings.type == 'result-two' %} appeal__wrapper_result-two{% endif %}{% if
+        section.settings.additional %} appeal__wrapper_additional{% endif %}" style="background-color: {{ section.settings.sec_bg_clr }};">
+        <div class="appeal__box">
+            <div class="appeal__inner {% if section.settings.bord == false %} appeal__inner_nobord{% endif %}">  
+                {% if section.settings.subtitle != blank %}
+                <div class="appeal__subtitle" style="color:{{ section.settings.clr_text }}"> {{
+                    section.settings.subtitle }} </div>
+                {% endif %}
+                {% if section.settings.title != blank %}
+                <h2 class="appeal__title" style="color:{{ section.settings.clr_text }}"> {{ section.settings.title }}
+                </h2>
+                {% endif %}
+                {% if section.settings.appeal_text != blank %}
+                <div class="appeal__text" style="color:{{ section.settings.clr_text }}"> {{
+                    section.settings.appeal_text }} </div>
+                {% endif %}
+                {%- if request.page_type == 'product' and section.settings.product == nil -%}
+                <form class="product-form w-100 d-flex justify-content-center" action="/cart/add" data-productid="{{card_product.id}}" method="post">
+                    <input type="hidden" name="id" data-productid="{{card_product.id}}" class="product-select"
+                      value="{{ card_product.variants[0].id }}" data-variant-title="{{ card_product.variants[0].title }}" />                    
+                    <input type="submit" value="{{ section.settings.btn }}" name="add" class="product-form__submit appeal__button button__outline" />
+                </form>
+                {% elsif section.settings.product != blank and section.settings.btn != blank %}
+                {% assign card_product = section.settings.product %}
+                <form class="product-form w-100 d-flex justify-content-center" action="/cart/add" data-productid="{{card_product.id}}" method="post">
+                    <input type="hidden" name="id" data-productid="{{card_product.id}}" class="product-select"
+                      value="{{ card_product.variants[0].id }}" data-variant-title="{{ card_product.variants[0].title }}" />                    
+                    <input type="submit" value="{{ section.settings.btn }}" name="add" class="product-form__submit appeal__button button__outline" />
+                </form>
+                {% elsif section.settings.btn != blank %}
+                <a href="{{ section.settings.btn_url }}" class="appeal__button button__primary"> {{
+                    section.settings.btn }} </a>
+                {%- endif -%}                             
+            </div>
+        </div>
+    </div>
+    {% if section.settings.additional %}
+    <div class="appeal__content" style="background-color: {{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="appeal__items">
+                <div class="appeal__item">
+                    {% if section.settings.additional-title != blank %}
+                    <h3 class="appeal__item_title" style="color:{{ section.settings.clr_text }}"> {{ section.settings.additional-title }} </h3>
+                    {% endif %}
+                    {% if section.settings.additional-text != blank %}
+                    <div class="appeal__item_text" style="color:{{ section.settings.clr_text }}"> {{ section.settings.additional-text }} </div>
+                    {% endif %}
+                </div>
+                <div class="appeal__benefits">
+                    {% if section.settings.benefits-title != blank %}
+                    <div class="appeal__benefits_title" style="color:{{ section.settings.clr_text }}"> {{ section.settings.benefits-title }} </div>
+                    {% endif %}
+                    {% for block in section.blocks %}
+                    <div class="appeal__benefits_text" style="color:{{ section.settings.clr_text }}"> {{ block.settings.item }} </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% schema %}
+{
+    "name": "Appeal",
+    "settings": [
+    {
+    "type": "select",
+    "id": "type",
+    "label": "What type do you want to use?",
+    "options": [
+    {
+    "value": "type-one",
+    "label": "Type one"
+    },
+    {
+    "value": "type-two",
+    "label": "Type two"
+    },
+    {
+    "value": "type-three",
+    "label": "Type three"
+    },
+    {
+    "value": "type-four",
+    "label": "Type four"
+    },
+    {
+    "value": "type-five",
+    "label": "Type five"
+    },
+    {
+    "value": "quiz-one",
+    "label": "Quiz landing first"
+    },
+    {
+    "value": "quiz-two",
+    "label": "Quiz landing second"
+    },
+    {
+    "value": "result-one",
+    "label": "Quiz result first"
+    },
+    {
+    "value": "result-two",
+    "label": "Quiz result second"
+    }
+    ]
+    },
+    {
+    "type": "checkbox",
+    "id": "bord",
+    "label": "Show border?",
+    "default": true
+    },
+    {
+    "type": "checkbox",
+    "id": "additional",
+    "label": "Show additional info?",
+    "default": false
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f3f2ec"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text color",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "subtitle",
+    "label": "Subtitle"
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "appeal_text",
+    "label": "Text"
+    },
+    {
+    "type": "product",
+    "id": "product",
+    "label": "Product for button"
+    },
+    {
+    "type": "text",
+    "id": "btn",
+    "label": "Button label"
+    },
+    {
+    "type": "url",
+    "id": "btn_url",
+    "label": "Button url"
+    },
+    {
+    "type": "header",
+    "content": "Additional information"
+    },
+    {
+    "type": "text",
+    "id": "additional-title",
+    "label": "Additional information title"
+    },
+    {
+    "type": "richtext",
+    "id": "additional-text",
+    "label": "Additional information text"
+    },
+    {
+    "type": "text",
+    "id": "benefits-title",
+    "label": "Benefits title"
+    }
+    ],
+    "blocks": [
+    {
+    "name": "Benefits item",
+    "type": "text",
+    "settings": [
+    {
+    "type": "text",
+    "id": "item",
+    "label": "Benefits item text"
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Appeal"
+    }
+    ]
+}
+{% endschema %}

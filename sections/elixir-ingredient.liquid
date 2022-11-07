@@ -1,0 +1,671 @@
+<div class="elixir-ingredient">
+    <div class="elixir-ingredient__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="elixir-ingredient__case">
+                <div class="elixir-ingredient__inner">
+                    {% if section.settings.title != blank %}
+                    <h2 class="elixir-ingredient__title" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title }} </h2>
+                    {% endif %}
+                    {% if section.settings.desc != blank %}
+                    <div class="elixir-ingredient__text" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.desc }} </div>
+                    {% endif %}
+                </div>
+                <ul class="elixir-ingredient__items">
+                    {% if product.metafields.elixir_ingredients.title_one != blank %}
+                    <li class="elixir-ingredient__item">
+                        {% for image in product.metafields.elixir_ingredients.image_one %}
+                        {% if image.src != blank %}
+                        <div class="elixir-ingredient__item_image">
+                            <figure>
+                                <img src=" {{ image.src }} " alt="{{ image.alt }}">
+                            </figure>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        <div class="elixir-ingredient__item_box">
+                            {% if product.metafields.elixir_ingredients.title_one != blank %}
+                            <div class="elixir-ingredient__item_title" style="color:{{ section.settings.clr_text }}">
+                                {{ product.metafields.elixir_ingredients.title_one }} </div>
+                            {% endif %}
+                            {% if product.metafields.elixir_ingredients.text_one != blank %}
+                            <div class="elixir-ingredient__item_text" style="color:{{ section.settings.clr_text }}">
+                                {{ product.metafields.elixir_ingredients.text_one }} </div>
+                            {% endif %}
+                            {% if product.metafields.elixir_popup_one.title != blank or product.metafields.elixir_popup_one.subtitle_one != blank %}
+                            <button class="elixir-ingredient__item_button button__show-bord first__popup">
+                                {{ section.settings.item-button }}
+                            </button>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% if product.metafields.elixir_ingredients.title_two != blank %}
+                    <li class="elixir-ingredient__item">
+                        {% for image in product.metafields.elixir_ingredients.image_two %}
+                        {% if image.src != blank %}
+                        <div class="elixir-ingredient__item_image">
+                            <figure>
+                                <img src=" {{ image.src }} " alt="{{ image.alt }}">
+                            </figure>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        <div class="elixir-ingredient__item_box">
+                            {% if product.metafields.elixir_ingredients.title_two != blank %}
+                            <div class="elixir-ingredient__item_title" style="color:{{ section.settings.clr_text }}">
+                                {{ product.metafields.elixir_ingredients.title_two }} </div>
+                            {% endif %}
+                            {% if product.metafields.elixir_ingredients.text_two != blank %}
+                            <div class="elixir-ingredient__item_text" style="color:{{ section.settings.clr_text }}">
+                                {{ product.metafields.elixir_ingredients.text_two }} </div>
+                            {% endif %}
+                            {% if product.metafields.elixir_popup_two.title != blank or product.metafields.elixir_popup_two.subtitle_one != blank %}
+                            <button class="elixir-ingredient__item_button button__show-bord second__popup">
+                                {{ section.settings.item-button }}
+                            </button>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% if product.metafields.elixir_ingredients.title_three != blank %}
+                    <li class="elixir-ingredient__item">
+                        {% for image in product.metafields.elixir_ingredients.image_three %}
+                        {% if image.src != blank %}
+                        <div class="elixir-ingredient__item_image">
+                            <figure>
+                                <img src=" {{ image.src }} " alt="{{ image.alt }}">
+                            </figure>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        <div class="elixir-ingredient__item_box">
+                            {% if product.metafields.elixir_ingredients.title_three != blank %}
+                            <div class="elixir-ingredient__item_title" style="color:{{ section.settings.clr_text }}">
+                                {{ product.metafields.elixir_ingredients.title_three }} </div>
+                            {% endif %}
+                            {% if product.metafields.elixir_ingredients.text_three != blank %}
+                            <div class="elixir-ingredient__item_text" style="color:{{ section.settings.clr_text }}">
+                                {{ product.metafields.elixir_ingredients.text_three }} </div>
+                            {% endif %}
+                            {% if product.metafields.elixir_popup_three.title != blank or product.metafields.elixir_popup_three.subtitle_one != blank %}
+                            <button class="elixir-ingredient__item_button button__show-bord third__popup">
+                                {{ section.settings.item-button }}
+                            </button>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% if product.metafields.elixir_ingredients.title_four %}
+                    <li class="elixir-ingredient__item">
+                        {% for image in product.metafields.elixir_ingredients.image_four %}
+                        {% if image.src != blank %}
+                        <div class="elixir-ingredient__item_image">
+                            <figure>
+                                <img src=" {{ image.src }} " alt="{{ image.alt }}">
+                            </figure>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        <div class="elixir-ingredient__item_box">
+                            {% if product.metafields.elixir_ingredients.title_four != blank %}
+                            <div class="elixir-ingredient__item_title" style="color:{{ section.settings.clr_text }}">
+                                {{ product.metafields.elixir_ingredients.title_four }} </div>
+                            {% endif %}
+                            {% if product.metafields.elixir_ingredients.text_four != blank %}
+                            <div class="elixir-ingredient__item_text" style="color:{{ section.settings.clr_text }}">
+                                {{ product.metafields.elixir_ingredients.text_four }} </div>
+                            {% endif %}
+                            {% if product.metafields.elixir_popup_four.title != blank or product.metafields.elixir_popup_four.subtitle_one != blank %}
+                            <button class="elixir-ingredient__item_button button__show-bord fourth__popup">
+                                {{ section.settings.item-button }}
+                            </button>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% if section.settings.button != blank %}
+                <a href="{{ section.settings.button-link }}" class="elixir-ingredient__button button__outline">{{
+                    section.settings.button }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if product.metafields.elixir_popup_one.title != blank or product.metafields.elixir_popup_one.subtitle_one != blank %}
+    <div class="additional-info__popup w-100 position-fixed elixir-ingredient__popup_one">
+        <div class="additional-info__popup_wrapper d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="additional-info__popup_inner w-100 position-relative"
+                    style="background-color: {{ section.settings.bcg-popup }} ;">
+                    {% if product.metafields.elixir_popup_one.title != blank %}
+                    <h3 class="additional-info__popup_title position-relative text-center"
+                        style="color: {{ section.settings.popup-title-color }} ;">
+                        {{ product.metafields.elixir_popup_one.title }} </h3>
+                    {% endif %}
+                    <ul class="additional-info__popup_items position-relative">
+                        {% if product.metafields.elixir_popup_one.subtitle_one != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_one.subtitle_one }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_one.text_one }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_one.subtitle_two != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_one.subtitle_two }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_one.text_two }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_one.subtitle_three != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_one.subtitle_three }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_one.text_three }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_one.subtitle_four != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_one.subtitle_four }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_one.text_four }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_one.subtitle_five != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_one.subtitle_five }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_one.text_five }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_one.subtitle_six != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_one.subtitle_six }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_one.text_six }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_one.subtitle_seven != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_one.subtitle_seven }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_one.text_seven }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_one.subtitle_eight != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_one.subtitle_eight }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_one.text_eight }}
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <button class="additional-info__popup_close d-block position-absolute one"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if product.metafields.elixir_popup_two.title != blank or product.metafields.elixir_popup_two.subtitle_one != blank %}
+    <div class="additional-info__popup w-100 position-fixed elixir-ingredient__popup_two">
+        <div class="additional-info__popup_wrapper d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="additional-info__popup_inner w-100 position-relative"
+                    style="background-color: {{ section.settings.bcg-popup }} ;">
+                    {% if product.metafields.elixir_popup_two.title != blank %}
+                    <h3 class="additional-info__popup_title position-relative text-center"
+                        style="color: {{ section.settings.popup-title-color }} ;">
+                        {{ product.metafields.elixir_popup_two.title }} </h3>
+                    {% endif %}
+                    <ul class="additional-info__popup_items position-relative">
+                        {% if product.metafields.elixir_popup_two.subtitle_one != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_two.subtitle_one }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_two.text_one }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_two.subtitle_two != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_two.subtitle_two }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_two.text_two }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_two.subtitle_three != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_two.subtitle_three }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_two.text_three }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_two.subtitle_four != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_two.subtitle_four }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_two.text_four }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_two.subtitle_five != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_two.subtitle_five }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_two.text_five }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_two.subtitle_six != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_two.subtitle_six }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_two.text_six }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_two.subtitle_seven != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_two.subtitle_seven }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_two.text_seven }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_two.subtitle_eight != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_two.subtitle_eight }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_two.text_eight }}
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <button class="additional-info__popup_close d-block position-absolute two"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if product.metafields.elixir_popup_three.title != blank or product.metafields.elixir_popup_three.subtitle_one != blank %}
+    <div class="additional-info__popup w-100 position-fixed elixir-ingredient__popup_three">
+        <div class="additional-info__popup_wrapper d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="additional-info__popup_inner w-100 position-relative"
+                    style="background-color: {{ section.settings.bcg-popup }} ;">
+                    {% if product.metafields.elixir_popup_three.title != blank %}
+                    <h3 class="additional-info__popup_title position-relative text-center"
+                        style="color: {{ section.settings.popup-title-color }} ;">
+                        {{ product.metafields.elixir_popup_three.title }} </h3>
+                    {% endif %}
+                    <ul class="additional-info__popup_items position-relative">
+                        {% if product.metafields.elixir_popup_three.subtitle_one != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_three.subtitle_one }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_three.text_one }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_three.subtitle_two != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_three.subtitle_two }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_three.text_two }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_three.subtitle_three != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_three.subtitle_three }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_three.text_three }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_three.subtitle_four != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_three.subtitle_four }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_three.text_four }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_three.subtitle_five != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_three.subtitle_five }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_three.text_five }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_three.subtitle_six != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_three.subtitle_six }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_three.text_six }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_three.subtitle_seven != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_three.subtitle_seven }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_three.text_seven }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_three.subtitle_eight != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_three.subtitle_eight }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_three.text_eight }}
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <button class="additional-info__popup_close d-block position-absolute three"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if product.metafields.elixir_popup_four.title != blank or product.metafields.elixir_popup_four.subtitle_one != blank %}
+    <div class="additional-info__popup w-100 position-fixed elixir-ingredient__popup_four">
+        <div class="additional-info__popup_wrapper d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="additional-info__popup_inner w-100 position-relative"
+                    style="background-color: {{ section.settings.bcg-popup }} ;">
+                    {% if product.metafields.elixir_popup_four.title != blank %}
+                    <h3 class="additional-info__popup_title position-relative text-center"
+                        style="color: {{ section.settings.popup-title-color }} ;">
+                        {{ product.metafields.elixir_popup_four.title }} </h3>
+                    {% endif %}
+                    <ul class="additional-info__popup_items position-relative">
+                        {% if product.metafields.elixir_popup_four.subtitle_one != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_four.subtitle_one }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_four.text_one }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_four.subtitle_two != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_four.subtitle_two }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_four.text_two }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_four.subtitle_three != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_four.subtitle_three }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_four.text_three }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_four.subtitle_four != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_four.subtitle_four }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_four.text_four }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_four.subtitle_five != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_four.subtitle_five }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_four.text_five }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_four.subtitle_six != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_four.subtitle_six }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_four.text_six }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_four.subtitle_seven != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_four.subtitle_seven }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_four.text_seven }}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.elixir_popup_four.subtitle_eight != blank %}
+                        <li class="additional-info__popup_item">
+                            <div class="additional-info__popup_subtitle position-relative"
+                                style="color: {{ section.settings.popup-subtitle-color }} ;">
+                                {{ product.metafields.elixir_popup_four.subtitle_eight }}
+                            </div>
+                            <div class="additional-info__popup_text"
+                                style="color: {{ section.settings.popup-text-color }} ;">
+                                {{ product.metafields.elixir_popup_four.text_eight }}
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <button class="additional-info__popup_close d-block position-absolute four"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script src="{{ 'elixir-ingredient.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+"name": "Elixir ingredient",
+"settings": [
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#f3f2ec"
+},
+{
+"type": "color",
+"id": "clr_title",
+"label": "Title color",
+"default": "#333"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "desc",
+"label": "Text"
+},
+{
+"type": "text",
+"id": "button",
+"label": "Button label"
+},
+{
+"type": "url",
+"id": "button-link",
+"label": "Button link"
+},
+{
+"type": "header",
+"content": "pop up"
+},
+{
+"type": "text",
+"id": "item-button",
+"label": "Button label"
+},
+{
+"type": "color",
+"id": "bcg-popup",
+"label": "Background color",
+"default": "#F3F2EC"
+},
+{
+"type": "color",
+"id": "popup-title-color",
+"label": "Title",
+"default": "#333"
+},
+{
+"type": "color",
+"id": "popup-subtitle-color",
+"label": "Subtitle",
+"default": "#333"
+},
+{
+"type": "color",
+"id": "popup-text-color",
+"label": "Text",
+"default": "#333"
+}
+]
+}
+{% endschema %}

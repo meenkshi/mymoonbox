@@ -1,0 +1,173 @@
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/css/iframe-lightbox.min.css" type="text/css">
+<div class="about-banner">
+    <div class="about-banner__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="about-banner__inner">
+                {% if section.settings.name %}
+                <div class="about-banner__name" style="color:{{ section.settings.clr_text }}"> {{ page.title }} </div>
+                {% endif %}
+                {% if section.settings.subtitle != blank %}
+                <div class="about-banner__subtitle" style="color:{{ section.settings.clr_text }}"> {{
+                    section.settings.subtitle }} </div>
+                {% endif %}
+                {% if section.settings.main-title != blank %}
+                <h1 class="about-banner__main-title" style="color:{{ section.settings.clr_text }}"> {{
+                    section.settings.main-title }} </h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="about-banner__video about-banner__video_mobile">
+        <a class="iframe-lightbox-link" data-padding-bottom="56.25%" href="{{ section.settings.video-link }}"
+            aria-hidden="true" rel="lightbox">
+            <div class="button__play_wrapper">
+                <div class="button__play">play</div>
+            </div>
+            <img src=" {{ section.settings.image-mobile | img_url: 'master' }} " class="about-banner__image" alt="">
+        </a>
+    </div>
+    <div class="about-banner__content" style="background-color:{{ section.settings.two-sec_bg_clr }};">
+        <div class="container">
+            <div class="about-banner__box">
+                {% if section.settings.call != blank %}
+                <div class="about-banner__call" style="color:{{ section.settings.clr_text }}">
+                    <span> {{ section.settings.call }} </span>
+                </div>
+                {% endif %}
+                <div class="about-banner__case">
+                    <div class="about-banner__video">
+                        <a class="iframe-lightbox-link" data-padding-bottom="56.25%"
+                            href="{{ section.settings.video-link }}" aria-hidden="true" rel="lightbox">
+                            <div class="button__play_wrapper">
+                                <div class="button__play">play</div>
+                            </div>
+                            <img src=" {{ section.settings.image | img_url: 'master' }} " class="about-banner__image"
+                                alt="">
+                        </a>
+                    </div>
+                    {% if section.settings.title != blank %}
+                    <h2 class="about-banner__title" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title }} </h2>
+                    {% endif %}
+                    {% if section.settings.title-mobile != blank %}
+                    <h2 class="about-banner__title_mobile" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title-mobile }} </h2>
+                    {% else %}
+                    <h2 class="about-banner__title_mobile" style="color:{{ section.settings.clr_text }}"> {{
+                        section.settings.title }} </h2>  
+                    {% endif %}
+                    {% if page.content != blank %}
+                    <div class="about-banner__text" style="color:{{ section.settings.clr_text }}"> {{ page.content }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .iframe-lightbox-link {
+        width: 100%;
+    }
+
+    .iframe-lightbox.is-showing.is-opened {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .iframe-lightbox iframe {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 989px) {
+        .iframe-lightbox iframe {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+    }
+</style>
+
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/englishextra/iframe-lightbox@latest/js/iframe-lightbox.min.js"></script>
+
+<script type="text/javascript">
+    [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function (el) {
+        el.lightbox = new IframeLightbox(el, {
+        });
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Banner",
+    "settings": [
+    {
+    "type": "checkbox",
+    "id": "name",
+    "label": "Show page title?"
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#f0dfd5"
+    },
+    {
+    "type": "color",
+    "id": "two-sec_bg_clr",
+    "label": "Background color",
+    "default": "#f3f2ec"
+    },
+    {
+    "type": "color",
+    "id": "clr_text",
+    "label": "Text",
+    "default": "#333"
+    },
+    {
+    "type": "text",
+    "id": "subtitle",
+    "label": "Subtitle"
+    },
+    {
+    "type": "text",
+    "id": "main-title",
+    "label": "Main title"
+    },
+    {
+    "type": "text",
+    "id": "call",
+    "label": "Text for video"
+    },
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image on desktop"
+    },
+    {
+    "type": "image_picker",
+    "id": "image-mobile",
+    "label": "Image"
+    },
+    {
+    "type": "url",
+    "id": "video-link",
+    "label": "Video link"
+    },
+    {
+    "type": "richtext",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "richtext",
+    "id": "title-mobile",
+    "label": "Title on mobile"
+    }
+    ]
+}
+{% endschema %}

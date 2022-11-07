@@ -1,0 +1,127 @@
+<div class="text-image">
+    <div class="text-image__wrapper{% if section.settings.gradient %} text-image__wrapper_gradient{% endif %}"
+        style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            <div class="text-image__items{% if section.settings.right-image %} text-image__items_right{% endif %}">
+                <div
+                    class="text-image__content{% if section.settings.right-image %} text-image__content_right{% endif %}">
+                    {% if section.settings.title != blank %}
+                    <h2 class="text-image__title{% if section.settings.title_mobile != blank %} text-image__title_desk{% endif %}" style="color:{{ section.settings.clr_title }}"> {{
+                        section.settings.title }} </h2>
+                    {% endif %}
+                    {% if section.settings.title_mobile != blank %}
+                    <h2 class="text-image__title_mobile" style="color:{{ section.settings.clr_title }}"> {{
+                        section.settings.title_mobile }} </h2>
+                    {% endif %}
+                    {% if section.settings.image != blank %}
+                    <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                        {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                        {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                        {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                        {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                        {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                        {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                        {{ image | img_url: 'master' }} {{ image.width }}w"
+                        src="{{ section.settings.image | img_url: 'master' }}" sizes="(max-width: 990px)"
+                        alt="{{ image.alt | escape }}" height="{{ image.height }}" width="{{ image.width }}"
+                        loading="lazy" class="text-image__photo_mobile">
+                    {% endif %}
+                    {% if section.settings.button__label != blank %}
+                    <a href="{{ section.settings.button }}" class="text-image__button button__primary"> {{
+                        section.settings.button__label }} </a>
+                    {% endif %}
+                    {% if section.settings.button__label_mobile != blank %}
+                    <a href="{{ section.settings.button_mobile }}" class="text-image__button_mobile button__primary"> {{
+                        section.settings.button__label_mobile }} </a>
+                    {% endif %}
+                </div>
+                {% if section.settings.image != blank %}
+                <img srcset="{%- if image.width >= 165 -%}{{ image | img_url: '165x' }} 165w,{%- endif -%}
+                        {%- if image.width >= 330 -%}{{ image | img_url: '330x' }} 330w,{%- endif -%}
+                        {%- if image.width >= 535 -%}{{ image | img_url: '535x' }} 535w,{%- endif -%}
+                        {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
+                        {%- if image.width >= 1000 -%}{{ image | img_url: '1000x' }} 1000w,{%- endif -%}
+                        {%- if image.width >= 1500 -%}{{ image | img_url: '1500x' }} 1500w,{%- endif -%}
+                        {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
+                        {{ image | img_url: 'master' }} {{ image.width }}w"
+                    src="{{ section.settings.image | img_url: 'master' }}" sizes="(max-width: 990px)"
+                    alt="{{ image.alt | escape }}" height="{{ image.height }}" width="{{ image.width }}" loading="lazy"
+                    class="text-image__photo">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Text-image",
+    "settings": [
+    {
+    "type": "checkbox",
+    "id": "gradient",
+    "label": "Show gradient",
+    "default": false
+    },
+    {
+    "type": "checkbox",
+    "id": "right-image",
+    "label": "Should the image be on the right side of the tablet?",
+    "default": false
+    },
+    {
+    "type": "color",
+    "id": "sec_bg_clr",
+    "label": "Background color",
+    "default": "#F2E9E0"
+    },
+    {
+    "type": "color",
+    "id": "clr_title",
+    "label": "Title color",
+    "default": "#333"
+    },
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+    },
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title on desktop and tablet"
+    },
+    {
+    "type": "richtext",
+    "id": "title_mobile",
+    "label": "Title on mobile"
+    },
+    {
+    "type": "text",
+    "id": "button__label",
+    "label": "Button descktop label"
+    },
+    {
+    "type": "url",
+    "id": "button",
+    "label": "Button descktop url"
+    },
+    {
+    "type": "text",
+    "id": "button__label_mobile",
+    "label": "Button mobile label"
+    },
+    {
+    "type": "url",
+    "id": "button_mobile",
+    "label": "Button mobile url"
+    }
+    ],
+    "presets": [
+    {
+    "category": "New",
+    "name":"Text with image"
+    }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,187 @@
+{% if section.settings.show_section %}
+  {%- capture carousel_collection -%}
+  {%- endcapture -%}
+
+  <div class="carousel-collection {% if section.settings.show_info_start %}carousel-collection--and-i-s{% endif %}"  data-section-id="{{ section.id }}" style="background-color:{{ section.settings.sec_bg_clr }};">
+    <div class="container">
+      <div class="carousel-collection__wrap">
+        <div class="carousel-collection__head">
+          {% if section.settings.title != blank %}
+            <h2 class="carousel-collection__title" style="color:{{ section.settings.clr_text }}">{{ section.settings.title }}</h2>
+          {% endif %}
+
+          <div class="carousel-collection__nav">
+            {% if section.settings.button_url != blank %}
+              <a href="{{ section.settings.button_url }}" class="carousel-collection__link carousel-collection__link--desktop">{{ section.settings.button_label }}</a>
+            {% endif %}
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev carousel-collection__button-prev">
+              <svg width="45" height="27" viewBox="0 0 45 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.0659 0.999992C18.0659 0.999992 20.7318 11.6 1 13.5" stroke="#333333" stroke-miterlimit="10"/>
+                <path d="M18.0659 26C18.0659 26 20.7318 15.4 1 13.5L44.1271 13.5" stroke="#333333" stroke-miterlimit="10"/>
+              </svg>
+            </div>
+            <div class="swiper-button-next carousel-collection__button-next">
+              <svg width="44" height="27" viewBox="0 0 44 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M26.312 26C26.312 26 23.6461 15.4 43.3779 13.5" stroke="#333333" stroke-miterlimit="10"/>
+                <path d="M26.312 1C26.312 1 23.6461 11.6 43.3779 13.5L0.250865 13.5" stroke="#333333" stroke-miterlimit="10"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-collection__body">
+          <div class="carousel-collection__slider swiper" data-swiper-count-slide="{{ section.settings.limit }}">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks limit: section.settings.limit %}
+
+                {%- assign collection = collections[block.settings.collection] -%}
+                {% for product in collection.products %}
+                  <div class="swiper-slide">
+                    {% render 'carousel-product-card', with card_product: product %}
+                  </div>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          </div>
+
+          {% if section.settings.button_url != blank %}
+            <a href="{{ section.settings.button_url }}" class="carousel-collection__link carousel-collection__link--mobile">{{ section.settings.button_label }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% if section.settings.show_info_start %}
+      <div class="info-start">
+          <div class="info-start__wrapper">
+              <div class="container">
+                  <div class="info-start__items">
+                      <div class="info-start__item_images">
+                          <img src="{{ section.settings.info-start__image | img_url: 'master' }}" alt="" class="info-start__image">
+                      </div>
+                      <div class="info-start__item_text col-lg-6 col-xl-5">
+                          <h2 class="info-start__title"> {{ section.settings.info-start__title }} </h2>
+                          <img src="{{ section.settings.info-start__image | img_url: 'master' }}" alt="" class="info-start__image_mobile">
+                          {% if section.settings.info-start__btn_lable != blank %}
+                          <a href="{{ section.settings.info-start__btn_link }}" class="info-start__btn button__primary">{{ section.settings.info-start__btn_lable }}</a>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {{ carousel_collection | strip_newlines | remove: "  " | remove: "	" }}
+
+  <script src="{{- 'carousel-collection.min.js' | asset_url -}}" defer="defer"></script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Carousel collection",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section?",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Carousel limit product",
+      "unit": "itm",
+      "min": 6,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Browse Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View all Products"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url"
+    },
+    {
+      "type": "header",
+      "content": "Info start"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_info_start",
+      "label": "Show Info start?",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "info-start__image",
+      "label": "Image"
+    },
+    {
+      "type": "richtext",
+      "id": "info-start__title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "info-start__btn_lable",
+      "label": "Button lable"
+    },
+    {
+      "type": "url",
+      "id": "info-start__btn_link",
+      "label": "Button url"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color",
+      "id": "sec_bg_clr",
+      "label": "Overlay",
+      "default": "#F3F2EC"
+    },
+    {
+      "type": "color",
+      "id": "clr_text",
+      "label": "Text",
+      "default": "#333"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "limit": 1,
+      "name": "Collection products",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Carousel collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carousel collection",
+      "category": "1. Products"
+    }
+  ]
+}
+{% endschema %}

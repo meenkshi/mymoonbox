@@ -1,0 +1,89 @@
+<div class="coach">
+    <div class="coach__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+        <div class="container">
+            {% if section.settings.title != blank %}
+            <h2 class="coach__title_mobile" style="color:{{ section.settings.clr_text }}"> {{ section.settings.title }}
+            </h2>
+            {% endif %}
+            <div class="coach__inner">
+                <div class="coach__image">
+                    {% if section.settings.image != blank %}
+                    <img src="{{ section.settings.image | img_url: 'master' }}" alt="">
+                    {% endif %}
+                </div>
+                <div class="coach__content">
+                    {% if section.settings.title != blank %}
+                    <h2 class="coach__title" style="color:{{ section.settings.clr_text }}"> {{ section.settings.title }}
+                    </h2>
+                    {% endif %}
+                    {% if section.settings.desc %}
+                    <div class="coach__text" style="color:{{ section.settings.clr_text }}"> {{ section.settings.desc }}
+                    </div>
+                    {% endif %}
+                    {% if section.blocks != blank %}
+                    <ul class="coach__list">
+                        {% for block in section.blocks %}
+                        <li class="decor_leaf coach__item" style="color:{{ section.settings.clr_text }}"> {{ block.settings.item }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Coach",
+"settings": [
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#F1E7DE"
+},
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text",
+"default": "#333"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "desc",
+"label": "Text"
+}
+],
+"blocks": [
+{
+"name": "Item",
+"type": "text",
+"settings": [
+{
+"type": "text",
+"id": "item",
+"label": "Text"
+}
+]
+}
+],
+"presets": [
+{
+"category": "New",
+"name":"Coach"
+}
+]
+}
+{% endschema %}

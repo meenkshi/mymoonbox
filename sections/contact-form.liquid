@@ -1,0 +1,168 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+
+<div class="contact">
+  <div class="contact__wrapper" style="background-color:{{ section.settings.sec_bg_clr }};">
+    <div class="container">
+      <div class="contact__inner d-flex flex-column flex-lg-row justify-content-between w-100">
+        <div class="contact__form">
+          {% if section.settings.title != blank %}
+          <h2 class="contact__form_title" style="color:{{ section.settings.clr_text }}"> {{ section.settings.title }}
+          </h2>
+          {% endif %}
+          {% if section.settings.desc != blank %}
+          <div class="contact__item_text d-lg-none" style="color:{{ section.settings.clr_text }}"> {{
+            section.settings.desc }}
+          </div>
+          {% endif %}
+          {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
+          {%- if form.posted_successfully? -%}
+          <div class="contact-fields__success" tabindex="-1" autofocus>{% render 'icon-success' %} {{
+            'templates.contact.form.post_success' | t }}</div>
+          {%- elsif form.errors -%}
+          <div class="contact-fields__error">
+            <h3 class="contact-fields__error_message" role="alert" tabindex="-1" autofocus>{% render 'icon-error'
+              %} {{
+              'templates.contact.form.error_heading' | t }}</h3>
+          </div>
+          <ul class="contact-fields__error_list" role="list">
+            <li>
+              <a href="#ContactForm-email" class="button__secondary">
+                {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+              </a>
+            </li>
+          </ul>
+          {%- endif -%}
+          <div class="contact-fields">
+            <div class="contact-fields__select position-relative">
+              <select id="ContactFormProductNameField" name="contact[Product]" required>
+                <option selected disabled> {{ 'templates.contact.form.select_title' | t }} </option>
+                {% for block in section.blocks %}
+                <option value="{{ block.settings.item }}"> {{ block.settings.item }} </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="contact-fields__email">
+              <input autocomplete="email" type="email" id="ContactForm-email" name="contact[email]" spellcheck="false"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true" {% if form.errors contains 'email' %} aria-invalid="true"
+                aria-describedby="ContactForm-email-error" {% endif %}
+                placeholder="{{ 'templates.contact.form.email' | t }}">
+            </div>
+          </div>
+          <textarea id="ContactForm-body" class="contact-fields__textarea"
+            name="contact[{{ 'templates.contact.form.comment' | t }}]"
+            placeholder="{{ 'templates.contact.form.comment' | t }}">
+                {{- form.body -}}
+          </textarea>
+          <button type="submit" class="contact-fields__button button__outline">
+            {{ 'templates.contact.form.send' | t }}
+          </button>
+          {%- endform -%}
+        </div>
+        <div class="contact__item">
+          {% if section.settings.desc != blank %}
+          <div class="contact__item_text d-none d-lg-block" style="color:{{ section.settings.clr_text }}"> {{
+            section.settings.desc }}
+          </div>
+          {% endif %}
+          {% if section.settings.show_social %}
+          <div class="contact__social">
+            {% if section.settings.social-text %}
+            <div class="contact__social_text" style="color:{{ section.settings.clr_text }}"> {{
+              section.settings.social-text }} </div>
+            {% endif %}
+            <ul class="contact__social_list d-flex">
+              {%- if settings.social_facebook_link != blank -%}
+              <li class="contact__social_icon">
+                <a href="{{ settings.social_facebook_link }}" class="footer__social_link">
+                  {%- render 'icon-facebook-two' -%}
+                  <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                </a>
+              </li>
+              {%- endif -%}
+              {%- if settings.social_instagram_link != blank -%}
+              <li class="contact__social_icon">
+                <a href="{{ settings.social_instagram_link }}" class="footer__social_link">
+                  {%- render 'icon-instagram-two' -%}
+                  <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                </a>
+              </li>
+              {%- endif -%}
+              {%- if settings.social_youtube_link != blank -%}
+              <li class="contact__social_icon">
+                <a href="{{ settings.social_youtube_link }}" class="footer__social_link">
+                  {%- render 'icon-youtube-two' -%}
+                  <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                </a>
+              </li>
+              {%- endif -%}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "t:sections.contact-form.name",
+"tag": "section",
+"class": "section",
+"settings": [
+{
+"type": "checkbox",
+"id": "show_social",
+"label": "Show social?",
+"default": true
+},
+{
+"type": "color",
+"id": "sec_bg_clr",
+"label": "Background color",
+"default": "#f3f2ec"
+},
+{
+"type": "color",
+"id": "clr_text",
+"label": "Text color",
+"default": "#333"
+},
+{
+"type": "richtext",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "desc",
+"label": "Text"
+},
+{
+"type": "text",
+"id": "social-text",
+"label": "Social subtitle"
+}
+],
+"blocks": [
+{
+"name": "Select item",
+"type": "text",
+"settings": [
+{
+"type": "text",
+"id": "item",
+"label": "Text"
+}
+]
+}
+],
+"presets": [
+{
+"name": "t:sections.contact-form.presets.name"
+}
+]
+}
+{% endschema %}
